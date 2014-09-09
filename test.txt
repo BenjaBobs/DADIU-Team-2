@@ -1,9 +1,0 @@
-<<<<<<< HEAD
-Derpa
-
-Fisk
-=======
-Fisk
-
-hej med dig
->>>>>>> dc5a345c27e3521f79527774b921285c0090b28d
