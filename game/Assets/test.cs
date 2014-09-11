@@ -85,8 +85,18 @@ public class test : MonoBehaviour {
             }
         }
 
+        if (GUI.Button(new Rect(0f, 400f, 100f, 100f), "clear"))
+        {
 
-        if (GUI.Button(new Rect(0f, 400f, 100f, 100f), "quit"))
+            foreach (GameObject kid in kids)
+            {
+                Destroy(kid);
+                
+            }
+            count = 0;
+        }
+
+        if (GUI.Button(new Rect(0f, 700f, 100f, 100f), "quit"))
         {
             Application.Quit();
         }
