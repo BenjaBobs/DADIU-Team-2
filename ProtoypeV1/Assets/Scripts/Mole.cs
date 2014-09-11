@@ -10,8 +10,12 @@ public class Mole : MonoBehaviour {
 	public int score;
 	public Transform exploderY;
 	public Transform exploderX;
+
     public GameObject iceLayer;
+
+	public Transform exploderGrid;
 	public bool allowChainReaction;
+	public int occurenceFactor = 1;
 
 	// Use this for initialization
 	void Start () {
@@ -35,9 +39,13 @@ public class Mole : MonoBehaviour {
 		if (gameObject.name.Contains("Exploder1Mole")) 
 		{
 			Transform explosionX = (Transform)Instantiate(exploderX, transform.position, transform.rotation);
-			explosionX.gameObject.GetComponent<Explosion>().expandY = false;
+			explosionX.gameObject.GetComponent<ExplosionLine>().expandY = false;
 			Transform explosionY = (Transform)Instantiate(exploderY, transform.position, transform.rotation);
-			explosionY.gameObject.GetComponent<Explosion>().expandY = true;
+			explosionY.gameObject.GetComponent<ExplosionLine>().expandY = true;
+		}
+		else if (gameObject.name.Contains("Exploder2Mole")) 
+		{
+			Instantiate(exploderGrid, transform.position, transform.rotation);
 		}
         else if (gameObject.name.Contains("FreezeMole"))
         {

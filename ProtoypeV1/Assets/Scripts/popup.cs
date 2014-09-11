@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class popup : MonoBehaviour {
+public class Popup : MonoBehaviour {
+
 	GameObject player;
 	public float popDistance = 5.0f;
 	public float popSpeed = 0.1f;
@@ -18,6 +19,7 @@ public class popup : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        
 		float currentPopSpeed = (currentDistance / popDistance);
 		if (!movingDown)
 						currentPopSpeed = 1 - currentPopSpeed;
@@ -41,10 +43,19 @@ public class popup : MonoBehaviour {
 		currentDistance += distance;
 
 		if (currentDistance >= popDistance) {
-						movingDown = true;		
-				} else if (currentDistance < 0)
-						Destroy (gameObject);
+			movingDown = true;		
+		} 
+		else if (currentDistance < 0) 
+		{
+			HitPlayer ();
+			Destroy (gameObject);
+		}
+        
+	}
 
+	void HitPlayer()
+	{
+		((Player)player.gameObject.GetComponent (typeof(Player))).LoseHealth ();
 	}
 
 	float GetDifficultyMultiplier()

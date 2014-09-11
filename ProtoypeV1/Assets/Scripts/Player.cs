@@ -11,6 +11,9 @@ public class Player : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		currentScore = 0;
+		scoreText = GameObject.Find ("HealthText");
+		GUIText guiText = ((GUIText)scoreText.GetComponent (typeof(GUIText)));
+		guiText.text = "Health: " + health;
 	}
 	
 	// Update is called once per frame
@@ -24,5 +27,13 @@ public class Player : MonoBehaviour {
 		currentScore += score;
 		GUIText guiText = ((GUIText)scoreText.GetComponent (typeof(GUIText)));
 		guiText.text = "Score: " + currentScore;
+	}
+
+	public void LoseHealth()
+	{
+		health--;
+		scoreText = GameObject.Find ("HealthText");
+		GUIText guiText = ((GUIText)scoreText.GetComponent (typeof(GUIText)));
+		guiText.text = "Health: " + health;
 	}
 }
