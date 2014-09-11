@@ -9,6 +9,8 @@ public class ExplosionLine : MonoBehaviour {
 	public bool expandY;
 	float currentWidth = 0;
 	public float raycastDistanceFactor;
+	public int posX;
+	public int posY;
 
 	// Use this for initialization
 	void Start () {

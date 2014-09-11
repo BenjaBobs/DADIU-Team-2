@@ -6,7 +6,9 @@ public class ExplosionGrid : MonoBehaviour {
 	public float expandSpeed;
 	float currentLifetime = 0.0f;
 	float currentWidth = 0;
-	public float raycastDistanceFactor;
+	public int radius;
+	public int posX;
+	public int posY;
 
 	// Use this for initialization
 	void Start () {
@@ -16,22 +18,12 @@ public class ExplosionGrid : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		Vector3 scale = transform.localScale;
-
 		scale.x += Time.deltaTime * expandSpeed / lifetime;
 		scale.z += Time.deltaTime * expandSpeed / lifetime;
-		currentWidth = scale.z * raycastDistanceFactor;
-		// Orthogonals
-		CheckExplosion(new Vector3(0,0,1));
-		CheckExplosion(new Vector3(0,0,-1));
-		CheckExplosion(new Vector3(-1,0,0));
-		CheckExplosion(new Vector3(1,0,0));
-		// Diagonals
-		CheckExplosion(new Vector3(1,0,1));
-		CheckExplosion(new Vector3(1,0,-1));
-		CheckExplosion(new Vector3(-1,0,1));
-		CheckExplosion(new Vector3(-1,0,-1));
-
 		transform.localScale = scale;
+
+		GridSpawner gridSpawner = GameObject.Find ("GridSpawner").GetComponent<GridSpawner>();
+		HitWithinRange (gridSpawner);
 
 		currentLifetime += Time.deltaTime;
 
@@ -40,7 +32,27 @@ public class ExplosionGrid : MonoBehaviour {
 		}
 	}
 
-	void CheckExplosion(Vector3 direction)
+	void HitWithinRange(GridSpawner gridSpawner)
+	{
+		for (int x = posX-radius; x <= posX+radius; x++)
+		{
+			for (int y = posY-radius; y <= posY+radius; y++)
+			{
+				GameObject obj = gridSpawner.LookupGrid(x,y);
+				if (obj)
+				{
+					Mole mole = obj.GetComponent<Mole>();
+					if (true)
+					{
+						mole.Die();
+					}
+				}
+			}
+		}
+	}
+
+	/*OUTDATED:
+	 * void CheckExplosion(Vector3 direction)
 	{
 		RaycastHit hit;
 		if (Physics.Raycast(transform.position, direction, out hit))
@@ -52,5 +64,5 @@ public class ExplosionGrid : MonoBehaviour {
 					hitMole.Die(hitMole.allowChainReaction);
 			}
 		}
-	}
+	}*/
 }

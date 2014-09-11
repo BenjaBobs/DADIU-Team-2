@@ -8,6 +8,8 @@ public class Spawner : MonoBehaviour {
 	public float minFrequency = 2.0f;
 	float currentFrequency = 0.0f;
 	float timeSinceSpawn = 0.0f;
+	public int posX;
+	public int posY;
 	//public Transform child;
 	List<Object> prefabs;
 	List<Object> childs;
@@ -32,8 +34,8 @@ public class Spawner : MonoBehaviour {
 		timeSinceSpawn += Time.deltaTime * ((Player)player.gameObject.GetComponent(typeof(Player))).difficultyMultiplier;
 		if (timeSinceSpawn >= currentFrequency) {
 			// Instantiate mole and set its parent
-			GameObject mole = (GameObject)Instantiate(childs[Random.Range(0, childs.Count)], transform.position, transform.rotation);
-			mole.transform.parent = gameObject.transform;
+			GameObject go = (GameObject)Instantiate(childs[Random.Range(0, childs.Count)], transform.position, transform.rotation);
+			go.transform.parent = gameObject.transform;
 			timeSinceSpawn = 0.0f;
 			CalculateFrequency ();
 		}

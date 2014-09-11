@@ -13,6 +13,8 @@ public class Mole : MonoBehaviour {
 	public Transform exploderGrid;
 	public bool allowChainReaction;
 	public int occurenceFactor = 1;
+	public int posX;
+	public int posY;
 	Vector3 originalColliderSize;
 
 	// Use this for initialization
@@ -23,6 +25,13 @@ public class Mole : MonoBehaviour {
 		player = GameObject.Find ("Player");
 		currentHealth = Random.Range(minHealth, maxHealth + 1);
 		UpdateScale ();
+		// Get Spawner
+		Spawner spawner = transform.parent.GetComponent<Spawner> ();
+		posX = spawner.posX;
+		posY = spawner.posY;
+		// Get GridSpawner
+		GridSpawner gridSpawner = spawner.transform.parent.GetComponent<GridSpawner>();
+		gridSpawner.InsertToGrid (posX, posY, gameObject);
 	}
 	
 	// Update is called once per frame
@@ -30,7 +39,9 @@ public class Mole : MonoBehaviour {
 		currentHealth--;
 		UpdateScale ();
 		if (currentHealth < 1) {
-			Die(true);		
+			Die(true);
+			GridSpawner gridSpawner = transform.parent.parent.GetComponent<GridSpawner>();
+			gridSpawner.RemoveFromGrid(posX, posY);
 		}
 	}
 
@@ -38,14 +49,24 @@ public class Mole : MonoBehaviour {
 	{
 		if (gameObject.name.Contains("Exploder1Mole")) 
 		{
+			ExplosionLine line = null;
 			Transform explosionX = (Transform)Instantiate(exploderX, transform.position, transform.rotation);
-			explosionX.gameObject.GetComponent<ExplosionLine>().expandY = false;
+			line = explosionX.gameObject.GetComponent<ExplosionLine>();
+			line.expandY = false;
+			line.posX = posX;
+			line.posY = posY;;
 			Transform explosionY = (Transform)Instantiate(exploderY, transform.position, transform.rotation);
-			explosionY.gameObject.GetComponent<ExplosionLine>().expandY = true;
+			line = explosionY.gameObject.GetComponent<ExplosionLine>();
+			line.expandY = true;
+			line.posX = posX;
+			line.posY = posY;
 		}
 		else if (gameObject.name.Contains("Exploder2Mole")) 
 		{
-			Instantiate(exploderGrid, transform.position, transform.rotation);
+			Transform exTransform = (Transform)Instantiate(exploderGrid, transform.position, transform.rotation);
+			ExplosionGrid explosion = exTransform.gameObject.GetComponent<ExplosionGrid>();
+			explosion.posX = posX;
+			explosion.posY = posY;
 		}
 		((Player)player.gameObject.GetComponent(typeof(Player))).IncreaseScore(score);
 		Destroy (gameObject);
