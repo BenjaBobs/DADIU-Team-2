@@ -7,7 +7,7 @@ public class GridSpawner : MonoBehaviour {
 	public int sizeX;
 	public int sizeY;
 	public float spacing;
-	public Transform spawnType;
+	public GameObject spawnType;
 	Dictionary<int, Dictionary<int, GameObject>> grid;
 
 	// Use this for initialization

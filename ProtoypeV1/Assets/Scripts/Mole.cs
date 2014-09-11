@@ -10,6 +10,9 @@ public class Mole : MonoBehaviour {
 	public int score;
 	public Transform exploderY;
 	public Transform exploderX;
+
+    public GameObject iceLayer;
+
 	public Transform exploderGrid;
 	public bool allowChainReaction;
 	public int occurenceFactor = 1;
@@ -68,6 +71,10 @@ public class Mole : MonoBehaviour {
 			explosion.posX = posX;
 			explosion.posY = posY;
 		}
+        else if (gameObject.name.Contains("FreezeMole"))
+        {
+            GameObject ice = Instantiate(iceLayer, new Vector3(0, 10, 0), Quaternion.identity) as GameObject;
+        }
 		((Player)player.gameObject.GetComponent(typeof(Player))).IncreaseScore(score);
 		Destroy (gameObject);
 	}

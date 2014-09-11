@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class Popup : MonoBehaviour {
+
 	GameObject player;
 	public float popDistance = 5.0f;
 	public float popSpeed = 0.1f;
@@ -18,6 +19,7 @@ public class Popup : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        
 		float currentPopSpeed = (currentDistance / popDistance);
 		if (!movingDown)
 						currentPopSpeed = 1 - currentPopSpeed;
@@ -48,7 +50,7 @@ public class Popup : MonoBehaviour {
 			HitPlayer ();
 			Destroy (gameObject);
 		}
-
+        
 	}
 
 	void HitPlayer()
