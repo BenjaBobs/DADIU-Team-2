@@ -13,19 +13,22 @@ public class Mole : MonoBehaviour {
 	public Transform exploderGrid;
 	public bool allowChainReaction;
 	public int occurenceFactor = 1;
+	Vector3 originalColliderSize;
 
 	// Use this for initialization
 	void Start () {
+		originalColliderSize = transform.gameObject.GetComponent<BoxCollider> ().size;
 		// Random color
 		//gameObject.renderer.material.color = new Color (Random.value, Random.value, Random.value);
 		player = GameObject.Find ("Player");
 		currentHealth = Random.Range(minHealth, maxHealth + 1);
-		transform.localScale = transform.localScale * (1 + (currentHealth - 1) * healthScaleMultiplier);
+		UpdateScale ();
 	}
 	
 	// Update is called once per frame
 	void OnMouseDown () {
 		currentHealth--;
+		UpdateScale ();
 		if (currentHealth < 1) {
 			Die(true);		
 		}
@@ -48,5 +51,12 @@ public class Mole : MonoBehaviour {
 		Destroy (gameObject);
 	}
 
-
+	void UpdateScale()
+	{
+		float scale =  (1 + (currentHealth - 1) * healthScaleMultiplier);
+		transform.localScale = new Vector3(1,1,1) * scale;
+		Vector3 colliderSize = originalColliderSize;
+		colliderSize /= scale;
+		transform.gameObject.GetComponent<BoxCollider> ().size = colliderSize;
+	}
 }
