@@ -41,10 +41,19 @@ public class Popup : MonoBehaviour {
 		currentDistance += distance;
 
 		if (currentDistance >= popDistance) {
-						movingDown = true;		
-				} else if (currentDistance < 0)
-						Destroy (gameObject);
+			movingDown = true;		
+		} 
+		else if (currentDistance < 0) 
+		{
+			HitPlayer ();
+			Destroy (gameObject);
+		}
 
+	}
+
+	void HitPlayer()
+	{
+		((Player)player.gameObject.GetComponent (typeof(Player))).LoseHealth ();
 	}
 
 	float GetDifficultyMultiplier()

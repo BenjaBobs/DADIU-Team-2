@@ -42,7 +42,7 @@ public class Mole : MonoBehaviour {
 		}
 		else if (gameObject.name.Contains("Exploder2Mole")) 
 		{
-			Transform explosion = (Transform)Instantiate(exploderGrid, transform.position, transform.rotation);
+			Instantiate(exploderGrid, transform.position, transform.rotation);
 		}
 		((Player)player.gameObject.GetComponent(typeof(Player))).IncreaseScore(score);
 		Destroy (gameObject);
