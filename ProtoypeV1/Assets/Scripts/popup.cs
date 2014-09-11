@@ -4,11 +4,12 @@ using System.Collections;
 public class popup : MonoBehaviour {
 	GameObject player;
 	public float popDistance = 5.0f;
-	public float popSpeed = 5.0f;
+	public float popSpeed = 0.1f;
 	public float currentDistance = 0.0f;
 	public float timeUp = 3.0f;
 	float currentTimeUp = 0.0f;
 	bool movingDown = false; 
+	public float lerpSpeed = 10.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -17,7 +18,10 @@ public class popup : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		float distance = popSpeed * Time.deltaTime * GetDifficultyMultiplier();
+		float currentPopSpeed = (currentDistance / popDistance);
+		if (!movingDown)
+						currentPopSpeed = 1 - currentPopSpeed;
+		float distance = (currentPopSpeed * lerpSpeed + popSpeed) * Time.deltaTime * GetDifficultyMultiplier();
 		if (!movingDown) {
 			distance = Mathf.Min (distance + currentDistance, popDistance) - currentDistance;
 		}
