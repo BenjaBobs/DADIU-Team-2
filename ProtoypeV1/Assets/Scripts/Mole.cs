@@ -18,6 +18,11 @@ public class Mole : MonoBehaviour {
 	public int occurenceFactor = 1;
 	Vector3 originalColliderSize;
 
+    //stuff for Hold mechanic
+    bool holding = false;
+    float startTime;
+    float holdTime = 2;
+
 	// Use this for initialization
 	void Start () {
 		originalColliderSize = transform.gameObject.GetComponent<BoxCollider> ().size;
@@ -27,15 +32,32 @@ public class Mole : MonoBehaviour {
 		currentHealth = Random.Range(minHealth, maxHealth + 1);
 		UpdateScale ();
 	}
-	
-	// Update is called once per frame
+
 	void OnMouseDown () {
+        startTime = Time.time;
+        holding = true;
+
 		currentHealth--;
 		UpdateScale ();
 		if (currentHealth < 1) {
-			Die(true);		
+			//Die(true);		
 		}
 	}
+
+    void OnMouseOver()
+    {
+        if (holding)
+        {
+            if (Input.touchCount > 0 || Input.GetMouseButton(0))
+            {
+                if (Time.time - startTime >= holdTime)
+                {
+                    holding = false;
+                    Debug.Log("You've held");
+                }
+            }
+        }
+    }
 
 	public void Die(bool effect = false)
 	{

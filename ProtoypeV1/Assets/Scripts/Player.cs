@@ -12,7 +12,7 @@ public class Player : MonoBehaviour {
 	void Start () {
 		currentScore = 0;
 		scoreText = GameObject.Find ("HealthText");
-		GUIText guiText = ((GUIText)scoreText.GetComponent (typeof(GUIText)));
+		//GUIText guiText = ((GUIText)scoreText.GetComponent (typeof(GUIText)));
 		guiText.text = "Health: " + health;
 	}
 	
@@ -25,7 +25,7 @@ public class Player : MonoBehaviour {
 	{
 		scoreText = GameObject.Find ("ScoreText");
 		currentScore += score;
-		GUIText guiText = ((GUIText)scoreText.GetComponent (typeof(GUIText)));
+		//GUIText guiText = ((GUIText)scoreText.GetComponent (typeof(GUIText)));
 		guiText.text = "Score: " + currentScore;
 	}
 
@@ -33,7 +33,7 @@ public class Player : MonoBehaviour {
 	{
 		health--;
 		scoreText = GameObject.Find ("HealthText");
-		GUIText guiText = ((GUIText)scoreText.GetComponent (typeof(GUIText)));
+		//GUIText guiText = ((GUIText)scoreText.GetComponent (typeof(GUIText)));
 		guiText.text = "Health: " + health;
 	}
 }
