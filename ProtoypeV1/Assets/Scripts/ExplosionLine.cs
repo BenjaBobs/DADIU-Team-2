@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Explosion : MonoBehaviour {
+public class ExplosionLine : MonoBehaviour {
 	public float lifetime;
 	public float expandSpeed;
 	float currentLifetime = 0.0f;
 	[HideInInspector]
 	public bool expandY;
 	float currentWidth = 0;
-	public float widthFactor;
+	public float raycastDistanceFactor;
 
 	// Use this for initialization
 	void Start () {
@@ -21,14 +21,14 @@ public class Explosion : MonoBehaviour {
 		if (expandY) 
 		{
 			scale.z += Time.deltaTime * expandSpeed / lifetime;
-			currentWidth = scale.z * widthFactor;
+			currentWidth = scale.z * raycastDistanceFactor;
 			CheckExplosion(new Vector3(0,0,1));
 			CheckExplosion(new Vector3(0,0,-1));
 		}
 		else
 		{
 			scale.x += Time.deltaTime * expandSpeed / lifetime;
-			currentWidth = scale.x * widthFactor;
+			currentWidth = scale.x * raycastDistanceFactor;
 			CheckExplosion(new Vector3(1,0,0));
 			CheckExplosion(new Vector3(-1,0,0));
 		}

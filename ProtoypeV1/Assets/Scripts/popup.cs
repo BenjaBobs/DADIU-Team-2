@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class popup : MonoBehaviour {
+public class Popup : MonoBehaviour {
 	GameObject player;
 	public float popDistance = 5.0f;
 	public float popSpeed = 0.1f;

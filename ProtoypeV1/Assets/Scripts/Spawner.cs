@@ -9,13 +9,22 @@ public class Spawner : MonoBehaviour {
 	float currentFrequency = 0.0f;
 	float timeSinceSpawn = 0.0f;
 	//public Transform child;
+	List<Object> prefabs;
 	List<Object> childs;
 	// Use this for initialization
 	void Start () {
 		CalculateFrequency ();
 		timeSinceSpawn = Random.Range (0, currentFrequency);
 		player = GameObject.Find("Player");
-		childs = new List<Object>(Resources.LoadAll ("Moles"));
+		prefabs = new List<Object>(Resources.LoadAll ("Moles"));
+		childs = new List<Object> ();
+		foreach (Object prefab in prefabs) {
+			int occurenceFactor = ((GameObject)prefab).GetComponent<Mole>().occurenceFactor;
+			for (int i = 0; i <= occurenceFactor; i++)
+			{
+				childs.Add(prefab);	
+	        }
+        }
 	}
 	
 	// Update is called once per frame
