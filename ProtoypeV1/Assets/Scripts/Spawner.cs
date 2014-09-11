@@ -11,6 +11,8 @@ public class Spawner : MonoBehaviour {
 	//public Transform child;
 	List<Object> prefabs;
 	List<Object> childs;
+
+    GameObject mole;
 	// Use this for initialization
 	void Start () {
 		CalculateFrequency ();
@@ -32,8 +34,10 @@ public class Spawner : MonoBehaviour {
 	void Update () {
 		timeSinceSpawn += Time.deltaTime * ((Player)player.gameObject.GetComponent(typeof(Player))).difficultyMultiplier;
 		if (timeSinceSpawn >= currentFrequency) {
+            if (mole != null)
+                DestroyImmediate(mole);
 			// Instantiate mole and set its parent
-			GameObject mole = (GameObject)Instantiate(childs[Random.Range(0, childs.Count)], transform.position, transform.rotation);
+			mole = (GameObject)Instantiate(childs[Random.Range(0, childs.Count)], transform.position, transform.rotation);
 			mole.transform.parent = gameObject.transform;
 			timeSinceSpawn = 0.0f;
 			CalculateFrequency ();
