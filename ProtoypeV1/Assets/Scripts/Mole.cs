@@ -10,6 +10,7 @@ public class Mole : MonoBehaviour {
 	public int score;
 	public Transform exploderY;
 	public Transform exploderX;
+    public GameObject iceLayer;
 	public bool allowChainReaction;
 
 	// Use this for initialization
@@ -38,6 +39,10 @@ public class Mole : MonoBehaviour {
 			Transform explosionY = (Transform)Instantiate(exploderY, transform.position, transform.rotation);
 			explosionY.gameObject.GetComponent<Explosion>().expandY = true;
 		}
+        else if (gameObject.name.Contains("FreezeMole"))
+        {
+            GameObject ice = Instantiate(iceLayer, new Vector3(0, 10, 0), Quaternion.identity) as GameObject;
+        }
 		((Player)player.gameObject.GetComponent(typeof(Player))).IncreaseScore(score);
 		Destroy (gameObject);
 	}
