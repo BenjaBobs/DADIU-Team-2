@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Localization : MonoBehaviour {
+public class Localization {
 
 	private static Localization _instance;
 	private LocLanguage language = LocLanguage.English;
@@ -57,25 +57,12 @@ public class Localization : MonoBehaviour {
 	{
 		get
 		{
-			if (!_instance)
+			if (_instance == null)
 			{
-				GameObject singleton = new GameObject();
-				_instance = singleton.AddComponent<Localization>();
-				singleton.name = "(singleton) "+ typeof(Localization).ToString();
-				DontDestroyOnLoad(singleton);
+				_instance = new Localization();
 			}
 			return _instance;
 		}
-	}
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
 	}
 
 	public bool SetLanguage(LocLanguage l)
