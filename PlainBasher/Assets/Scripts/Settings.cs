@@ -6,6 +6,8 @@ public class Settings : MonoBehaviour {
 
 	public List<DifficultyProperties> Difficulties = new List<DifficultyProperties>();
 	public bool FadeBetweenDifficulties = true;
+	[HideInInspector]
+	public bool isPaused = false;
 	private static Settings _instance;
 
 	[System.Serializable]
@@ -37,6 +39,20 @@ public class Settings : MonoBehaviour {
 	// Use this for initialization
 	void Start() {
 		ParseDifficultyProperties ();
+	}
+
+	public float GetDeltaTime()
+	{
+		if (isPaused)
+			return 0.0f;
+		return Time.deltaTime;
+	}
+
+	public void SetPause(bool b)
+	{
+		if (isPaused == b)
+			return;
+		isPaused = b;
 	}
 
 	public float GetDifficultySpeed()

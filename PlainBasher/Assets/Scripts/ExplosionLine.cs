@@ -25,19 +25,19 @@ public class ExplosionLine : MonoBehaviour
         Vector3 scale = transform.localScale;
         if (expandY)
         {
-            scale.z += Time.deltaTime * expandSpeed / lifetime;
+            scale.z += Settings.instance.GetDeltaTime() * expandSpeed / lifetime;
             currentWidth = scale.z * raycastDistanceFactor;
             HitLine(posX, expandY);
         }
         else
         {
-            scale.x += Time.deltaTime * expandSpeed / lifetime;
+			scale.x += Settings.instance.GetDeltaTime() * expandSpeed / lifetime;
             currentWidth = scale.x * raycastDistanceFactor;
             HitLine(posY, expandY);
         }
 
         transform.localScale = scale;
-        currentLifetime += Time.deltaTime;
+		currentLifetime += Settings.instance.GetDeltaTime();
 
         if (currentLifetime >= lifetime)
         {

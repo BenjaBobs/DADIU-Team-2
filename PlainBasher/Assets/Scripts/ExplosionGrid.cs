@@ -18,13 +18,13 @@ public class ExplosionGrid : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		Vector3 scale = transform.localScale;
-		scale.x += Time.deltaTime * expandSpeed / lifetime;
-		scale.z += Time.deltaTime * expandSpeed / lifetime;
+		scale.x += Settings.instance.GetDeltaTime() * expandSpeed / lifetime;
+		scale.z += Settings.instance.GetDeltaTime() * expandSpeed / lifetime;
 		transform.localScale = scale;
 
 		HitWithinRange ();
 
-		currentLifetime += Time.deltaTime;
+		currentLifetime += Settings.instance.GetDeltaTime();
 
 		if (currentLifetime >= lifetime) {
 			Destroy(gameObject);		
