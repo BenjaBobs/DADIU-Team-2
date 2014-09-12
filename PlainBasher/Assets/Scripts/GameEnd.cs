@@ -14,10 +14,15 @@ public class GameEnd : MonoBehaviour {
     private bool flash = false;
     private float flashtimer;
     private bool newBest = false;
+    public bool sc = false;
 	// Use this for initialization
 	void Start () {
+ 
+        //ScoreManager.AddScore("Elias", score);  //load score from game
+        ScoreManager.LoadHighscore();
+        sc = ScoreManager.IsHighscoreLoaded();
 
-        score = 500;
+        
         bestScore = 0; // get from highscore method.
         newBestFlash = new GameObject();
         newBestFlash.name = "FlahsingGuiText_NewBestScore";
@@ -56,6 +61,18 @@ public class GameEnd : MonoBehaviour {
             newBestFlash.transform.position = flashPo;
         }
 
+        if (sc)
+        {
+            sc = false;
+            string[] hs;
+            hs = ScoreManager.GetHighscore();
+
+            foreach (string item in hs)
+            {
+                Debug.Log(item.ToString());                   
+            }
+            
+        }
 	}
 
     void OnGUI()
@@ -66,7 +83,7 @@ public class GameEnd : MonoBehaviour {
         GUI.Label(new Rect(Screen.width / 2 -50, 10, 100, 25), score.ToString());
                      
 
-        if (GUI.Button(new Rect(200, 200, 100, 100), "KILL")) // debug
+        if (GUI.Button(new Rect(500, 200, 100, 100), "KILL")) // debug
         {
             Destroy(newBestFlash);
             Destroy(this);
