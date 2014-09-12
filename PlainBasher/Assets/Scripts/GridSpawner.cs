@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+[RequireComponent(typeof(Settings))]
 public class GridSpawner : MonoBehaviour {
 	public bool spawnGrid;
 	public int sizeX;
