@@ -23,7 +23,11 @@ public class Localization {
 		Danish,
 		Score,
 		Health,
-		Count
+        NPB,
+
+        // ADD ABOVE
+		Count,
+        
 	};
 	
 	// Add dictionary lookups
@@ -50,6 +54,9 @@ public class Localization {
 		
 		translations[LocKey.Health][LocLanguage.English] = "Health";
 		translations[LocKey.Health][LocLanguage.Danish] = "Liv";
+
+        translations[LocKey.NPB][LocLanguage.English] = "New Personal Best";
+        translations[LocKey.NPB][LocLanguage.Danish] = "Ny Personlig Rekord";
 	}
 	
 	// Singleton istancing
