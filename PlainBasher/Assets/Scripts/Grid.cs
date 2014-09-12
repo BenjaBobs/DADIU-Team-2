@@ -10,6 +10,24 @@ public static class Grid {
 
     public static void Initialize(int sizeX, int sizeY)
     {
+        if (grid != null)
+        {
+            /*
+            foreach(KeyValuePair<int, Key)
+
+            for (int i = 1; i < gridSizeX; i++)
+            {
+                for (int j = 1; j < gridSizeY; j++)
+                {
+                    Debug.Log(i + " " + j);
+                    GameObject mole = grid[i][j].GetComponent<Spawner>().mole;
+                    if (mole != null)
+                        GameObject.DestroyImmediate(mole);
+                }
+            }
+            */
+        }
+
         grid = new Dictionary<int, Dictionary<int, GameObject>>();
         for (int gridPosX = 1; gridPosX <= sizeX; gridPosX++)
         {

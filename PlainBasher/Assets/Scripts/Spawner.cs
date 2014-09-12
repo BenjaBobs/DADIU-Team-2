@@ -14,9 +14,9 @@ public class Spawner : MonoBehaviour {
 
 	static List<GameObject> prefabs;
     static bool isLoaded = false;
-    List<GameObject> childs;
+    public List<GameObject> childs;
 
-    GameObject mole;
+    public GameObject mole;
 	// Use this for initialization
 	void Start () {
 		CalculateFrequency ();
