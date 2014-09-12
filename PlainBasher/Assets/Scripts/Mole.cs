@@ -10,7 +10,7 @@ public class Mole : MonoBehaviour {
     public float popDistance = 5.0f;
     public float popSpeed = 0.1f;
     public float currentDistance = 0.0f;
-    public float timeUp = 3.0f;
+    public float timeUp = 6.0f;
     public float lerpSpeed = 10.0f;
 
     bool holding = false;
@@ -45,10 +45,15 @@ public class Mole : MonoBehaviour {
 	void Start () {
         // Get Spawner
         Spawner spawner = transform.parent.GetComponent<Spawner>();
-        posX = spawner.posX;
-        posY = spawner.posY;
+		UpdateGridPosition (spawner.posX, spawner.posY);
 
         Grid.InsertToGrid(posX, posY, gameObject);
+	}
+
+	public void UpdateGridPosition(int posx, int posy)
+	{
+		posX = posx;
+		posY = posy;
 	}
 	
 	// Update is called once per frame
