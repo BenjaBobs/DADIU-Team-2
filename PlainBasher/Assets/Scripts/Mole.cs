@@ -99,7 +99,7 @@ public class Mole : MonoBehaviour {
         float currentPopSpeed = (currentDistance / popDistance);
         if (!movingDown)
             currentPopSpeed = 1 - currentPopSpeed;
-        float distance = (currentPopSpeed * lerpSpeed + popSpeed) * Time.deltaTime * Settings.instance.GetDifficultySpeed();
+		float distance = (currentPopSpeed * lerpSpeed + popSpeed) * Settings.instance.GetDeltaTime() * Settings.instance.GetDifficultySpeed();
         if (!movingDown)
         {
             distance = Mathf.Min(distance + currentDistance, popDistance) - currentDistance;
@@ -109,7 +109,7 @@ public class Mole : MonoBehaviour {
         if (movingDown && currentTimeUp < timeUp)
         {
             distance = 0;
-            currentTimeUp += Time.deltaTime * Settings.instance.GetDifficultyStayTime();
+			currentTimeUp += Settings.instance.GetDeltaTime() * Settings.instance.GetDifficultyStayTime();
         }
 
         if (movingDown)
