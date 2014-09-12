@@ -2,7 +2,7 @@
 using System.Collections;
 
 public static class Player {
-    static int lives;
+	static int lives = 3;
     public static int score;
 
     public static int Lives
@@ -17,6 +17,7 @@ public static class Player {
             if (lives < 1)
             {
                 //TODO: Initialize game end
+				QADebugging.staticRef.hasLost = true;
             }
         }
     }

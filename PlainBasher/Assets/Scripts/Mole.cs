@@ -8,7 +8,7 @@ public class Mole : MonoBehaviour {
     public int occurenceFactor = 1;
     public int scoreValue = 1;
     public float popDistance = 5.0f;
-    public float popSpeed = 0.1f;
+    public float popSpeed = 0.5f;
     public float currentDistance = 0.0f;
     public float timeUp = 6.0f;
     public float lerpSpeed = 10.0f;
@@ -133,8 +133,9 @@ public class Mole : MonoBehaviour {
         {
             movingDown = true;
         }
-        else if (currentDistance < 0)
+        else if (currentDistance <= 0)
         {
+			Player.Lives--;
             Destroy(gameObject);
         }
     }

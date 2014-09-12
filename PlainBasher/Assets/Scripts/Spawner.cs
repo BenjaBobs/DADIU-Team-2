@@ -52,8 +52,6 @@ public class Spawner : MonoBehaviour {
 	void Update () {
 		timeSinceSpawn += Settings.instance.GetDeltaTime() * Settings.instance.GetDifficultySpeed();
 		if (timeSinceSpawn >= currentFrequency) {
-            if (mole != null)
-                DestroyImmediate(mole);
 			// Instantiate mole and set its parent
 
 			CalculateChildren();

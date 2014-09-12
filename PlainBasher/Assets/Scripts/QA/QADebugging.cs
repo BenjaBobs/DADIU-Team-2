@@ -4,7 +4,7 @@ using System.Collections;
 public class QADebugging : MonoBehaviour {
 
     public static QADebugging staticRef;
-    bool hasLost = false;
+    public bool hasLost = false;
 
     void Awake()
     {
