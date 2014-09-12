@@ -10,12 +10,12 @@ public class Mole : MonoBehaviour {
     public float popDistance = 5.0f;
     public float popSpeed = 0.1f;
     public float currentDistance = 0.0f;
-    public float timeUp = 3.0f;
+    public float timeUp = 6.0f;
     public float lerpSpeed = 10.0f;
 
     bool holding = false;
     float startHoldTime;
-    float holdTime = 1.5f;
+    float holdTime = 0.5f;
     float currentTimeUp = 0.0f;
     bool movingDown = false;
 
@@ -28,6 +28,7 @@ public class Mole : MonoBehaviour {
 		set
 		{
 			health = value;
+			OnHealthChange();
 			if (health < 1)
 			{
 				OnDeath();
@@ -35,20 +36,31 @@ public class Mole : MonoBehaviour {
 		}
 	}
 
+	protected virtual void OnHealthChange()
+	{
+
+	}
+
 	// Use this for initialization
 	void Start () {
         // Get Spawner
         Spawner spawner = transform.parent.GetComponent<Spawner>();
-        posX = spawner.posX;
-        posY = spawner.posY;
+		UpdateGridPosition (spawner.posX, spawner.posY);
 
         Grid.InsertToGrid(posX, posY, gameObject);
+	}
+
+	public void UpdateGridPosition(int posx, int posy)
+	{
+		posX = posx;
+		posY = posy;
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
         MoleMovement();
+		CheckMouseOver ();
 	}
 
     protected virtual void OnTap()
@@ -79,7 +91,7 @@ public class Mole : MonoBehaviour {
         holding = false;
     }
 
-    void OnMouseOver()
+    void CheckMouseOver()
     {
         if (holding)
         {

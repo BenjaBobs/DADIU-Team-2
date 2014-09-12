@@ -8,8 +8,6 @@ public class ExplosionLine : MonoBehaviour
     float currentLifetime = 0.0f;
     [HideInInspector]
     public bool expandY;
-    float currentWidth = 0;
-    public float raycastDistanceFactor;
     public int posX;
     public int posY;
 
@@ -26,13 +24,11 @@ public class ExplosionLine : MonoBehaviour
         if (expandY)
         {
             scale.z += Settings.instance.GetDeltaTime() * expandSpeed / lifetime;
-            currentWidth = scale.z * raycastDistanceFactor;
             HitLine(posX, expandY);
         }
         else
         {
 			scale.x += Settings.instance.GetDeltaTime() * expandSpeed / lifetime;
-            currentWidth = scale.x * raycastDistanceFactor;
             HitLine(posY, expandY);
         }
 
