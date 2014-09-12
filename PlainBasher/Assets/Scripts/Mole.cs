@@ -71,6 +71,7 @@ public class Mole : MonoBehaviour {
 
 	public virtual void OnDeath()
 	{
+        Player.score++;
         DestroyImmediate(gameObject);
         //TODO: Add score to score manager
 	}

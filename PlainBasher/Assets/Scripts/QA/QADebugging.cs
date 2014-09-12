@@ -25,9 +25,19 @@ public class QADebugging : MonoBehaviour {
     {
         if (GUI.Button(new Rect(0, 0, 100, 25), "Reset"))
         {
+            Player.Reset();
             Application.LoadLevel(Application.loadedLevel);
             //GridSpawner.staticRef.ResetGrid();
         }
+
+        if (GUI.Button(new Rect(100, 0, 100, 25), "Pause"))
+        {
+            Settings.instance.SetPause(!Settings.instance.isPaused);
+            //GridSpawner.staticRef.ResetGrid();
+        }
+
+        GUI.Label(new Rect(225, 0, 100, 25), "Lives: " + Player.Lives);
+        GUI.Label(new Rect(325, 0, 100, 25), "Score: " + Player.score);
 
         if (GUI.Button(new Rect(Screen.width - 100, 0, 100, 25), "Exit"))
         {
@@ -41,6 +51,7 @@ public class QADebugging : MonoBehaviour {
             GUI.Box(new Rect(0, 25, Screen.width, Screen.height - 25), "");
             if (GUI.Button(new Rect(0, 25, Screen.width, Screen.height - 25), "Du har tabt! Reset?"))
             {
+                Player.Reset();
                 Application.LoadLevel(Application.loadedLevel);
                 //GridSpawner.staticRef.ResetGrid();
             }

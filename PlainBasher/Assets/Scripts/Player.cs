@@ -16,9 +16,16 @@ public static class Player {
             lives = value;
             if (lives < 1)
             {
+                Settings.instance.SetPause(true);
                 //TODO: Initialize game end
 				QADebugging.staticRef.hasLost = true;
             }
         }
+    }
+
+    public static void Reset()
+    {
+        lives = 3;
+        score = 0;
     }
 }
