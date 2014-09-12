@@ -15,7 +15,7 @@ public class Settings : MonoBehaviour {
 	{
 		public float TimePosition = 0.0f;
 		public float MoleSpeed = 1.0f;
-		public float MoleStayTime = 4.0f;
+		public float MoleStayTime = 1.0f;
 		public float SpecialMoleOccuranceMultiplier = 1.0f;
 	};
 
@@ -55,6 +55,7 @@ public class Settings : MonoBehaviour {
 		isPaused = b;
 	}
 
+	// multiplier for speed
 	public float GetDifficultySpeed()
 	{
 		DifficultyProperties from, to;
@@ -64,15 +65,17 @@ public class Settings : MonoBehaviour {
 		return Mathf.Lerp (from.MoleSpeed, to.MoleSpeed, alpha);
 	}
 
+	// multiplier for stay time
 	public float GetDifficultyStayTime()
 	{
 		DifficultyProperties from, to;
 		float alpha = 0.0f;
 		if (!GetDifficultyPropertyAtPosition (Time.timeSinceLevelLoad, out from, out to, out alpha))
-			return 4.0f;
+			return 1.0f;
 		return Mathf.Lerp (from.MoleStayTime, to.MoleStayTime, alpha);
 	}
 
+	// multiplier for special moles
 	public float GetDifficultySpecialMoleMultiplier()
 	{
 		DifficultyProperties from, to;
