@@ -18,7 +18,7 @@ public class GameEnd : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
  
-        //ScoreManager.AddScore("Elias", score);  //load score from game
+        ScoreManager.AddScore("DADIU", Player.score);  //load score from game ; add player name.
         ScoreManager.LoadHighscore();
         sc = ScoreManager.IsHighscoreLoaded();
 
@@ -85,6 +85,7 @@ public class GameEnd : MonoBehaviour {
 
         if (GUI.Button(new Rect(500, 200, 100, 100), "KILL")) // debug
         {
+            
             Destroy(newBestFlash);
             Destroy(this);
         }
