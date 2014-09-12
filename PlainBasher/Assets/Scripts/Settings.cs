@@ -2,11 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Settings {
+public class Settings : MonoBehaviour {
 
 	public List<DifficultyProperties> Difficulties = new List<DifficultyProperties>();
 	public bool FadeBetweenDifficulties = true;
-
 	private static Settings _instance;
 
 	[System.Serializable]
@@ -15,6 +14,7 @@ public class Settings {
 		public float TimePosition = 0.0f;
 		public float MoleSpeed = 1.0f;
 		public float MoleStayTime = 4.0f;
+		public float SpecialMoleOccuranceMultiplier = 1.0f;
 	};
 
 	// Singleton istancing
@@ -22,10 +22,13 @@ public class Settings {
 	{
 		get
 		{
-			if (_instance == null)
+			if (!_instance)
 			{
-				_instance = new Settings();
-				_instance.Start();
+				Settings[] scripts = FindObjectsOfType(typeof(Settings)) as Settings[];
+				foreach (Settings script in scripts) {
+					_instance = script;
+					break;
+				}
 			}
 			return _instance;
 		}
@@ -36,6 +39,34 @@ public class Settings {
 		ParseDifficultyProperties ();
 	}
 
+	public float GetDifficultySpeed()
+	{
+		DifficultyProperties from, to;
+		float alpha = 0.0f;
+		if (!GetDifficultyPropertyAtPosition (Time.timeSinceLevelLoad, out from, out to, out alpha))
+			return 1.0f;
+		return Mathf.Lerp (from.MoleSpeed, to.MoleSpeed, alpha);
+	}
+
+	public float GetDifficultyStayTime()
+	{
+		DifficultyProperties from, to;
+		float alpha = 0.0f;
+		if (!GetDifficultyPropertyAtPosition (Time.timeSinceLevelLoad, out from, out to, out alpha))
+			return 4.0f;
+		return Mathf.Lerp (from.MoleStayTime, to.MoleStayTime, alpha);
+	}
+
+	public float GetDifficultySpecialMoleMultiplier()
+	{
+		DifficultyProperties from, to;
+		float alpha = 0.0f;
+		if (!GetDifficultyPropertyAtPosition (Time.timeSinceLevelLoad, out from, out to, out alpha))
+			return 1.0f;
+		return Mathf.Lerp (from.SpecialMoleOccuranceMultiplier, to.SpecialMoleOccuranceMultiplier, alpha);
+	}
+
+	// adds a 0.0f key as one is needed
 	private void ParseDifficultyProperties()
 	{
 		bool HasStartKey = false;
@@ -57,15 +88,7 @@ public class Settings {
 		}
 	}
 
-	public float GetDifficultySpeed()
-	{
-		DifficultyProperties from, to;
-		float alpha = 0.0f;
-		if (!GetDifficultyPropertyAtPosition (Time.timeSinceLevelLoad, out from, out to, out alpha))
-			return 0.0f;
-		return Mathf.Lerp (from.MoleSpeed, to.MoleSpeed, alpha);
-	}
-
+	// retrieves a from->to lerp between difficulty curves
 	private bool GetDifficultyPropertyAtPosition(float p, out DifficultyProperties from, out DifficultyProperties to, out float alpha)
 	{
 		DifficultyProperties lowerBound = new DifficultyProperties();
