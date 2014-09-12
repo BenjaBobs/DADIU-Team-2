@@ -172,10 +172,10 @@ public class ScoreManager : MonoBehaviour {
 
 		if (index < 20) {
 			uploaded = true;
-			Debug.Log ("uploaded");
+			Debug.Log ("ScoreManager: Score uploaded");
 		}
 		else
-			Debug.Log ("not uploaded");
+			Debug.Log ("ScoreManager: Score not uploaded");
 	}
 
 
