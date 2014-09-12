@@ -2,11 +2,10 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Settings {
+public class Settings : MonoBehaviour {
 
 	public List<DifficultyProperties> Difficulties = new List<DifficultyProperties>();
 	public bool FadeBetweenDifficulties = true;
-
 	private static Settings _instance;
 
 	[System.Serializable]
@@ -23,10 +22,13 @@ public class Settings {
 	{
 		get
 		{
-			if (_instance == null)
+			if (!_instance)
 			{
-				_instance = new Settings();
-				_instance.Start();
+				Settings[] scripts = FindObjectsOfType(typeof(Settings)) as Settings[];
+				foreach (Settings script in scripts) {
+					_instance = script;
+					break;
+				}
 			}
 			return _instance;
 		}
