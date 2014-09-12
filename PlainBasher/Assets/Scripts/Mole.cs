@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Mole : MonoBehaviour {
-	int health;
+	int health = 1;
     public int posX;
     public int posY;
     public int occurenceFactor = 1;
@@ -12,7 +12,7 @@ public class Mole : MonoBehaviour {
     float startHoldTime;
     float holdTime = 1.5f;
 
-	int Health 
+	public int Health 
 	{
 		get
 		{
