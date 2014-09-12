@@ -3,22 +3,12 @@ using System.Collections;
 
 public class Explosion : Mole {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
-    public override void OnDeath()
+    protected override void OnHold()
     {
-        ExplosionGrid explosionGrid = Resources.Load<ExplosionGrid>("ExplosionGrid");
+        GameObject explosionGrid = Resources.Load<GameObject>("Prefabs/ExplosionGrid");
 
-        Transform exTransform = (Transform)Instantiate(explosionGrid, transform.position, transform.rotation);
-        ExplosionGrid explosion = exTransform.gameObject.GetComponent<ExplosionGrid>();
+        GameObject exTransform = Instantiate(explosionGrid, transform.position, transform.rotation) as GameObject;
+        ExplosionGrid explosion = exTransform.GetComponent<ExplosionGrid>();
         explosion.posX = posX;
         explosion.posY = posY;
 

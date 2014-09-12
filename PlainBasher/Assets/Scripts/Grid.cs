@@ -5,18 +5,22 @@ using System.Collections.Generic;
 public static class Grid {
 
     static Dictionary<int, Dictionary<int, GameObject>> grid;
+    static int gridSizeY;
+    static int gridSizeX;
 
     public static void Initialize(int sizeX, int sizeY)
     {
         grid = new Dictionary<int, Dictionary<int, GameObject>>();
-        for (int gridPosX = 0; gridPosX < sizeX; gridPosX++)
+        for (int gridPosX = 1; gridPosX <= sizeX; gridPosX++)
         {
-            grid.Add(gridPosX + 1, new Dictionary<int, GameObject>());
-            for (int gridPosY = 0; gridPosY < sizeY; gridPosY++)
+            grid.Add(gridPosX, new Dictionary<int, GameObject>());
+            for (int gridPosY = 1; gridPosY <= sizeY; gridPosY++)
             {
-                grid[gridPosX][gridPosY] = null;
+                grid[gridPosX].Add(gridPosY, null);
             }
         }
+        gridSizeX = sizeX;
+        gridSizeY = sizeY;
     }
 
     public static void InsertToGrid(int x, int y, GameObject mole)
@@ -39,11 +43,11 @@ public static class Grid {
 
     public static int GetMaxX()
     {
-        return grid.Keys.Count;
+        return gridSizeX;
     }
 
     public static int GetMaxY()
     {
-        return grid[0].Keys.Count;
+        return gridSizeY;
     }
 }

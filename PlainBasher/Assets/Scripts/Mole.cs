@@ -7,10 +7,17 @@ public class Mole : MonoBehaviour {
     public int posY;
     public int occurenceFactor = 1;
     public int scoreValue = 1;
+    public float popDistance = 5.0f;
+    public float popSpeed = 0.1f;
+    public float currentDistance = 0.0f;
+    public float timeUp = 3.0f;
+    public float lerpSpeed = 10.0f;
 
     bool holding = false;
     float startHoldTime;
     float holdTime = 1.5f;
+    float currentTimeUp = 0.0f;
+    bool movingDown = false;
 
 	public int Health 
 	{
@@ -41,7 +48,7 @@ public class Mole : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
-	
+        MoleMovement();
 	}
 
     protected virtual void OnTap()
@@ -84,6 +91,43 @@ public class Mole : MonoBehaviour {
                     OnHold();
                 }
             }
+        }
+    }
+
+    void MoleMovement()
+    {
+        float currentPopSpeed = (currentDistance / popDistance);
+        if (!movingDown)
+            currentPopSpeed = 1 - currentPopSpeed;
+        float distance = (currentPopSpeed * lerpSpeed + popSpeed) * Time.deltaTime * Settings.instance.GetDifficultySpeed();
+        if (!movingDown)
+        {
+            distance = Mathf.Min(distance + currentDistance, popDistance) - currentDistance;
+        }
+        Vector3 currentPosition = transform.position;
+
+        if (movingDown && currentTimeUp < timeUp)
+        {
+            distance = 0;
+            currentTimeUp += Time.deltaTime * Settings.instance.GetDifficultyStayTime();
+        }
+
+        if (movingDown)
+        {
+            distance *= -1;
+        }
+        currentPosition.y += distance;
+        transform.position = currentPosition;
+
+        currentDistance += distance;
+
+        if (currentDistance >= popDistance)
+        {
+            movingDown = true;
+        }
+        else if (currentDistance < 0)
+        {
+            Destroy(gameObject);
         }
     }
 }
