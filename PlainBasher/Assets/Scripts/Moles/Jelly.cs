@@ -21,11 +21,7 @@ public class Jelly : Mole {
 		transform.localScale = new Vector3(1,1,1)*Health;
 	}
 
-	public override void OnDeath()
-	{
-		//forsvind/eksplodér/bliv skåret over etc
-		base.OnDeath();
-	}
+
 
 	protected override void OnHealthChange()
 	{

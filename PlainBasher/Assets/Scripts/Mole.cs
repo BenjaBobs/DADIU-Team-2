@@ -42,18 +42,14 @@ public class Mole : MonoBehaviour {
 	}
 
 	// Use this for initialization
-	void Start () {
-        // Get Spawner
-        Spawner spawner = transform.parent.GetComponent<Spawner>();
-		UpdateGridPosition (spawner.posX, spawner.posY);
-
-        Grid.InsertToGrid(posX, posY, gameObject);
+	void Start () {        
 	}
 
 	public void UpdateGridPosition(int posx, int posy)
 	{
 		posX = posx;
 		posY = posy;
+		Grid.InsertToGrid(posX, posY, gameObject);
 	}
 	
 	// Update is called once per frame

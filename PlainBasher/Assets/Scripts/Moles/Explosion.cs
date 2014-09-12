@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Explosion : Mole {
 
-    protected override void OnHold()
+	public override void OnDeath()
     {
         GameObject explosionGrid = Resources.Load<GameObject>("Prefabs/ExplosionGrid");
 
@@ -14,4 +14,10 @@ public class Explosion : Mole {
 
         base.OnDeath();
     }
+
+	protected override void OnHold()
+	{
+		//mist liv
+		Health--;
+	}
 }

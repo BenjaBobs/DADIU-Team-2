@@ -4,7 +4,7 @@ using System.Collections;
 public class IceLayer : MonoBehaviour
 {
 
-    public int Health = 10;
+    public int Health = 2;
 
     void OnMouseDown()
     {

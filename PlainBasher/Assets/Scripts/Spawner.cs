@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Spawner : MonoBehaviour {
-	public float maxFrequency = 10.0f;
-	public float minFrequency = 2.0f;
+	public float maxFrequency = 50.0f;
+	public float minFrequency = 20.0f;
 	float currentFrequency = 0.0f;
 	float timeSinceSpawn = 0.0f;
     [HideInInspector]

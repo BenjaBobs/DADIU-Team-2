@@ -15,9 +15,15 @@ public class Freeez : Mole {
         }
     }
 
-    protected override void OnHold()
+	public override void OnDeath()
     {
         GameObject ice = Instantiate(iceLayerPrefab, new Vector3(0, 10, 0), Quaternion.identity) as GameObject;
-        OnDeath();
+        base.OnDeath();
     }
+
+	protected override void OnHold()
+	{
+		//mist liv
+		Health--;
+	}
 }

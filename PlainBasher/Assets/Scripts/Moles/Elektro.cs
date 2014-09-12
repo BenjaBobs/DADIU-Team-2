@@ -4,7 +4,7 @@ using System.Collections;
 public class Elektro : Mole
 {
 
-    protected override void OnHold()
+    public override void OnDeath()
     {
         GameObject exploderX = Resources.Load<GameObject>("Prefabs/ExplosionLine");
         GameObject exploderY = Resources.Load<GameObject>("Prefabs/ExplosionLine");
@@ -24,4 +24,10 @@ public class Elektro : Mole
 
         base.OnDeath();
     }
+
+	protected override void OnHold()
+	{
+		//mist liv
+		Health--;
+	}
 }
