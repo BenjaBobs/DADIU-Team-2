@@ -12,4 +12,16 @@ public class Explosion : Mole {
 	void Update () {
 	
 	}
+
+    public override void OnDeath()
+    {
+        ExplosionGrid explosionGrid = Resources.Load<ExplosionGrid>("ExplosionGrid");
+
+        Transform exTransform = (Transform)Instantiate(explosionGrid, transform.position, transform.rotation);
+        ExplosionGrid explosion = exTransform.gameObject.GetComponent<ExplosionGrid>();
+        explosion.posX = posX;
+        explosion.posY = posY;
+
+        base.OnDeath();
+    }
 }

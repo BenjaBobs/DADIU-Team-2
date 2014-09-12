@@ -36,4 +36,14 @@ public static class Grid {
     {
         grid[x][y] = null;
     }
+
+    public static int GetMaxX()
+    {
+        return grid.Keys.Count;
+    }
+
+    public static int GetMaxY()
+    {
+        return grid[0].Keys.Count;
+    }
 }
