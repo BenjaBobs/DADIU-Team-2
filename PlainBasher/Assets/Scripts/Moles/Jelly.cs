@@ -3,13 +3,24 @@ using System.Collections;
 
 public class Jelly : Mole {
 
-	// Use this for initialization
-	void Start () {
 	
+	void Start () 
+	{
+		int size = Random.Range(1, 4);
+		Health = size;
+		transform.scale = transform.scale*size;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	public override void OnTap()
+	{
+		//mist liv
+		Health--;
+
+	}
+
+	public override void OnDeath()
+	{
+		//forsvind/eksplodér/bliv skåret over etc
+		base.OnDeath();
 	}
 }
