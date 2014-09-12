@@ -8,10 +8,10 @@ public class Jelly : Mole {
 	{
 		int size = Random.Range(1, 4);
 		Health = size;
-		transform.scale = transform.scale*size;
+		transform.localScale = transform.localScale*size;
 	}
 
-	public override void OnTap()
+	protected override void OnTap()
 	{
 		//mist liv
 		Health--;
