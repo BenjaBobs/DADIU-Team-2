@@ -12,18 +12,19 @@ public class Spawner : MonoBehaviour {
     [HideInInspector]
 	public int posY;
 
-	List<Object> prefabs;
-	List<Object> childs;
+	static List<GameObject> prefabs;
+    List<GameObject> childs;
 
     GameObject mole;
 	// Use this for initialization
 	void Start () {
 		CalculateFrequency ();
 		timeSinceSpawn = Random.Range (0, currentFrequency);
-		prefabs = new List<Object>(Resources.LoadAll ("Moles"));
-		childs = new List<Object> ();
-		foreach (Object prefab in prefabs) {
-			int occurenceFactor = ((GameObject)prefab).GetComponent<Mole>().occurenceFactor;
+		prefabs = new List<GameObject>(Resources.LoadAll<GameObject>("Moles"));
+        childs = new List<GameObject>();
+        foreach (GameObject prefab in prefabs)
+        {
+			int occurenceFactor = prefab.GetComponent<Mole>().occurenceFactor;
 			for (int i = 0; i <= occurenceFactor; i++)
 			{
 				childs.Add(prefab);	
