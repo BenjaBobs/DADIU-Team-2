@@ -60,6 +60,6 @@ public class Popup : MonoBehaviour {
 
 	float GetDifficultyMultiplier()
 	{
-		return ((Player)player.gameObject.GetComponent (typeof(Player))).GetDifficulty();
+		return ((Player)player.gameObject.GetComponent (typeof(Player))).GetDifficultySpeed();
 	}
 }

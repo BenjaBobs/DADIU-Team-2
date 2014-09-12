@@ -34,7 +34,7 @@ public class Spawner : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		timeSinceSpawn += Time.deltaTime * ((Player)player.gameObject.GetComponent(typeof(Player))).GetDifficulty();
+		timeSinceSpawn += Time.deltaTime * ((Player)player.gameObject.GetComponent(typeof(Player))).GetDifficultySpeed();
 		if (timeSinceSpawn >= currentFrequency) {
             if (mole != null)
                 DestroyImmediate(mole);
