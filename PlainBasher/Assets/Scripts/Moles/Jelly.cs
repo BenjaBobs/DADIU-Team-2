@@ -6,9 +6,7 @@ public class Jelly : Mole {
 	
 	void Start () 
 	{
-		int size = Random.Range(1, 4);
-		Health = size;
-		transform.localScale = transform.localScale*size;
+		Health = Random.Range(1, 4);
 	}
 
 	protected override void OnTap()
@@ -18,9 +16,19 @@ public class Jelly : Mole {
 
 	}
 
+	private void UpdateScale()
+	{
+		transform.localScale = new Vector3(1,1,1)*Health;
+	}
+
 	public override void OnDeath()
 	{
 		//forsvind/eksplodér/bliv skåret over etc
 		base.OnDeath();
+	}
+
+	protected override void OnHealthChange()
+	{
+		UpdateScale ();
 	}
 }

@@ -15,7 +15,7 @@ public class Mole : MonoBehaviour {
 
     bool holding = false;
     float startHoldTime;
-    float holdTime = 1.5f;
+    float holdTime = 0.5f;
     float currentTimeUp = 0.0f;
     bool movingDown = false;
 
@@ -28,11 +28,17 @@ public class Mole : MonoBehaviour {
 		set
 		{
 			health = value;
+			OnHealthChange();
 			if (health < 1)
 			{
 				OnDeath();
 			}
 		}
+	}
+
+	protected virtual void OnHealthChange()
+	{
+
 	}
 
 	// Use this for initialization
@@ -49,6 +55,7 @@ public class Mole : MonoBehaviour {
 	void Update () 
 	{
         MoleMovement();
+		CheckMouseOver ();
 	}
 
     protected virtual void OnTap()
@@ -79,7 +86,7 @@ public class Mole : MonoBehaviour {
         holding = false;
     }
 
-    void OnMouseOver()
+    void CheckMouseOver()
     {
         if (holding)
         {
