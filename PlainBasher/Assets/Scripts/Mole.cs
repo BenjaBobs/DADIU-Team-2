@@ -3,19 +3,25 @@ using System.Collections;
 
 public class Mole : MonoBehaviour {
 	int health = 1;
+    [HideInInspector]
     public int posX;
+    [HideInInspector]
     public int posY;
     public int occurenceFactor = 1;
     public int scoreValue = 1;
     public float popDistance = 5.0f;
     public float popSpeed = 0.5f;
+
+    [HideInInspector]
     public float currentDistance = 0.0f;
     public float timeUp = 6.0f;
     public float lerpSpeed = 10.0f;
 
     bool holding = false;
     float startHoldTime;
-    float holdTime = 0.5f;
+    
+    public float holdTime = 0.5f;
+
     float currentTimeUp = 0.0f;
     bool movingDown = false;
 
@@ -56,7 +62,6 @@ public class Mole : MonoBehaviour {
 	void Update () 
 	{
         MoleMovement();
-		CheckMouseOver ();
 	}
 
     protected virtual void OnTap()
@@ -88,7 +93,12 @@ public class Mole : MonoBehaviour {
         holding = false;
     }
 
-    void CheckMouseOver()
+    void OnMouseExit()
+    {
+        holding = false;
+    }
+
+    void OnMouseOver()
     {
         if (holding)
         {

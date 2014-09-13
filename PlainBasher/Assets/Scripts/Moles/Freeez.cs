@@ -24,6 +24,6 @@ public class Freeez : Mole {
 	protected override void OnHold()
 	{
 		//mist liv
-		Health--;
+        base.OnDeath();
 	}
 }

@@ -32,7 +32,7 @@ public class QADebugging : MonoBehaviour {
 
         if (GUI.Button(new Rect(100, 0, 100, 25), "Pause"))
         {
-            Settings.instance.SetPause(!Settings.instance.isPaused);
+            Settings.instance.TogglePause();
             //GridSpawner.staticRef.ResetGrid();
         }
 
@@ -49,7 +49,7 @@ public class QADebugging : MonoBehaviour {
             
             GUI.Box(new Rect(0, 25, Screen.width, Screen.height - 25), "");
             GUI.Box(new Rect(0, 25, Screen.width, Screen.height - 25), "");
-            if (GUI.Button(new Rect(0, 25, Screen.width, Screen.height - 25), "Du har tabt! Reset?"))
+            if (GUI.Button(new Rect(0, 25, Screen.width, Screen.height - 25), "Du har tabt! Score: " + Player.score))
             {
                 Player.Reset();
                 Application.LoadLevel(Application.loadedLevel);

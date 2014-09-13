@@ -18,7 +18,7 @@ public class Jelly : Mole {
 
 	private void UpdateScale()
 	{
-		transform.localScale = new Vector3(1,1,1)*Health;
+		transform.localScale = new Vector3(2,2,2) * (0.5f + Health * 0.5f);
 	}
 
 
