@@ -2,7 +2,9 @@ fileFormatVersion: 2
 guid: 7fd225fa14e229f4ba3ce565d6bca08f
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - newBestFlash: {instanceID: 0}
+  - menuSkin: {fileID: 11400000, guid: c04646cedc5533243b6c3e249fdfa911, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
