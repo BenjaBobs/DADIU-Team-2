@@ -22,7 +22,7 @@ public class GameEnd : MonoBehaviour {
         ScoreManager.LoadHighscore();
         sc = ScoreManager.IsHighscoreLoaded();
 
-        
+        score = 200;
         bestScore = 0; // get from highscore method.
         newBestFlash = new GameObject();
         newBestFlash.name = "FlahsingGuiText_NewBestScore";
