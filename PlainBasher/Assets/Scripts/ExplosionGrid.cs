@@ -37,15 +37,9 @@ public class ExplosionGrid : MonoBehaviour {
 		{
 			for (int y = posY-radius; y <= posY+radius; y++)
 			{
-				GameObject obj = Grid.LookupGrid(x,y);
-				if (obj)
-				{
-					Mole mole = obj.GetComponent<Mole>();
-					if (true)
-					{
-                        mole.OnDeath();
-					}
-				}
+				Mole obj = Grid.GetMole(x,y);
+				if (!obj) continue;
+				obj.OnDeath();
 			}
 		}
 	}
