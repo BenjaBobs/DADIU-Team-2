@@ -171,8 +171,8 @@ public static class AudioManager {
 	/// <summary>
 	/// Stops the hold freeze
 	/// </summary>
-	public static void StopHoldFreeze() {
-		aiFreeze.Stop();
+	public static void StopHoldFreeze(bool fade = true) {
+		aiFreeze.Stop(fade);
 	}
 	private static AudioInstance aiTapBigJelly;
 	/// <summary>

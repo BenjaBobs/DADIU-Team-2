@@ -22,6 +22,7 @@ public class Freeez : Mole {
 
 	public override void OnDeath()
     {
+		AudioManager.StopHoldFreeze(false);
         SpawnIceBlock();
         base.OnDeath();
     }
@@ -43,6 +44,7 @@ public class Freeez : Mole {
 	
 	protected override void PlayDeathSound()
 	{
+		AudioManager.StopHoldFreeze(false);
 		AudioManager.PlayDestroyFreeze();
 	}
 

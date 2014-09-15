@@ -32,9 +32,11 @@ public class AudioInstance : MonoBehaviour {
 			source.Stop();
 		source.Play();
 	}
-	public void Stop() {
-		//source.Stop();
-		StartCoroutine(FadeOut());
+	public void Stop(bool fade = true) {
+		if (!fade)
+			source.Stop();
+		else
+			StartCoroutine(FadeOut());
 	}
 
 	public void ChangeClipWhenDone(AudioClip clip,  bool loop = false) {
