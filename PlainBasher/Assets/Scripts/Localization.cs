@@ -24,7 +24,15 @@ public class Localization {
 		Score,
 		Health,
         NPB,
-
+        Local,
+        Options,
+        PlayerName,
+        Quit,
+        Music,
+        Soundfx,
+        Language,
+        Scoreboard,
+        noUpload,
         // ADD ABOVE
 		Count,
         
@@ -57,6 +65,34 @@ public class Localization {
 
         translations[LocKey.NPB][LocLanguage.English] = "New Personal Best";
         translations[LocKey.NPB][LocLanguage.Danish] = "Ny Personlig Rekord";
+
+        translations[LocKey.Local][LocLanguage.English] = "Local";
+        translations[LocKey.Local][LocLanguage.Danish] = "Lokal";
+
+        translations[LocKey.Options][LocLanguage.English] = "Options";
+        translations[LocKey.Options][LocLanguage.Danish] = "Indstillinger";
+
+        translations[LocKey.PlayerName][LocLanguage.English] = "Player name";
+        translations[LocKey.PlayerName][LocLanguage.Danish] = "Spiller navn";
+
+        translations[LocKey.Quit][LocLanguage.English] = "Quit";
+        translations[LocKey.Quit][LocLanguage.Danish] = "Afslut";
+
+        translations[LocKey.Music][LocLanguage.English] = "Music";
+        translations[LocKey.Music][LocLanguage.Danish] = "Musik";
+
+        translations[LocKey.Soundfx][LocLanguage.English] = "Sound effects";
+        translations[LocKey.Soundfx][LocLanguage.Danish] = "Lyd effekter";
+
+        translations[LocKey.Scoreboard][LocLanguage.English] = "Scoreboard";
+        translations[LocKey.Scoreboard][LocLanguage.Danish] = "Resultater";
+
+        translations[LocKey.noUpload][LocLanguage.English] = "Cannot upload a score of 0";
+        translations[LocKey.noUpload][LocLanguage.Danish] = "Kan ikke uploade et resultat på 0";
+
+
+
+
 	}
 	
 	// Singleton istancing
