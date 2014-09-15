@@ -57,7 +57,7 @@ public static class Player {
 
 	private static void OnScoreIncrease(int amount)
 	{
-		AudioManager.PlayPointCount ();
+		//AudioManager.PlayPointCount ();
 	}
 
     public static void Reset()
