@@ -54,7 +54,7 @@ public static class AudioManager {
 	/// </summary>
 	public static void PlayGameOver() {
 		if (aiGameOver == null)
-			aiGameOver = Play (MonoBehaviour.Instantiate (Resources.Load ("Music/BlobBashermusic_game over plus laugh", typeof(AudioClip))) as AudioClip, AudioTag.Music);
+			aiGameOver = Play (MonoBehaviour.Instantiate (Resources.Load ("Music/BlobBashermusic_game over plus taunting laugh", typeof(AudioClip))) as AudioClip, AudioTag.Music);
 		else
 			aiGameOver.Play();
 	}
@@ -63,11 +63,11 @@ public static class AudioManager {
 	/// Background music for gameplay(do NOT loop this)
 	/// </summary>
 	public static void PlayMusic() {
-		if (aiMusic == null)
+/*		if (aiMusic == null)
 			aiMusic = Play (MonoBehaviour.Instantiate (Resources.Load ("Music/BlobBashermusic_in game music", typeof(AudioClip))) as AudioClip, AudioTag.Music);
 		else
 			aiMusic.Play();
-	}
+*/	}
 	/// <summary>
 	/// Short loop of background music to be looped when the original background music stops, after 5:19min into the gameplay
 	/// </summary>
@@ -96,7 +96,7 @@ public static class AudioManager {
 	/// </summary>
 	public static void PlayButton() {
 		if (aiButton == null)
-			aiButton = Play (MonoBehaviour.Instantiate (Resources.Load ("Sound/Sound effects/Blobbashersfx_Click sound for ALL buttons", typeof(AudioClip))) as AudioClip, AudioTag.Effect);
+			aiButton = Play (MonoBehaviour.Instantiate (Resources.Load ("Sound/Sound effects/BlobBashersfx_Click sound for ALL buttons", typeof(AudioClip))) as AudioClip, AudioTag.Effect);
 		else
 			aiButton.Play();
 	}
@@ -106,7 +106,7 @@ public static class AudioManager {
 	/// </summary>
 	public static void PlayLoseLife() {
 		if (aiLoseLife == null)
-			aiLoseLife = Play (MonoBehaviour.Instantiate (Resources.Load ("Sound/Sound effects/Blobbashersfx_lose life(heart)", typeof(AudioClip))) as AudioClip, AudioTag.Effect);
+			aiLoseLife = Play (MonoBehaviour.Instantiate (Resources.Load ("Sound/Sound effects/BlobBashersfx_lose life(heart)", typeof(AudioClip))) as AudioClip, AudioTag.Effect);
 		else
 			aiLoseLife.Play();
 	}
@@ -116,7 +116,7 @@ public static class AudioManager {
 	/// </summary>
 	public static void PlayPointCount() {
 		if (aiPointCount == null)
-			aiPointCount = Play (MonoBehaviour.Instantiate (Resources.Load ("Sound/Sound effects/Blobbashersfx_point count", typeof(AudioClip))) as AudioClip, AudioTag.Effect);
+			aiPointCount = Play (MonoBehaviour.Instantiate (Resources.Load ("Sound/Sound effects/BlobBashersfx_Point-Count", typeof(AudioClip))) as AudioClip, AudioTag.Effect);
 		else
 			aiPointCount.Play();
 	}
@@ -129,7 +129,7 @@ public static class AudioManager {
 	/// </summary>
 	public static void PlayDestroyElektro() {
 		if (aiDestroyElektro == null)
-			aiDestroyElektro = Play (MonoBehaviour.Instantiate (Resources.Load ("Sound/Sound effects/enemy destruction/Blobbashersfx_electricity bolt enemy", typeof(AudioClip))) as AudioClip, AudioTag.Effect);
+			aiDestroyElektro = Play (MonoBehaviour.Instantiate (Resources.Load ("Sound/Sound effects/enemy destruction/BlobBashersfx_electricity bolt enemy", typeof(AudioClip))) as AudioClip, AudioTag.Effect);
 		else
 			aiDestroyElektro.Play();
 	}
