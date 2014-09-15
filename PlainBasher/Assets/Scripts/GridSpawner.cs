@@ -10,7 +10,9 @@ public class GridSpawner : MonoBehaviour {
 	public int sizeX;
 	public int sizeY;
 	public float spacing;
+    public bool spawnHoles = false;
 	GameObject spawnType;
+    GameObject hole;
 
     void Awake()
     {
@@ -38,7 +40,23 @@ public class GridSpawner : MonoBehaviour {
                 spawner.posX = gridPosX + 1;
                 spawner.posY = gridPosY + 1;
                 spawner.transform.parent = gameObject.transform;
+                if (spawnHoles)
+                {
+                    Vector3 holePosition = position;
+                    holePosition.y = 0.1f;
+                    SpawnHole(hole, holePosition, gameObject.transform.rotation);
+                }
             }
         }
+    }
+
+    void SpawnHole(GameObject hole, Vector3 holePosition, Quaternion rotation)
+    {
+        if (!hole)
+        {
+            hole = Resources.Load<GameObject>("Prefabs/dirtHole");
+        }
+        GameObject obj = (GameObject)Instantiate(hole, holePosition, rotation);
+        obj.transform.parent = gameObject.transform;
     }
 }
