@@ -5,11 +5,20 @@ public class Jelly : Mole {
 
 	private Vector3 BoxOriginalSize;
 	public float ScaleYPositionOffset = 2.0f;
+	public int MaxJellyHealth = 4;
 	
 	void Start () 
 	{
 		BoxOriginalSize = gameObject.GetComponent<BoxCollider> ().size;
-		Health = Random.Range(1, 4);
+
+		int TargetHealth = Random.Range (1, MaxJellyHealth);
+		float FatJellyMulti = Settings.instance.GetDifficultyFatJelliesMultiplier ();
+
+		TargetHealth = (int)Mathf.Lerp (1, TargetHealth, FatJellyMulti);
+		TargetHealth = Mathf.Max (TargetHealth, 1);
+		TargetHealth = Mathf.Min (TargetHealth, MaxJellyHealth);
+
+		Health = TargetHealth;
 	}
 
 	protected override void OnTap()
