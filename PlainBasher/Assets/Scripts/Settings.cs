@@ -6,6 +6,7 @@ public class Settings : MonoBehaviour {
 
 	public List<DifficultyProperties> Difficulties = new List<DifficultyProperties>();
 	public bool FadeBetweenDifficulties = true;
+	public int MaxFreeezAtOnce = 1;
 	[HideInInspector]
 	private bool isPaused = false;
 	private static Settings _instance;

@@ -81,7 +81,13 @@ public class Spawner : MonoBehaviour {
 			if (prefab.GetComponent<Jelly>()) occurenceFactor = (int)(occurenceFactor * Settings.instance.GetDifficultyJelliesMultiplier());
 			else if (prefab.GetComponent<Elektro>()) occurenceFactor = (int)(occurenceFactor * Settings.instance.GetDifficultyElectroMultiplier());
 			else if (prefab.GetComponent<Explosion>()) occurenceFactor = (int)(occurenceFactor * Settings.instance.GetDifficultyExplodeMultiplier());
-			else if (prefab.GetComponent<Freeez>()) occurenceFactor = (int)(occurenceFactor * Settings.instance.GetDifficultyFreezeMultiplier());
+			else if (prefab.GetComponent<Freeez>())
+			{
+				occurenceFactor = (int)(occurenceFactor * Settings.instance.GetDifficultyFreezeMultiplier());
+				int CurrentFreeezNum = GameObject.FindGameObjectsWithTag("Freeez").Length;
+				if (CurrentFreeezNum >= Settings.instance.MaxFreeezAtOnce)
+					occurenceFactor = 0;
+			}
 
 			for (int i = 0; i <= occurenceFactor; i++)
 			{
