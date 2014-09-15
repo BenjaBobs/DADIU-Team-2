@@ -59,6 +59,12 @@ public class Settings : MonoBehaviour {
 			return;
 		isPaused = b;
 	}
+
+    public bool GetPaused()
+    {
+        return isPaused;
+    }
+
 	public void TogglePause() {SetPause(!isPaused);}
 
 	// multiplier for speed

@@ -98,9 +98,13 @@ public class Mole : MonoBehaviour {
 
 	void OnMouseDown()
 	{
-        startHoldTime = Time.time;
-        holding = true;
-		OnTap ();
+        if (!Settings.instance.GetPaused())
+        {
+
+            startHoldTime = Time.time;
+            holding = true;
+		    OnTap ();
+        }
 	}
 
     void OnMouseUp()
