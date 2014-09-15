@@ -5,7 +5,6 @@ using System.Collections;
 
 public class guiScore : MonoBehaviour {
 
-    public int score;
     public Vector3 flashPo = new Vector3(0.6f, 0.98f, 0f);
     public int flashSize = 20;
     public Color flashColor = new Color(255f,0f,0f);
@@ -13,6 +12,7 @@ public class guiScore : MonoBehaviour {
     private float flashtimer;
     private bool newBest = false;
     public bool sc = false;
+    private bool sc2 = true;
     private string[] hs = {};
     private int[] lhs;
     public GUISkin menuSkin;
@@ -26,8 +26,7 @@ public class guiScore : MonoBehaviour {
         
         menuSkin = Resources.Load("GUI/GUIMenu") as GUISkin;
         uploaded = false;
-        score = Player.score + 1;
-        Player.score = 1;
+        Player.score = 456;
         if (Player.score == 0)
         {
             ScoreManager.LoadHighscore(); // load the HS
@@ -44,7 +43,7 @@ public class guiScore : MonoBehaviour {
 
         if (lhs.GetLength(0) > 0)
         {
-            if (score > lhs[0])
+            if (Player.score > lhs[0])
             {
                 newBest = true;
             }
@@ -64,14 +63,20 @@ public class guiScore : MonoBehaviour {
         }
         if (uploaded)
         {
-            ScoreManager.LoadHighscore(); // load the HS
-            sc = ScoreManager.IsHighscoreLoaded(); // did it get loaded?
-            Debug.Log(sc.ToString());
-            if (sc)
+            if (sc2)
             {
-                hs = ScoreManager.GetHighscore(); //get the score
-                if (ScoreManager.GetHighscore().Length > 0)
-                    sc = false;
+
+
+                ScoreManager.LoadHighscore(); // load the HS
+                sc = ScoreManager.IsHighscoreLoaded(); // did it get loaded?
+                Debug.Log("sc = " + sc.ToString());
+                if (sc)
+                {
+                    hs = ScoreManager.GetHighscore(); //get the score
+                    if (ScoreManager.GetHighscore().Length > 0)
+                        sc = false;
+                    
+                }
             }
         }
         if (retard)
@@ -102,7 +107,7 @@ public class guiScore : MonoBehaviour {
 
         GUI.Box(new Rect(Screen.width /2 - 250, Screen.height/10 + 75, 400, 300), "Highscore menu");  //No need for translation
         //add highscore content to box - get from highscore module
-        GUI.Label(new Rect(Screen.width / 2 - 250, Screen.height/10, 100, 25), Localization.instance.GetString(Localization.LocKey.Score)+": " + score.ToString());
+        GUI.Label(new Rect(Screen.width / 2 - 250, Screen.height/10, 100, 25), Localization.instance.GetString(Localization.LocKey.Score)+": " + Player.score.ToString());
 
         if (lhs.GetLength(0) > 0)
         {
@@ -162,7 +167,7 @@ public class guiScore : MonoBehaviour {
             {
                 GUI.Label(new Rect(Screen.width / 2 - 225, Screen.height / 10 + 100 + (25 * i), 450, 25), item.ToString());
                 i++;
-
+                sc2 = false;
             }
         }
 
