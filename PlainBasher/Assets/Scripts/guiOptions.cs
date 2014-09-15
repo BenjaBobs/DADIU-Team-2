@@ -58,7 +58,7 @@ public class guiOptions : MonoBehaviour {
             
         }
 
-        if (GUI.Button(new Rect(Screen.width / 2, Screen.height / 4 + 250, 100, 100), "Return to menu"))
+        if (GUI.Button(new Rect(Screen.width / 2, Screen.height / 4 + 250, 100, 100), Localization.instance.GetString(Localization.LocKey.ReturnToMenu)))
         {
             //gameObject.AddComponent("guiStart");
             //Destroy(this);
