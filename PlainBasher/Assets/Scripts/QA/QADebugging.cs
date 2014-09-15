@@ -60,14 +60,14 @@ public class QADebugging : MonoBehaviour {
             GUI.Label(new Rect(10, 180, 170, 20), "Explosion chance: " + spawnRef.DBGexplosionChance.ToString("P1"));
 
             //Spawn Rates
-            GUI.Box(new Rect(8, 210, 170, 60), "Spawner Rates");
-            GUI.Label(new Rect(10, 230, 170, 20), "Min Spawn time: " + (spawnRef.minFrequency * Settings.instance.GetDifficultySpawnRate()).ToString("0.0") + "s");
-			GUI.Label(new Rect(10, 250, 170, 20), "Max Spawn time: " + (spawnRef.maxFrequency * Settings.instance.GetDifficultySpawnRate()).ToString("0.0") + "s");
+            GUI.Box(new Rect(200, 30, 170, 60), "Spawner Rates");
+            GUI.Label(new Rect(210, 50, 170, 20), "Min Spawn time: " + (spawnRef.minFrequency * Settings.instance.GetDifficultySpawnRate()).ToString("0.0") + "s");
+			GUI.Label(new Rect(210, 70, 170, 20), "Max Spawn time: " + (spawnRef.maxFrequency * Settings.instance.GetDifficultySpawnRate()).ToString("0.0") + "s");
 
             //Difficulty info
-            GUI.Box(new Rect(8, 280, 170, 60), "Difficulty info");
-            GUI.Label(new Rect(10, 300, 170, 20), "Difficulty: " + Settings.instance.GetDifficultyIndex(timeUsed));
-            GUI.Label(new Rect(10, 320, 170, 20), "Time: " + timeUsed.ToString("0.0") + "s");
+            GUI.Box(new Rect(200, 100, 170, 60), "Difficulty info");
+            GUI.Label(new Rect(210, 120, 170, 20), "Difficulty: " + Settings.instance.GetDifficultyIndex(timeUsed));
+            GUI.Label(new Rect(210, 140, 170, 20), "Time: " + timeUsed.ToString("0.0") + "s");
 
 
             if (GUI.Button(new Rect(Screen.width - 100, 0, 100, 25), "Exit"))
