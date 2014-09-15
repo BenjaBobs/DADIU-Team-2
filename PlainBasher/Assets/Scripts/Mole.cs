@@ -115,6 +115,9 @@ public class Mole : MonoBehaviour {
         textLocation.y /= Screen.height;
         textLocation.y += 0.1f;
 
+        if (scoreValue > 1)
+            gText.fontSize = 45;
+
         pointText.transform.localPosition = textLocation;
 
         DestroyImmediate(gameObject);
