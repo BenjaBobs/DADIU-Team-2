@@ -4,6 +4,8 @@ using System.Collections;
 public class AudioInstance : MonoBehaviour {
 	private float defaultVolume;
 	private AudioSource source;
+	private AudioClip nextClip;
+	private bool loopNext = false;
 	public AudioManager.AudioTag tag = AudioManager.AudioTag.Default;
 	public float volume = 1f;
 /*	public bool loop = false;
@@ -33,6 +35,19 @@ public class AudioInstance : MonoBehaviour {
 	public void Stop() {
 		//source.Stop();
 		StartCoroutine(FadeOut());
+	}
+
+	public void ChangeClipWhenDone(AudioClip clip,  bool loop = false) {
+		nextClip = clip;
+		loopNext = loop;
+	}
+	private void Update() {
+		if (nextClip != null && !source.isPlaying) {
+			source.clip = nextClip;
+			source.Play();
+			source.loop = loopNext;
+			nextClip = null;
+		}
 	}
 
 	private void ChangeVolume(string tag, float vol) {
