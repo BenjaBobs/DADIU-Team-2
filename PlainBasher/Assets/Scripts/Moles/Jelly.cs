@@ -32,6 +32,11 @@ public class Jelly : Mole {
 		Health--;
 	}
 
+    public override void OnChain()
+    {
+        
+    }
+
 	private void UpdateScale()
 	{
 		float s = (0.5f + Health * 0.5f);

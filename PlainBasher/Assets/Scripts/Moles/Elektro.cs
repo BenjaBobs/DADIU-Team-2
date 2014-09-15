@@ -72,6 +72,7 @@ public class Elektro : Mole
 			if (obj.gameObject == gameObject) continue;
 			if (obj.IsDead()) continue;
 
+            obj.OnChain();
 			obj.OnDeath();
 		}
 	}

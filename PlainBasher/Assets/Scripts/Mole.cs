@@ -126,6 +126,7 @@ public class Mole : MonoBehaviour {
 
     public virtual void OnChain()
     {
+        Debug.Log("test");
         scoreValue++;
     }
 
