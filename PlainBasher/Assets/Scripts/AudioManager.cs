@@ -54,7 +54,7 @@ public static class AudioManager {
 	/// </summary>
 	public static void PlayGameOver() {
 		if (aiGameOver == null)
-			aiGameOver = Play (MonoBehaviour.Instantiate (Resources.Load ("Sound/Music/BlobBashermusic_game over plus taunting laugh", typeof(AudioClip))) as AudioClip, AudioTag.Music);
+			aiGameOver = Play (AudioClips.instance.gameOver, AudioTag.Music);
 		else
 			aiGameOver.Play();
 	}
@@ -63,17 +63,17 @@ public static class AudioManager {
 	/// Background music for gameplay(do NOT loop this)
 	/// </summary>
 	public static void PlayMusic() {
-/*		if (aiMusic == null)
-			aiMusic = Play (MonoBehaviour.Instantiate (Resources.Load ("Music/BlobBashermusic_in game music", typeof(AudioClip))) as AudioClip, AudioTag.Music);
+		if (aiMusic == null)
+			aiMusic = Play (AudioClips.instance.music, AudioTag.Music);
 		else
 			aiMusic.Play();
-*/	}
+	}
 	/// <summary>
 	/// Short loop of background music to be looped when the original background music stops, after 5:19min into the gameplay
 	/// </summary>
 	public static void PlayMusicLoop() {
 		if (aiMusic == null)
-			aiMusic = Play (MonoBehaviour.Instantiate (Resources.Load ("Sound/Music/BlobBashermusic_in game_shortloop", typeof(AudioClip))) as AudioClip, AudioTag.Music);
+			aiMusic = Play (AudioClips.instance.musicLoop, AudioTag.Music);
 		else
 			aiMusic.Play();
 	}
@@ -83,7 +83,7 @@ public static class AudioManager {
 	/// </summary>
 	public static void PlaySplashMusic() {
 		if (aiSplashMusic == null)
-			aiSplashMusic = Play (MonoBehaviour.Instantiate (Resources.Load ("Sound/Music/BlobBashermusic_splash screen music", typeof(AudioClip))) as AudioClip, AudioTag.Music);
+			aiSplashMusic = Play (AudioClips.instance.musicSplash, AudioTag.Music);
 		else
 			aiSplashMusic.Play();
 	}
@@ -96,7 +96,7 @@ public static class AudioManager {
 	/// </summary>
 	public static void PlayButton() {
 		if (aiButton == null)
-			aiButton = Play (MonoBehaviour.Instantiate (Resources.Load ("Sound/Sound effects/BlobBashersfx_Click sound for ALL buttons", typeof(AudioClip))) as AudioClip, AudioTag.Effect);
+			aiButton = Play (AudioClips.instance.button, AudioTag.Effect);
 		else
 			aiButton.Play();
 	}
@@ -106,7 +106,7 @@ public static class AudioManager {
 	/// </summary>
 	public static void PlayLoseLife() {
 		if (aiLoseLife == null)
-			aiLoseLife = Play (MonoBehaviour.Instantiate (Resources.Load ("Sound/Sound effects/BlobBashersfx_lose life(heart)", typeof(AudioClip))) as AudioClip, AudioTag.Effect);
+			aiLoseLife = Play (AudioClips.instance.loseLife, AudioTag.Effect);
 		else
 			aiLoseLife.Play();
 	}
@@ -116,7 +116,7 @@ public static class AudioManager {
 	/// </summary>
 	public static void PlayPointCount() {
 		if (aiPointCount == null)
-			aiPointCount = Play (MonoBehaviour.Instantiate (Resources.Load ("Sound/Sound effects/BlobBashersfx_Point-Count", typeof(AudioClip))) as AudioClip, AudioTag.Effect);
+			aiPointCount = Play (AudioClips.instance.pointCount, AudioTag.Effect);
 		else
 			aiPointCount.Play();
 	}
@@ -129,7 +129,7 @@ public static class AudioManager {
 	/// </summary>
 	public static void PlayDestroyElektro() {
 		if (aiDestroyElektro == null)
-			aiDestroyElektro = Play (MonoBehaviour.Instantiate (Resources.Load ("Sound/Sound effects/enemy destruction/BlobBashersfx_electricity bolt enemy", typeof(AudioClip))) as AudioClip, AudioTag.Effect);
+			aiDestroyElektro = Play (AudioClips.instance.destroyElektro, AudioTag.Effect);
 		else
 			aiDestroyElektro.Play();
 	}
@@ -139,7 +139,7 @@ public static class AudioManager {
 	/// </summary>
 	public static void PlayDestroyExplosion() {
 		if (aiDestroyExplosion == null)
-			aiDestroyExplosion = Play (MonoBehaviour.Instantiate (Resources.Load ("Sound/Sound effects/enemy destruction/Blobbashersfx_explosion enemy", typeof(AudioClip))) as AudioClip, AudioTag.Effect);
+			aiDestroyExplosion = Play (AudioClips.instance.destroyExplosion, AudioTag.Effect);
 		else
 			aiDestroyExplosion.Play();
 	}
@@ -149,7 +149,7 @@ public static class AudioManager {
 	/// </summary>
 	public static void PlayDestroyFreeze() {
 		if (aiDestroyFreeze == null)
-			aiDestroyFreeze = Play (MonoBehaviour.Instantiate (Resources.Load ("Sound/Sound effects/enemy destruction/Blobbashersfx_ice break enemy", typeof(AudioClip))) as AudioClip, AudioTag.Effect);
+			aiDestroyFreeze = Play (AudioClips.instance.destroyFreeze, AudioTag.Effect);
 		else
 			aiDestroyFreeze.Play();
 	}
@@ -159,7 +159,7 @@ public static class AudioManager {
 	/// </summary>
 	public static void PlayHoldFreeze() {
 		if (aiFreeze == null)
-			aiFreeze = Play (MonoBehaviour.Instantiate (Resources.Load ("Sound/Sound effects/enemy destruction/Blobbashersfx_ice break enemy_holding sound", typeof(AudioClip))) as AudioClip, AudioTag.Effect);
+			aiFreeze = Play (AudioClips.instance.holdFreeze, AudioTag.Effect);
 		else
 			aiFreeze.Play();
 	}
@@ -175,7 +175,7 @@ public static class AudioManager {
 	/// </summary>
 	public static void PlayTapBigJelly() {
 		if (aiTapBigJelly == null)
-			aiTapBigJelly = Play (MonoBehaviour.Instantiate (Resources.Load ("Sound/Sound effects/enemy destruction/Blobbashersfx_jelly enemy deflate big", typeof(AudioClip))) as AudioClip, AudioTag.Effect);
+			aiTapBigJelly = Play (AudioClips.instance.tapBigJelly, AudioTag.Effect);
 		else
 			aiTapBigJelly.Play();
 	}
@@ -185,7 +185,7 @@ public static class AudioManager {
 	/// </summary>
 	public static void PlayTapSmallJelly() {
 		if (aiTapSmallJelly == null)
-			aiTapSmallJelly = Play (MonoBehaviour.Instantiate (Resources.Load ("Sound/Sound effects/enemy destruction/Blobbashersfx_jelly enemy deflate small", typeof(AudioClip))) as AudioClip, AudioTag.Effect);
+			aiTapSmallJelly = Play (AudioClips.instance.tapSmallJelly, AudioTag.Effect);
 		else
 			aiTapSmallJelly.Play();
 	}
@@ -195,7 +195,7 @@ public static class AudioManager {
 	/// </summary>
 	public static void PlayDestroyJelly() {
 		if (aiDestroyJelly == null)
-			aiDestroyJelly = Play (MonoBehaviour.Instantiate (Resources.Load ("Sound/Sound effects/enemy destruction/Blobbashersfx_jelly splat", typeof(AudioClip))) as AudioClip, AudioTag.Effect);
+			aiDestroyJelly = Play (AudioClips.instance.destroyJelly, AudioTag.Effect);
 		else
 			aiDestroyJelly.Play();
 	}
@@ -207,7 +207,7 @@ public static class AudioManager {
 	/// </summary>
 	public static void PlayTapGround() {
 		if (aiTapGround == null)
-			aiTapGround = Play (MonoBehaviour.Instantiate (Resources.Load ("Audio/Blobbashersfx_ground hit", typeof(AudioClip))) as AudioClip, AudioTag.Effect);
+			aiTapGround = Play (AudioClips.instance.tapGround, AudioTag.Effect);
 		else
 			aiTapGround.Play();
 	}
@@ -219,7 +219,7 @@ public static class AudioManager {
 	/// </summary>
 	public static void PlayIceAppear() {
 		if (aiIceAppear == null)
-			aiIceAppear = Play (MonoBehaviour.Instantiate (Resources.Load ("Sound/Sound effects/gameboard ground/Blobbashersfx_ice screen block", typeof(AudioClip))) as AudioClip, AudioTag.Effect);
+			aiIceAppear = Play (AudioClips.instance.iceAppear, AudioTag.Effect);
 		else
 			aiIceAppear.Play();
 	}
@@ -231,18 +231,18 @@ public static class AudioManager {
 	public static void PlayTapIce() {
 		++iceTapCounter;
 		if (aiTapGround == null)
-			aiTapGround = Play (MonoBehaviour.Instantiate (Resources.Load ("Sound/Sound effects/ice screen block/Blobbashersfx_ice screen 1st pick", typeof(AudioClip))) as AudioClip, AudioTag.Effect);
+			aiTapGround = Play (AudioClips.instance.tapIce1, AudioTag.Effect);
 		else {
 			switch (iceTapCounter) {
 			case 1:
-				aiTapGround.SetClip(MonoBehaviour.Instantiate (Resources.Load ("Sound/Sound effects/ice screen block/Blobbashersfx_ice screen 1st pick", typeof(AudioClip))) as AudioClip);
+				aiTapGround.SetClip(AudioClips.instance.tapIce1);
 				break;
 			case 2:
-				aiTapGround.SetClip(MonoBehaviour.Instantiate (Resources.Load ("Sound/Sound effects/ice screen block/Blobbashersfx_ice screen 2nd pick", typeof(AudioClip))) as AudioClip);
+				aiTapGround.SetClip(AudioClips.instance.tapIce2);
 				break;
 			default:
 				iceTapCounter = 0;
-				aiTapGround.SetClip(MonoBehaviour.Instantiate (Resources.Load ("Sound/Sound effects/ice screen block/BlobBashersfx_ice screen 3rd pick and breaking", typeof(AudioClip))) as AudioClip);
+				aiTapGround.SetClip(AudioClips.instance.tapIce3);
 				break;
 			}
 			aiTapGround.Play();
