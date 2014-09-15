@@ -3,9 +3,11 @@ using System.Collections;
 
 public class Jelly : Mole {
 
+	private Vector3 BoxOriginalSize;
 	
 	void Start () 
 	{
+		BoxOriginalSize = gameObject.GetComponent<BoxCollider> ().size;
 		Health = Random.Range(1, 4);
 	}
 
@@ -18,7 +20,10 @@ public class Jelly : Mole {
 
 	private void UpdateScale()
 	{
-		transform.localScale = new Vector3(2,2,2) * (0.5f + Health * 0.5f);
+		float s;
+		s = (0.5f + Health * 0.5f);
+		transform.localScale = new Vector3(2,2,2) * s;
+		gameObject.GetComponent<BoxCollider> ().size = BoxOriginalSize / s;
 	}
 
 
