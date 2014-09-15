@@ -22,6 +22,7 @@ public class Freeez : Mole {
 
 	public override void OnDeath()
     {
+		AudioManager.StopHoldFreeze(false);
         SpawnIceBlock();
         base.OnDeath();
     }
@@ -29,12 +30,22 @@ public class Freeez : Mole {
 	protected override void OnHold()
 	{
 		//mist liv
-        base.OnDeath();
+		base.OnDeath();
+	}
+	
+	protected override void OnTap()
+	{
+		AudioManager.PlayHoldFreeze();
 	}
 
+	protected override void OnRelease() {
+		AudioManager.StopHoldFreeze();
+	}
+	
 	protected override void PlayDeathSound()
 	{
-		AudioManager.PlayDestroyFreeze ();
+		AudioManager.StopHoldFreeze(false);
+		AudioManager.PlayDestroyFreeze();
 	}
 
     protected override void OnFlee()
@@ -42,4 +53,5 @@ public class Freeez : Mole {
         SpawnIceBlock();
         base.OnFlee();
     }
+
 }

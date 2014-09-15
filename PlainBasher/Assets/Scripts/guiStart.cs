@@ -31,11 +31,13 @@ public class guiStart : MonoBehaviour {
         //playerName = GUI.TextField(new Rect(Screen.width / 2, Screen.height / 4 , 200, 30), playerName, 25);
         if (GUI.Button(new Rect(Screen.width / 2, Screen.height / 4 +50, 100, 50), "START")) //localization ?
         {
+			AudioManager.PlayButton();
             Settings.instance.SetPause(false);
             this.enabled = false;
         }
         if (GUI.Button(new Rect(Screen.width / 2, Screen.height / 4 + 100, 100, 50), Localization.instance.GetString(Localization.LocKey.Scoreboard)))
         {
+			AudioManager.PlayButton();
             //gameObject.AddComponent("guiScore");
             //Destroy(this);
             guiScore.staticRef.enabled = true;
@@ -43,6 +45,7 @@ public class guiStart : MonoBehaviour {
         }
         if (GUI.Button(new Rect(Screen.width / 2, Screen.height / 4 + 150, 100, 50), Localization.instance.GetString(Localization.LocKey.Options)))
         {
+			AudioManager.PlayButton();
             //gameObject.AddComponent("guiOptions");
             //Destroy(this);
             guiOptions.staticref.enabled = true;
@@ -51,6 +54,7 @@ public class guiStart : MonoBehaviour {
 
         if (GUI.Button(new Rect(Screen.width / 2, Screen.height / 4 + 200, 100, 50), Localization.instance.GetString(Localization.LocKey.Quit)))
         {
+			AudioManager.PlayButton();
             Application.Quit();
         }
     }

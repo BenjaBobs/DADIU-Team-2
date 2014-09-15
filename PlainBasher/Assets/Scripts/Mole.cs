@@ -92,6 +92,10 @@ public class Mole : MonoBehaviour {
 
 	}
 
+	protected virtual void OnRelease() {
+
+	}
+
 	protected virtual void PlayDeathSound()
 	{
 
@@ -143,11 +147,13 @@ public class Mole : MonoBehaviour {
     void OnMouseUp()
     {
         holding = false;
+		OnRelease ();
     }
 
     void OnMouseExit()
     {
         holding = false;
+		OnRelease ();
     }
 
     void OnMouseOver()
