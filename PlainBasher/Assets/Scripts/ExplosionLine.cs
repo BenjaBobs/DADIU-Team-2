@@ -5,11 +5,11 @@ public class ExplosionLine : MonoBehaviour
 {
     public float lifetime;
     public float expandSpeed;
-    float currentLifetime = 0.0f;
     [HideInInspector]
     public bool expandY;
     public int posX;
     public int posY;
+    float timeLeft = 1;
 
     // Use this for initialization
     void Start()
@@ -20,25 +20,21 @@ public class ExplosionLine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         Vector3 scale = transform.localScale;
         if (expandY)
         {
-            scale.z += Settings.instance.GetDeltaTime() * expandSpeed / lifetime;
             HitLine(posX, expandY);
         }
         else
         {
-			scale.x += Settings.instance.GetDeltaTime() * expandSpeed / lifetime;
             HitLine(posY, expandY);
         }
 
-        transform.localScale = scale;
-		currentLifetime += Settings.instance.GetDeltaTime();
-
-        if (currentLifetime >= lifetime)
-        {
+        if (timeLeft <= 0)
             Destroy(gameObject);
-        }
+
+        timeLeft -= Time.deltaTime;
     }
 
     void HitLine(int position, bool expandY)
