@@ -48,6 +48,11 @@ public static class Grid {
 
     public static GameObject LookupGrid(int x, int y)
     {
+		if (x > gridSizeX || x <= 0)
+						return null;
+		if (y > gridSizeY || y <= 0)
+			return null;
+
         if (grid.ContainsKey(x) && grid[x].ContainsKey(y))
             return grid[x][y];
         else
