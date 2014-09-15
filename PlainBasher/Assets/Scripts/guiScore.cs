@@ -69,7 +69,6 @@ public class guiScore : MonoBehaviour {
             Debug.Log(sc.ToString());
             if (sc)
             {
-                Debug.Log("2");
                 hs = ScoreManager.GetHighscore(); //get the score
                 if (ScoreManager.GetHighscore().Length > 0)
                     sc = false;
@@ -167,16 +166,18 @@ public class guiScore : MonoBehaviour {
             }
         }
 
-        if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 10 + 400, 100, 100), "Retry"))
-        {
-            //close gui and start game
-            Destroy(this);
-        }
+        //if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 10 + 400, 100, 100), "Retry"))
+        //{
+        //    //close gui and start game
+        //    Destroy(this);
+        //}
 
         if (GUI.Button(new Rect(Screen.width/2, Screen.height/10 + 400, 100, 100), "Return to menu"))
         {
-            gameObject.AddComponent("guiStart");
-            Destroy(this);
+            //Player.Reset();
+            Application.LoadLevel(Application.loadedLevel);
+            //gameObject.AddComponent("guiStart");
+            //Destroy(this);
         }
 
     }
