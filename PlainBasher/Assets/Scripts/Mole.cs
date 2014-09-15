@@ -8,7 +8,7 @@ public class Mole : MonoBehaviour {
     [HideInInspector]
     public int posY;
     public int occurenceFactor = 1;
-    public int scoreValue = 1;
+    public int scoreValue = 10;
     public float popDistance = 5.0f;
     public float popSpeed = 0.5f;
 
@@ -115,8 +115,8 @@ public class Mole : MonoBehaviour {
         textLocation.y /= Screen.height;
         textLocation.y += 0.1f;
 
-        if (scoreValue > 1)
-            gText.fontSize = 45;
+        if (scoreValue > 10)
+            gText.fontSize = 65;
 
         pointText.transform.localPosition = textLocation;
 
@@ -126,8 +126,7 @@ public class Mole : MonoBehaviour {
 
     public virtual void OnChain()
     {
-        Debug.Log("test");
-        scoreValue++;
+        scoreValue += 10;
     }
 
 	void OnMouseDown()
