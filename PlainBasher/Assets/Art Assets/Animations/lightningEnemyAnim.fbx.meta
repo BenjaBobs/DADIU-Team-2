@@ -1,0 +1,389 @@
+fileFormatVersion: 2
+guid: 1e737e18369118b43b59fd6f645c0df7
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: bottom_bnd_jnt
+    100002: bottom_ctrl
+    100004: bottom_ctrl_zero
+    100006: end_jnt
+    100008: enemyBasic_rig
+    100010: L_spike_bnd_jnt
+    100012: lightningEnemy_geo
+    100014: //RootNode
+    100016: middle_bnd_jnt
+    100018: middle_ctrl
+    100020: middle_ctrl_zero
+    100022: R_spike_bnd_jnt
+    100024: root_ctrl
+    100026: root_ctrl_zero
+    100028: top_ctrl
+    100030: top_ctrl_zero
+    400000: bottom_bnd_jnt
+    400002: bottom_ctrl
+    400004: bottom_ctrl_zero
+    400006: end_jnt
+    400008: enemyBasic_rig
+    400010: L_spike_bnd_jnt
+    400012: lightningEnemy_geo
+    400014: //RootNode
+    400016: middle_bnd_jnt
+    400018: middle_ctrl
+    400020: middle_ctrl_zero
+    400022: R_spike_bnd_jnt
+    400024: root_ctrl
+    400026: root_ctrl_zero
+    400028: top_ctrl
+    400030: top_ctrl_zero
+    4300000: lightningEnemy_geo
+    7400000: lightningEnemy_anim_idle
+    7400002: lightningEnemy_anim_exit
+    7400004: lightningEnemy_anim_laugh1
+    7400006: lightningEnemy_anim_entry
+    7400008: lightningEnemy_anim_laugh2
+    9500000: //RootNode
+    13700000: lightningEnemy_geo
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: lightningEnemy_anim_idle
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 49
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: enemyBasic_rig
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl/bottom_bnd_jnt
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl/L_spike_bnd_jnt
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl/middle_ctrl_zero
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl/middle_ctrl_zero/middle_ctrl
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl/middle_ctrl_zero/middle_ctrl/middle_bnd_jnt
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl/middle_ctrl_zero/middle_ctrl/top_ctrl_zero
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl/middle_ctrl_zero/middle_ctrl/top_ctrl_zero/top_ctrl
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl/middle_ctrl_zero/middle_ctrl/top_ctrl_zero/top_ctrl/end_jnt
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl/R_spike_bnd_jnt
+        weight: 1
+      - path: lightningEnemy_geo
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: lightningEnemy_anim_exit
+      takeName: Take 001
+      firstFrame: 50
+      lastFrame: 60
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: enemyBasic_rig
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl/bottom_bnd_jnt
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl/L_spike_bnd_jnt
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl/middle_ctrl_zero
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl/middle_ctrl_zero/middle_ctrl
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl/middle_ctrl_zero/middle_ctrl/middle_bnd_jnt
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl/middle_ctrl_zero/middle_ctrl/top_ctrl_zero
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl/middle_ctrl_zero/middle_ctrl/top_ctrl_zero/top_ctrl
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl/middle_ctrl_zero/middle_ctrl/top_ctrl_zero/top_ctrl/end_jnt
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl/R_spike_bnd_jnt
+        weight: 1
+      - path: lightningEnemy_geo
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: lightningEnemy_anim_entry
+      takeName: Take 001
+      firstFrame: 65
+      lastFrame: 82
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: enemyBasic_rig
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl/bottom_bnd_jnt
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl/L_spike_bnd_jnt
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl/middle_ctrl_zero
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl/middle_ctrl_zero/middle_ctrl
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl/middle_ctrl_zero/middle_ctrl/middle_bnd_jnt
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl/middle_ctrl_zero/middle_ctrl/top_ctrl_zero
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl/middle_ctrl_zero/middle_ctrl/top_ctrl_zero/top_ctrl
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl/middle_ctrl_zero/middle_ctrl/top_ctrl_zero/top_ctrl/end_jnt
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl/R_spike_bnd_jnt
+        weight: 1
+      - path: lightningEnemy_geo
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: lightningEnemy_anim_laugh1
+      takeName: Take 001
+      firstFrame: 85
+      lastFrame: 116
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: enemyBasic_rig
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl/bottom_bnd_jnt
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl/L_spike_bnd_jnt
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl/middle_ctrl_zero
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl/middle_ctrl_zero/middle_ctrl
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl/middle_ctrl_zero/middle_ctrl/middle_bnd_jnt
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl/middle_ctrl_zero/middle_ctrl/top_ctrl_zero
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl/middle_ctrl_zero/middle_ctrl/top_ctrl_zero/top_ctrl
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl/middle_ctrl_zero/middle_ctrl/top_ctrl_zero/top_ctrl/end_jnt
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl/R_spike_bnd_jnt
+        weight: 1
+      - path: lightningEnemy_geo
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: lightningEnemy_anim_laugh2
+      takeName: Take 001
+      firstFrame: 120
+      lastFrame: 165
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: enemyBasic_rig
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl/bottom_bnd_jnt
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl/L_spike_bnd_jnt
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl/middle_ctrl_zero
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl/middle_ctrl_zero/middle_ctrl
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl/middle_ctrl_zero/middle_ctrl/middle_bnd_jnt
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl/middle_ctrl_zero/middle_ctrl/top_ctrl_zero
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl/middle_ctrl_zero/middle_ctrl/top_ctrl_zero/top_ctrl
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl/middle_ctrl_zero/middle_ctrl/top_ctrl_zero/top_ctrl/end_jnt
+        weight: 1
+      - path: enemyBasic_rig/root_ctrl_zero/root_ctrl/bottom_ctrl_zero/bottom_ctrl/R_spike_bnd_jnt
+        weight: 1
+      - path: lightningEnemy_geo
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
