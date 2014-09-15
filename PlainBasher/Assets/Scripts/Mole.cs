@@ -121,6 +121,11 @@ public class Mole : MonoBehaviour {
         //TODO: Add score to score manager
 	}
 
+    public virtual void OnChain()
+    {
+        scoreValue++;
+    }
+
 	void OnMouseDown()
 	{
         if (!Settings.instance.GetPaused())
