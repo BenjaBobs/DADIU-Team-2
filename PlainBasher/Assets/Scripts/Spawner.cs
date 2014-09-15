@@ -16,6 +16,46 @@ public class Spawner : MonoBehaviour {
     static bool isLoaded = false;
     public List<GameObject> childs;
 
+    #region Debugging
+    [HideInInspector]
+    public static Spawner DBGstaticRef;
+    [HideInInspector]
+    public float DBGjellyChance = 0;
+    [HideInInspector]
+    public float DBGfreeezChance = 0;
+    [HideInInspector]
+    public float DBGelektroChance = 0;
+    [HideInInspector]
+    public float DBGexplosionChance = 0;
+
+    int DBGjellyCount = 0;
+    int DBGfreeezCount = 0;
+    int DBGelektroCount = 0;
+    int DBGexplosionCount = 0;
+
+    [HideInInspector]
+    public bool Debugging = false;
+
+    public void Debug()
+    {
+        Debugging = true;
+        CalculateChildren();
+        Debugging = false;
+
+        int total = DBGjellyCount + DBGfreeezCount + DBGelektroCount + DBGexplosionCount;
+
+        DBGjellyChance = DBGjellyCount / (float)total;
+        DBGfreeezChance = DBGfreeezCount / (float)total;
+        DBGelektroChance = DBGelektroCount / (float)total;
+        DBGexplosionChance = DBGexplosionCount / (float)total;
+    }
+
+    void Awake()
+    {
+        DBGstaticRef = this;
+    }
+    #endregion
+
     public GameObject mole;
 	// Use this for initialization
 	void Start () {
@@ -43,9 +83,26 @@ public class Spawner : MonoBehaviour {
 
 			for (int i = 0; i <= occurenceFactor; i++)
 			{
-				childs.Add(prefab);	
-			}
+				childs.Add(prefab);
+
+                #region Debugging
+                if (Debugging)
+                {
+                    if (isJelly)
+                        DBGjellyCount++;
+                    else if (prefab.GetComponent<Freeez>() != null)
+                        DBGfreeezCount++;
+                    else if (prefab.GetComponent<Elektro>() != null)
+                        DBGelektroCount++;
+                    else if (prefab.GetComponent<Explosion>() != null)
+                        DBGexplosionCount++;
+                }
+                #endregion
+            }
+
+
 		}
+
 	}
 	
 	// Update is called once per frame
