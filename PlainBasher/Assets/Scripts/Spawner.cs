@@ -21,6 +21,12 @@ public class Spawner : MonoBehaviour {
 
 	private Mole SpeedUpMole;
 
+    public GameObject hole;
+    [HideInInspector]
+    public float holeOffset = 0.0f;
+    [HideInInspector]
+    public float moleOffset = 0.0f;
+
     #region Debugging
     [HideInInspector]
     public static Spawner DBGstaticRef;
@@ -124,8 +130,10 @@ public class Spawner : MonoBehaviour {
 	void Update () {
 		timeSinceSpawn += Settings.instance.GetDeltaTime() * GetSpawnRateMultiplier();
 		if (timeSinceSpawn >= currentFrequency) {
-			// Instantiate mole and set its parent
 
+            CreateHole();
+
+			// Instantiate mole and set its parent
 			CalculateChildren();
 			mole = (GameObject)Instantiate(childs[Random.Range(0, childs.Count)], transform.position, transform.rotation);
 			mole.transform.parent = gameObject.transform;
@@ -204,4 +212,14 @@ public class Spawner : MonoBehaviour {
 		return;
 
 	}
+
+    private void CreateHole()
+    {
+        if (!hole)
+        {
+            GameObject holePrefab = Resources.Load<GameObject>("Prefabs/dirtHole");
+            hole = (GameObject)Instantiate(holePrefab, transform.position, transform.rotation);
+            hole.transform.parent = transform;
+        }
+    }
 }

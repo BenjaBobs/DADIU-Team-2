@@ -10,7 +10,7 @@ public class GridSpawner : MonoBehaviour {
 	public int sizeX;
 	public int sizeY;
 	public float spacing;
-    public bool spawnHoles = false;
+    public bool preSpawnHoles = false;
     public float holeOffset = 0.0f;
     public float moleOffset = 0.0f;
 	GameObject spawnType;
@@ -42,19 +42,21 @@ public class GridSpawner : MonoBehaviour {
                 Spawner spawner = obj.GetComponent<Spawner>();
                 spawner.posX = gridPosX + 1;
                 spawner.posY = gridPosY + 1;
+                spawner.holeOffset = holeOffset;
+                spawner.moleOffset = moleOffset;
 				Grid.InsertToGrid(spawner.posX, spawner.posY, obj);
                 spawner.transform.parent = gameObject.transform;
-                if (spawnHoles)
+                if (preSpawnHoles)
                 {
                     Vector3 holePosition = position;
                     holePosition.y += holeOffset - moleOffset;
-                    SpawnHole(holePosition, gameObject.transform.rotation);
+                    spawner.hole = SpawnHole(holePosition, gameObject.transform.rotation);
                 }
             }
         }
     }
 
-    void SpawnHole(Vector3 holePosition, Quaternion rotation)
+    GameObject SpawnHole(Vector3 holePosition, Quaternion rotation)
     {
         if (!hole)
         {
@@ -62,5 +64,6 @@ public class GridSpawner : MonoBehaviour {
         }
         GameObject obj = (GameObject)Instantiate(hole, holePosition, rotation);
         obj.transform.parent = gameObject.transform;
+        return obj;
     }
 }
