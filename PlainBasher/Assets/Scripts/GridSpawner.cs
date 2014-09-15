@@ -11,6 +11,8 @@ public class GridSpawner : MonoBehaviour {
 	public int sizeY;
 	public float spacing;
     public bool spawnHoles = false;
+    public float holeOffset = 0.0f;
+    public float moleOffset = 0.0f;
 	GameObject spawnType;
     GameObject hole;
 
@@ -35,6 +37,7 @@ public class GridSpawner : MonoBehaviour {
                 Vector3 position = gameObject.transform.position;
                 position.x += spacing * (gridPosX - sizeX / 2);
                 position.z += spacing * (gridPosY - sizeY / 2);
+                position.y += moleOffset;
                 GameObject obj = (GameObject)Instantiate(spawnType, position, gameObject.transform.rotation);
                 Spawner spawner = obj.GetComponent<Spawner>();
                 spawner.posX = gridPosX + 1;
@@ -43,7 +46,7 @@ public class GridSpawner : MonoBehaviour {
                 if (spawnHoles)
                 {
                     Vector3 holePosition = position;
-                    holePosition.y = 0.1f;
+                    holePosition.y += holeOffset - moleOffset;
                     SpawnHole(hole, holePosition, gameObject.transform.rotation);
                 }
             }
