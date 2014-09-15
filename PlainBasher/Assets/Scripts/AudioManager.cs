@@ -54,7 +54,7 @@ public static class AudioManager {
 	/// </summary>
 	public static void PlayGameOver() {
 		if (aiGameOver == null)
-			aiGameOver = Play (MonoBehaviour.Instantiate (Resources.Load ("Music/BlobBashermusic_game over plus taunting laugh", typeof(AudioClip))) as AudioClip, AudioTag.Music);
+			aiGameOver = Play (MonoBehaviour.Instantiate (Resources.Load ("Sound/Music/BlobBashermusic_game over plus taunting laugh", typeof(AudioClip))) as AudioClip, AudioTag.Music);
 		else
 			aiGameOver.Play();
 	}
@@ -73,7 +73,7 @@ public static class AudioManager {
 	/// </summary>
 	public static void PlayMusicLoop() {
 		if (aiMusic == null)
-			aiMusic = Play (MonoBehaviour.Instantiate (Resources.Load ("Music/BlobBashermusic_in game_shortloop", typeof(AudioClip))) as AudioClip, AudioTag.Music);
+			aiMusic = Play (MonoBehaviour.Instantiate (Resources.Load ("Sound/Music/BlobBashermusic_in game_shortloop", typeof(AudioClip))) as AudioClip, AudioTag.Music);
 		else
 			aiMusic.Play();
 	}
@@ -83,7 +83,7 @@ public static class AudioManager {
 	/// </summary>
 	public static void PlaySplashMusic() {
 		if (aiSplashMusic == null)
-			aiSplashMusic = Play (MonoBehaviour.Instantiate (Resources.Load ("Music/BlobBashermusic_splash screen music", typeof(AudioClip))) as AudioClip, AudioTag.Music);
+			aiSplashMusic = Play (MonoBehaviour.Instantiate (Resources.Load ("Sound/Music/BlobBashermusic_splash screen music", typeof(AudioClip))) as AudioClip, AudioTag.Music);
 		else
 			aiSplashMusic.Play();
 	}
