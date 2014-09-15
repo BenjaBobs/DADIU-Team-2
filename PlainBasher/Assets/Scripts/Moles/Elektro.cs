@@ -6,11 +6,18 @@ public class Elektro : Mole
     public GameObject lightning;
     public override void OnDeath()
     {
+		if (isDead)
+			return;
+
+		// need it here to avoid infinite loop
+		isDead = true;
 
         for (int i = 0; i <= 270; i = i + 90)
         {
             LightningSpawner(i);
         }
+		DestroyNearbyMoles (false);
+		DestroyNearbyMoles(true);
 
 
         /*
@@ -29,6 +36,9 @@ public class Elektro : Mole
         line.posY = posY;
         */
 
+		// once again to avoid infinte loops
+		isDead = false;
+
 
 
 
@@ -43,33 +53,32 @@ public class Elektro : Mole
 
     void LightningSpawner(int theRotation)
     {
-
-
-
         Quaternion rot = Quaternion.Euler(0, theRotation, 0);
-
         Vector3 positioning;
-
-        switch (theRotation)
-        {
-            case 0:
-                positioning = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z + 0.5f);
-                break;
-            case 90:
-                positioning = new Vector3(transform.localPosition.x + 0.5f, transform.localPosition.y, transform.localPosition.z);
-                break;
-            case 180:
-                positioning = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z - 0.5f);
-                break;
-            case 270:
-                positioning = new Vector3(transform.localPosition.x - 0.5f, transform.localPosition.y, transform.localPosition.z);
-                break;
-            default:
-                positioning = new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z + 0.5f);
-                break;
-        }
 
         GameObject lightningObj = Instantiate(lightning, transform.position, rot) as GameObject;
         
     }
+
+	protected override void PlayDeathSound()
+	{
+		AudioManager.PlayDestroyElektro ();
+	}
+
+	private void DestroyNearbyMoles(bool expandY)
+	{
+		int maxValue = (expandY ? Grid.GetMaxY() : Grid.GetMaxX());
+		for (int i = 1; i <= maxValue; i++)
+		{
+			GameObject obj = (expandY ? Grid.LookupGrid(posX, i) : Grid.LookupGrid(i, posY));
+			if (obj && obj != gameObject)
+			{
+				Mole mole = obj.GetComponent<Mole>();
+				if (!mole.IsDead ())
+				{
+					mole.OnDeath();
+				}
+			}
+		}
+	}
 }

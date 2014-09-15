@@ -6,6 +6,7 @@ public class Settings : MonoBehaviour {
 
 	public List<DifficultyProperties> Difficulties = new List<DifficultyProperties>();
 	public bool FadeBetweenDifficulties = true;
+	public int MaxFreeezAtOnce = 1;
 	[HideInInspector]
 	private bool isPaused = false;
 	private static Settings _instance;
@@ -58,6 +59,12 @@ public class Settings : MonoBehaviour {
 			return;
 		isPaused = b;
 	}
+
+    public bool GetPaused()
+    {
+        return isPaused;
+    }
+
 	public void TogglePause() {SetPause(!isPaused);}
 
 	// multiplier for speed

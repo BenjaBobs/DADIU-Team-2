@@ -5,6 +5,8 @@ public class Explosion : Mole {
 
 	public override void OnDeath()
     {
+		if (isDead)
+						return;
         GameObject explosionGrid = Resources.Load<GameObject>("Prefabs/ExplosionGrid");
 
         GameObject exTransform = Instantiate(explosionGrid, transform.position, transform.rotation) as GameObject;

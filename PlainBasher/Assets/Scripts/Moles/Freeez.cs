@@ -31,4 +31,10 @@ public class Freeez : Mole {
 	{
 		AudioManager.PlayDestroyFreeze ();
 	}
+
+    protected override void OnFlee()
+    {
+        base.OnFlee();
+        GameObject ice = Instantiate(iceLayerPrefab, new Vector3(0, 10, 0), Quaternion.identity) as GameObject;
+    }
 }

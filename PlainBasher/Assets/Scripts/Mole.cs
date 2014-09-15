@@ -24,6 +24,7 @@ public class Mole : MonoBehaviour {
 
     float currentTimeUp = 0.0f;
     bool movingDown = false;
+	protected bool isDead = false;
 
 	public int Health 
 	{
@@ -64,6 +65,11 @@ public class Mole : MonoBehaviour {
         MoleMovement();
 	}
 
+	public bool IsDead()
+	{
+		return isDead;
+	}
+
     protected virtual void OnTap()
 	{
 
@@ -81,6 +87,9 @@ public class Mole : MonoBehaviour {
 
 	public virtual void OnDeath()
 	{
+		if (isDead)
+						return;
+		isDead = true;
         Player.Score++;
 		PlayDeathSound ();
         DestroyImmediate(gameObject);
@@ -89,9 +98,13 @@ public class Mole : MonoBehaviour {
 
 	void OnMouseDown()
 	{
-        startHoldTime = Time.time;
-        holding = true;
-		OnTap ();
+        if (!Settings.instance.GetPaused())
+        {
+
+            startHoldTime = Time.time;
+            holding = true;
+		    OnTap ();
+        }
 	}
 
     void OnMouseUp()
