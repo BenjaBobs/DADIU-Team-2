@@ -10,6 +10,7 @@ public class Settings : MonoBehaviour {
 	[HideInInspector]
 	private bool isPaused = false;
 	private static Settings _instance;
+    private float gameTime = 0;
 
 	[System.Serializable]
 	public class DifficultyProperties
@@ -40,6 +41,11 @@ public class Settings : MonoBehaviour {
 			return _instance;
 		}
 	}
+
+    void Update()
+    {
+        gameTime += GetDeltaTime();
+    }
 
 	// Use this for initialization
 	void Start() {
@@ -72,7 +78,7 @@ public class Settings : MonoBehaviour {
 	{
 		DifficultyProperties from, to;
 		float alpha = 0.0f;
-		if (!GetDifficultyPropertyAtPosition (Time.timeSinceLevelLoad, out from, out to, out alpha))
+        if (!GetDifficultyPropertyAtPosition(gameTime, out from, out to, out alpha))
 			return 1.0f;
 		return Mathf.Lerp (from.MoleSpawnRate, to.MoleSpawnRate, alpha);
 	}
@@ -82,7 +88,7 @@ public class Settings : MonoBehaviour {
 	{
 		DifficultyProperties from, to;
 		float alpha = 0.0f;
-		if (!GetDifficultyPropertyAtPosition (Time.timeSinceLevelLoad, out from, out to, out alpha))
+        if (!GetDifficultyPropertyAtPosition(gameTime, out from, out to, out alpha))
 			return 1.0f;
 		return Mathf.Lerp (from.MoleStayTime, to.MoleStayTime, alpha);
 	}
@@ -92,7 +98,7 @@ public class Settings : MonoBehaviour {
 	{
 		DifficultyProperties from, to;
 		float alpha = 0.0f;
-		if (!GetDifficultyPropertyAtPosition (Time.timeSinceLevelLoad, out from, out to, out alpha))
+        if (!GetDifficultyPropertyAtPosition(gameTime, out from, out to, out alpha))
 			return 1.0f;
 		return Mathf.Lerp (from.Explode_Multiplier, to.Explode_Multiplier, alpha);
 	}
@@ -100,7 +106,7 @@ public class Settings : MonoBehaviour {
 	{
 		DifficultyProperties from, to;
 		float alpha = 0.0f;
-		if (!GetDifficultyPropertyAtPosition (Time.timeSinceLevelLoad, out from, out to, out alpha))
+        if (!GetDifficultyPropertyAtPosition(gameTime, out from, out to, out alpha))
 			return 1.0f;
 		return Mathf.Lerp (from.Freeze_Multiplier, to.Freeze_Multiplier, alpha);
 	}
@@ -108,7 +114,7 @@ public class Settings : MonoBehaviour {
 	{
 		DifficultyProperties from, to;
 		float alpha = 0.0f;
-		if (!GetDifficultyPropertyAtPosition (Time.timeSinceLevelLoad, out from, out to, out alpha))
+        if (!GetDifficultyPropertyAtPosition(gameTime, out from, out to, out alpha))
 			return 1.0f;
 		return Mathf.Lerp (from.Electro_Multiplier, to.Electro_Multiplier, alpha);
 	}
@@ -116,7 +122,7 @@ public class Settings : MonoBehaviour {
 	{
 		DifficultyProperties from, to;
 		float alpha = 0.0f;
-		if (!GetDifficultyPropertyAtPosition (Time.timeSinceLevelLoad, out from, out to, out alpha))
+        if (!GetDifficultyPropertyAtPosition(gameTime, out from, out to, out alpha))
 			return 1.0f;
 		return Mathf.Lerp (from.Jellies_Multiplier, to.Jellies_Multiplier, alpha);
 	}
@@ -124,7 +130,7 @@ public class Settings : MonoBehaviour {
 	{
 		DifficultyProperties from, to;
 		float alpha = 0.0f;
-		if (!GetDifficultyPropertyAtPosition (Time.timeSinceLevelLoad, out from, out to, out alpha))
+        if (!GetDifficultyPropertyAtPosition(gameTime, out from, out to, out alpha))
 			return 1.0f;
 		return Mathf.Lerp (from.Fat_Jellies_Multiplier, to.Fat_Jellies_Multiplier, alpha);
 	}
