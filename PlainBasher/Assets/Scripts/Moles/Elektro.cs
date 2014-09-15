@@ -7,7 +7,11 @@ public class Elektro : Mole
     public override void OnDeath()
     {
 		if (isDead)
-						return;
+			return;
+
+		// need it here to avoid infinite loop
+		isDead = true;
+
         for (int i = 0; i <= 270; i = i + 90)
         {
             LightningSpawner(i);
