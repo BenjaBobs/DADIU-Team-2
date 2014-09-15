@@ -31,11 +31,28 @@ public class AudioInstance : MonoBehaviour {
 		source.Play();
 	}
 	public void Stop() {
-		source.Stop();
+		//source.Stop();
+		StartCoroutine(FadeOut());
 	}
 
-	private void ChangeVolume(string tag, float volume) {
-		if (tag == gameObject.tag)
-			source.volume = volume * defaultVolume;
+	private void ChangeVolume(string tag, float vol) {
+		if (tag == gameObject.tag) {
+			volume = vol * defaultVolume;
+			source.volume = volume;
+		}
+	}
+
+
+	private IEnumerator FadeOut() {
+		bool breakThis = false;
+		while (source.isPlaying && !breakThis) {
+			source.volume -= 0.2f;
+			yield return new WaitForSeconds(0.1f);
+			if (source.volume <= 0.21f) {
+				breakThis = true;
+				source.Stop();
+				source.volume = defaultVolume;
+			}
+		}
 	}
 }

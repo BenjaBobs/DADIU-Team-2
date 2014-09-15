@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-// Example: AudioManager.PlayHoldFreeze();
-
 public static class AudioManager {
 	public delegate void ChangeVolumeEvent(string tag, float volume);
 	public static event ChangeVolumeEvent ChangeVolume;
