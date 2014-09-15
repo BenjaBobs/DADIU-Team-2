@@ -1,10 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class QADebugging : MonoBehaviour {
 
     public static QADebugging staticRef;
     public bool hasLost = false;
+
+    float timeUsed = 0;
+
+    Spawner spawnRef;
 
     void Awake()
     {
@@ -13,47 +18,75 @@ public class QADebugging : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+        
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+        timeUsed += Settings.instance.GetDeltaTime();
+        if (!spawnRef)
+            spawnRef = Spawner.DBGstaticRef;
 	}
 
     void OnGUI()
     {
-        if (GUI.Button(new Rect(0, 0, 100, 25), "Reset"))
+        if (spawnRef)
         {
-            Player.Reset();
-            Application.LoadLevel(Application.loadedLevel);
-            //GridSpawner.staticRef.ResetGrid();
-        }
-
-        if (GUI.Button(new Rect(100, 0, 100, 25), "Pause"))
-        {
-            Settings.instance.TogglePause();
-            //GridSpawner.staticRef.ResetGrid();
-        }
-
-        GUI.Label(new Rect(225, 0, 100, 25), "Lives: " + Player.Lives);
-        GUI.Label(new Rect(325, 0, 100, 25), "Score: " + Player.score);
-
-        if (GUI.Button(new Rect(Screen.width - 100, 0, 100, 25), "Exit"))
-        {
-            Application.Quit();
-        }
-
-        if (hasLost)
-        {
-            
-            GUI.Box(new Rect(0, 25, Screen.width, Screen.height - 25), "");
-            GUI.Box(new Rect(0, 25, Screen.width, Screen.height - 25), "");
-            if (GUI.Button(new Rect(0, 25, Screen.width, Screen.height - 25), "Du har tabt! Score: " + Player.score))
+            spawnRef.Debug();
+            //QA Buttons
+            if (GUI.Button(new Rect(0, 0, 100, 25), "Reset"))
             {
                 Player.Reset();
                 Application.LoadLevel(Application.loadedLevel);
                 //GridSpawner.staticRef.ResetGrid();
+            }
+
+            if (GUI.Button(new Rect(100, 0, 100, 25), "Pause"))
+            {
+                Settings.instance.TogglePause();
+                //GridSpawner.staticRef.ResetGrid();
+            }
+
+            //Player Information
+            GUI.Box(new Rect(8, 30, 102, 60), "Player Info");
+            GUI.Label(new Rect(10, 50, 100, 20), "Lives: " + Player.Lives);
+            GUI.Label(new Rect(10, 70, 100, 20), "Score: " + Player.score);
+
+            //Spawn Chances
+            GUI.Box(new Rect(8, 100, 170, 100), "Spawn Chances");
+            GUI.Label(new Rect(10, 120, 170, 20), "Jelly chance: " + spawnRef.DBGjellyChance.ToString("P1"));
+            GUI.Label(new Rect(10, 140, 170, 20), "Freeez chance: " + spawnRef.DBGfreeezChance.ToString("P1"));
+            GUI.Label(new Rect(10, 160, 170, 20), "Elektro chance: " + spawnRef.DBGelektroChance.ToString("P1"));
+            GUI.Label(new Rect(10, 180, 170, 20), "Explosion chance: " + spawnRef.DBGexplosionChance.ToString("P1"));
+
+            //Spawn Rates
+            GUI.Box(new Rect(8, 210, 130, 60), "Spawner Rates");
+            GUI.Label(new Rect(10, 230, 125, 20), "Min Spawn time: " + spawnRef.minFrequency * Settings.instance.GetDifficultySpeed());
+            GUI.Label(new Rect(10, 250, 125, 20), "Max Spawn time: " + spawnRef.maxFrequency * Settings.instance.GetDifficultySpeed());
+
+            //Difficulty info
+            GUI.Box(new Rect(8, 280, 130, 80), "Difficulty info");
+            GUI.Label(new Rect(10, 300, 125, 20), "Difficulty: ");
+            GUI.Label(new Rect(10, 320, 125, 20), "Difficulties: ");
+            GUI.Label(new Rect(10, 340, 125, 20), "Time: " + timeUsed.ToString("0.0"));
+
+
+            if (GUI.Button(new Rect(Screen.width - 100, 0, 100, 25), "Exit"))
+            {
+                Application.Quit();
+            }
+
+            if (hasLost)
+            {
+            
+                GUI.Box(new Rect(0, 25, Screen.width, Screen.height - 25), "");
+                GUI.Box(new Rect(0, 25, Screen.width, Screen.height - 25), "");
+                if (GUI.Button(new Rect(0, 25, Screen.width, Screen.height - 25), "Du har tabt! Score: " + Player.score))
+                {
+                    Player.Reset();
+                    Application.LoadLevel(Application.loadedLevel);
+                    //GridSpawner.staticRef.ResetGrid();
+                }
             }
         }
     }
