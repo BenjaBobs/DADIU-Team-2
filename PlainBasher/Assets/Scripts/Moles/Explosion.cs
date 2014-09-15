@@ -20,4 +20,9 @@ public class Explosion : Mole {
 		//mist liv
 		Health--;
 	}
+
+	protected override void PlayDeathSound()
+	{
+		AudioManager.PlayDestroyExplosion ();
+	}
 }

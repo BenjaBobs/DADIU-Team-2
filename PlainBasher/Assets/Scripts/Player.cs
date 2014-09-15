@@ -3,7 +3,7 @@ using System.Collections;
 
 public static class Player {
 	static int lives = 3;
-    public static int score;
+    private static int score;
 
     public static int Lives
     {
@@ -13,25 +13,51 @@ public static class Player {
         }
         set
         {
-			int dmg = value - lives;
-            lives = value;
+			int dmg = value - lives;            
 			if (dmg > 0) OnTakeDamage(dmg);
 			else OnHeal(dmg*-1);
 
-            if (lives < 1)
+            if (lives > 0 && value <= 0)
             {
-                Settings.instance.SetPause(true);
-                //TODO: Initialize game end
-				QADebugging.staticRef.hasLost = true;
+				OnGameOver ();
             }
+			lives = value;
         }
     }
 
+	public static int Score
+	{
+		get
+		{
+			return score;
+		}
+		set
+		{
+			int amount = value - score;
+			score = value;
+			if (amount > 0) OnScoreIncrease(amount);
+		}
+	}
+
+	private static void OnGameOver()
+	{
+		AudioManager.PlayGameOver ();
+		Settings.instance.SetPause(true);
+		//TODO: Initialize game end
+		QADebugging.staticRef.hasLost = true;
+	}
+
 	private static void OnTakeDamage(int dmg)
 	{
+		AudioManager.PlayLoseLife ();
 	}
 	private static void OnHeal(int heal_amount)
 	{
+	}
+
+	private static void OnScoreIncrease(int amount)
+	{
+		AudioManager.PlayPointCount ();
 	}
 
     public static void Reset()

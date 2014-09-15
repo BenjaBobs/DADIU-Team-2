@@ -29,4 +29,9 @@ public class Elektro : Mole
 		//mist liv
 		Health--;
 	}
+
+	protected override void PlayDeathSound()
+	{
+		AudioManager.PlayDestroyElektro ();
+	}
 }

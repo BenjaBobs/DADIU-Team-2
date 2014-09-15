@@ -74,9 +74,15 @@ public class Mole : MonoBehaviour {
 
 	}
 
+	protected virtual void PlayDeathSound()
+	{
+
+	}
+
 	public virtual void OnDeath()
 	{
-        Player.score++;
+        Player.Score++;
+		PlayDeathSound ();
         DestroyImmediate(gameObject);
         //TODO: Add score to score manager
 	}

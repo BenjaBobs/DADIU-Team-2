@@ -16,7 +16,8 @@ public class Jelly : Mole {
 	{
 		//mist liv
 		Health--;
-
+		if (Health > 0)
+			AudioManager.PlayTapBigJelly ();
 	}
 
 	private void UpdateScale()
@@ -37,5 +38,10 @@ public class Jelly : Mole {
 	protected override void OnHealthChange()
 	{
 		UpdateScale ();
+	}
+
+	protected override void PlayDeathSound()
+	{
+		AudioManager.PlayDestroyJelly();
 	}
 }

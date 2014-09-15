@@ -50,7 +50,7 @@ public class QADebugging : MonoBehaviour {
             //Player Information
             GUI.Box(new Rect(8, 30, 102, 60), "Player Info");
             GUI.Label(new Rect(10, 50, 100, 20), "Lives: " + Player.Lives);
-            GUI.Label(new Rect(10, 70, 100, 20), "Score: " + Player.score);
+            GUI.Label(new Rect(10, 70, 100, 20), "Score: " + Player.Score);
 
             //Spawn Chances
             GUI.Box(new Rect(8, 100, 170, 100), "Spawn Chances");

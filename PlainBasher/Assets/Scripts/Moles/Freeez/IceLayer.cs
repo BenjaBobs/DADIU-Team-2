@@ -6,6 +6,11 @@ public class IceLayer : MonoBehaviour
 
     public int Health = 2;
 
+	void Start()
+	{
+		AudioManager.PlayIceAppear();
+	}
+
     void OnMouseDown()
     {
         Health--;

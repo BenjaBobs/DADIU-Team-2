@@ -26,4 +26,9 @@ public class Freeez : Mole {
 		//mist liv
         base.OnDeath();
 	}
+
+	protected override void PlayDeathSound()
+	{
+		AudioManager.PlayDestroyFreeze ();
+	}
 }
