@@ -21,7 +21,11 @@ public class AudioInstance : MonoBehaviour {
 	public void SetDefaultVolume(float value) {
 		defaultVolume = value;
 	}
-
+	
+	public void SetClip(AudioClip clip) {
+		source.clip = clip;
+	}
+	
 	public void Play() {
 		if (source.isPlaying)
 			source.Stop();

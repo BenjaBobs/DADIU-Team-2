@@ -5,15 +5,15 @@ public class TestScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		AudioManager.PlayFreeze();
+		AudioManager.PlayHoldFreeze();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKeyDown(KeyCode.G))
-			AudioManager.StopFreeze();
+			AudioManager.StopHoldFreeze();
 		if (Input.GetKeyDown(KeyCode.H))
-			AudioManager.PlayFreeze();
+			AudioManager.PlayHoldFreeze();
 		if (Input.GetKeyDown(KeyCode.J))
 			AudioManager.ToggleEffects();
 	}
