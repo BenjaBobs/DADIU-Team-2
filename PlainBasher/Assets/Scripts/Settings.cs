@@ -14,9 +14,13 @@ public class Settings : MonoBehaviour {
 	public class DifficultyProperties
 	{
 		public float TimePosition = 0.0f;
-		public float MoleSpeed = 1.0f;
+		public float MoleSpawnRate = 1.0f;
 		public float MoleStayTime = 1.0f;
-		public float SpecialMoleOccuranceMultiplier = 1.0f;
+		public float Freeze_Multiplier = 1.0f;
+		public float Explode_Multiplier = 1.0f;
+		public float Electro_Multiplier = 1.0f;
+		public float Jellies_Multiplier = 1.0f;
+		public float Fat_Jellies_Multiplier = 0.5f;
 	};
 
 	// Singleton istancing
@@ -57,13 +61,13 @@ public class Settings : MonoBehaviour {
 	public void TogglePause() {SetPause(!isPaused);}
 
 	// multiplier for speed
-	public float GetDifficultySpeed()
+	public float GetDifficultySpawnRate()
 	{
 		DifficultyProperties from, to;
 		float alpha = 0.0f;
 		if (!GetDifficultyPropertyAtPosition (Time.timeSinceLevelLoad, out from, out to, out alpha))
 			return 1.0f;
-		return Mathf.Lerp (from.MoleSpeed, to.MoleSpeed, alpha);
+		return Mathf.Lerp (from.MoleSpawnRate, to.MoleSpawnRate, alpha);
 	}
 
 	// multiplier for stay time
@@ -77,13 +81,45 @@ public class Settings : MonoBehaviour {
 	}
 
 	// multiplier for special moles
-	public float GetDifficultySpecialMoleMultiplier()
+	public float GetDifficultyExplodeMultiplier()
 	{
 		DifficultyProperties from, to;
 		float alpha = 0.0f;
 		if (!GetDifficultyPropertyAtPosition (Time.timeSinceLevelLoad, out from, out to, out alpha))
 			return 1.0f;
-		return Mathf.Lerp (from.SpecialMoleOccuranceMultiplier, to.SpecialMoleOccuranceMultiplier, alpha);
+		return Mathf.Lerp (from.Explode_Multiplier, to.Explode_Multiplier, alpha);
+	}
+	public float GetDifficultyFreezeMultiplier()
+	{
+		DifficultyProperties from, to;
+		float alpha = 0.0f;
+		if (!GetDifficultyPropertyAtPosition (Time.timeSinceLevelLoad, out from, out to, out alpha))
+			return 1.0f;
+		return Mathf.Lerp (from.Freeze_Multiplier, to.Freeze_Multiplier, alpha);
+	}
+	public float GetDifficultyElectroMultiplier()
+	{
+		DifficultyProperties from, to;
+		float alpha = 0.0f;
+		if (!GetDifficultyPropertyAtPosition (Time.timeSinceLevelLoad, out from, out to, out alpha))
+			return 1.0f;
+		return Mathf.Lerp (from.Electro_Multiplier, to.Electro_Multiplier, alpha);
+	}
+	public float GetDifficultyJelliesMultiplier()
+	{
+		DifficultyProperties from, to;
+		float alpha = 0.0f;
+		if (!GetDifficultyPropertyAtPosition (Time.timeSinceLevelLoad, out from, out to, out alpha))
+			return 1.0f;
+		return Mathf.Lerp (from.Jellies_Multiplier, to.Jellies_Multiplier, alpha);
+	}
+	public float GetDifficultyFatJelliesMultiplier()
+	{
+		DifficultyProperties from, to;
+		float alpha = 0.0f;
+		if (!GetDifficultyPropertyAtPosition (Time.timeSinceLevelLoad, out from, out to, out alpha))
+			return 1.0f;
+		return Mathf.Lerp (from.Fat_Jellies_Multiplier, to.Fat_Jellies_Multiplier, alpha);
 	}
 
 	// adds a 0.0f key as one is needed
@@ -101,9 +137,15 @@ public class Settings : MonoBehaviour {
 		if (!HasStartKey)
 		{
 			DifficultyProperties dp = new DifficultyProperties();
-			dp.MoleSpeed = 1.0f;
 			dp.MoleStayTime = 1.0f;
 			dp.TimePosition = 0.0f;
+			dp.MoleSpawnRate = 1.0f;
+			dp.Freeze_Multiplier = 1.0f;
+			dp.Explode_Multiplier = 1.0f;
+			dp.Electro_Multiplier = 1.0f;
+			dp.Jellies_Multiplier = 1.0f;
+			dp.Fat_Jellies_Multiplier = 0.5f;
+
 			Difficulties.Add (dp);
 		}
 	}

@@ -61,8 +61,8 @@ public class QADebugging : MonoBehaviour {
 
             //Spawn Rates
             GUI.Box(new Rect(8, 210, 170, 60), "Spawner Rates");
-            GUI.Label(new Rect(10, 230, 170, 20), "Min Spawn time: " + (spawnRef.minFrequency * Settings.instance.GetDifficultySpeed()).ToString("0.0") + "s");
-            GUI.Label(new Rect(10, 250, 170, 20), "Max Spawn time: " + (spawnRef.maxFrequency * Settings.instance.GetDifficultySpeed()).ToString("0.0") + "s");
+            GUI.Label(new Rect(10, 230, 170, 20), "Min Spawn time: " + (spawnRef.minFrequency * Settings.instance.GetDifficultySpawnRate()).ToString("0.0") + "s");
+			GUI.Label(new Rect(10, 250, 170, 20), "Max Spawn time: " + (spawnRef.maxFrequency * Settings.instance.GetDifficultySpawnRate()).ToString("0.0") + "s");
 
             //Difficulty info
             GUI.Box(new Rect(8, 280, 170, 60), "Difficulty info");

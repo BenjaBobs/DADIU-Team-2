@@ -77,9 +77,11 @@ public class Spawner : MonoBehaviour {
 		childs = new List<GameObject> ();
 		foreach (GameObject prefab in prefabs) {
 			int occurenceFactor = prefab.GetComponent<Mole>().occurenceFactor;
-			bool isJelly = prefab.GetComponent<Jelly>() != null;
 
-			if (!isJelly) occurenceFactor = (int)(occurenceFactor * Settings.instance.GetDifficultySpecialMoleMultiplier());
+			if (prefab.GetComponent<Jelly>()) occurenceFactor = (int)(occurenceFactor * Settings.instance.GetDifficultyJelliesMultiplier());
+			else if (prefab.GetComponent<Elektro>()) occurenceFactor = (int)(occurenceFactor * Settings.instance.GetDifficultyElectroMultiplier());
+			else if (prefab.GetComponent<Explosion>()) occurenceFactor = (int)(occurenceFactor * Settings.instance.GetDifficultyExplodeMultiplier());
+			else if (prefab.GetComponent<Freeez>()) occurenceFactor = (int)(occurenceFactor * Settings.instance.GetDifficultyFreezeMultiplier());
 
 			for (int i = 0; i <= occurenceFactor; i++)
 			{
@@ -88,7 +90,7 @@ public class Spawner : MonoBehaviour {
                 #region Debugging
                 if (Debugging)
                 {
-                    if (isJelly)
+					if (prefab.GetComponent<Jelly>())
                         DBGjellyCount++;
                     else if (prefab.GetComponent<Freeez>() != null)
                         DBGfreeezCount++;
@@ -107,7 +109,7 @@ public class Spawner : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		timeSinceSpawn += Settings.instance.GetDeltaTime() * Settings.instance.GetDifficultySpeed();
+		timeSinceSpawn += Settings.instance.GetDeltaTime() * Settings.instance.GetDifficultySpawnRate();
 		if (timeSinceSpawn >= currentFrequency) {
 			// Instantiate mole and set its parent
 
