@@ -144,31 +144,52 @@ public class Spawner : MonoBehaviour {
 		currentFrequency = Random.Range (minFrequency, maxFrequency);
 	}
 
-	private bool HasExplosionNearby()
+	private Spawner GetRandomWithinExplosion()
 	{
+		List<Spawner> m = new List<Spawner> ();
 		for (int x = posX-1; x <= posX+1; x++)
 			for (int y = posY-1; y <= posY+1; y++)
 		{
-			GameObject obj = Grid.LookupGrid(x, y);
-			if (obj && obj != mole && obj.GetComponent<Explosion>())
-			{
-				return true;
-			}
+			Spawner obj = Grid.GetSpawner(x, y);
+			if (!obj) continue;
+			if (obj.gameObject == gameObject) continue;
+			if (obj.mole) continue;
+			m.Add (obj);
 		}
-		return false;
+		if (m.Count == 0)
+			return null;
+		return m[Random.Range (0,m.Count)];
 	}
-	private bool HasElectroNearby(bool expandY)
+	private Spawner GetRandomWithinElectro()
 	{
+		List<Spawner> result = new List<Spawner> ();
+
+		List<Spawner> i = GetListWithinElectro (false);
+		foreach (Spawner m in i)
+			result.Add (m);
+
+		i = GetListWithinElectro (false);
+		foreach (Spawner m in i)
+			result.Add (m);
+
+		if (result.Count == 0)
+			return null;
+		return result[Random.Range (0,result.Count)];
+	}
+
+	private List<Spawner> GetListWithinElectro(bool expandY)
+	{
+		List<Spawner> m = new List<Spawner> ();
 		int maxValue = (expandY ? Grid.GetMaxY() : Grid.GetMaxX());
 		for (int i = 1; i <= maxValue; i++)
 		{
-			GameObject obj = (expandY ? Grid.LookupGrid(posX, i) : Grid.LookupGrid(i, posY));
-			if (obj && obj != mole && obj.GetComponent<Elektro>())
-			{
-				return true;
-			}
+			Spawner obj = (expandY ? Grid.GetSpawner(posX, i) : Grid.GetSpawner(i, posY));
+			if (!obj) continue;
+			if (obj.gameObject == gameObject) continue;
+			if (obj.mole) continue;
+			m.Add (obj);
 		}
-		return false;
+		return m;
 	}
 
 	private float GetSpawnRateMultiplier()
@@ -189,18 +210,28 @@ public class Spawner : MonoBehaviour {
 
 	private void CheckNearbyActivate()
 	{
-		/*
-		List<Mole> m = new List<Mole> ();
-		for (int x = posX-1; x <= posX+1; x++)
-			for (int y = posY-1; y <= posY+1; y++)
+		if (!mole)
+			return;
+		Mole m = mole.GetComponent<Mole> ();
+		if (!m)
+			return;
+		if (mole.GetComponent<Elektro> ())
 		{
-			GameObject obj = Grid.LookupGrid(x, y);
-			if (obj && obj != mole && obj.GetComponent<Explosion>())
+			Spawner s = GetRandomWithinElectro();
+			if (s)
 			{
-				return true;
+				s.SpeedUpMole = m;
 			}
 		}
-		*/
+		if (mole.GetComponent<Explosion> ())
+		{
+			Spawner s = GetRandomWithinExplosion();
+			if (s)
+			{
+				s.SpeedUpMole = m;
+			}
+		}
+
 		return;
 
 	}
