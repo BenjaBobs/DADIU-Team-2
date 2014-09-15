@@ -47,13 +47,13 @@ public class GridSpawner : MonoBehaviour {
                 {
                     Vector3 holePosition = position;
                     holePosition.y += holeOffset - moleOffset;
-                    SpawnHole(hole, holePosition, gameObject.transform.rotation);
+                    SpawnHole(holePosition, gameObject.transform.rotation);
                 }
             }
         }
     }
 
-    void SpawnHole(GameObject hole, Vector3 holePosition, Quaternion rotation)
+    void SpawnHole(Vector3 holePosition, Quaternion rotation)
     {
         if (!hole)
         {
