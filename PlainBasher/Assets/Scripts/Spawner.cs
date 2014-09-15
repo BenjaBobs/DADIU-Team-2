@@ -3,14 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Spawner : MonoBehaviour {
-	public float maxFrequency = 50.0f;
-	public float minFrequency = 20.0f;
+	public float maxFrequency = 20.0f;
+	public float minFrequency = 5.0f;
 	float currentFrequency = 0.0f;
 	float timeSinceSpawn = 0.0f;
     [HideInInspector]
 	public int posX;
     [HideInInspector]
 	public int posY;
+	public float nearbySpecialMultiplier = 20.0f;
 
 	static List<GameObject> prefabs;
     static bool isLoaded = false;
@@ -116,7 +117,7 @@ public class Spawner : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		timeSinceSpawn += Settings.instance.GetDeltaTime() * Settings.instance.GetDifficultySpawnRate();
+		timeSinceSpawn += Settings.instance.GetDeltaTime() * GetSpawnRateMultiplier();
 		if (timeSinceSpawn >= currentFrequency) {
 			// Instantiate mole and set its parent
 
@@ -133,5 +134,49 @@ public class Spawner : MonoBehaviour {
 	void CalculateFrequency()
 	{
 		currentFrequency = Random.Range (minFrequency, maxFrequency);
+	}
+
+	private bool HasExplosionNearby()
+	{
+		for (int x = posX-1; x <= posX+1; x++)
+			for (int y = posY-1; y <= posY+1; y++)
+		{
+			GameObject obj = Grid.LookupGrid(x, y);
+			if (obj && obj != mole && obj.GetComponent<Explosion>())
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	private bool HasElectroNearby(bool expandY)
+	{
+		int maxValue = (expandY ? Grid.GetMaxY() : Grid.GetMaxX());
+		for (int i = 1; i <= maxValue; i++)
+		{
+			GameObject obj = (expandY ? Grid.LookupGrid(posX, i) : Grid.LookupGrid(i, posY));
+			if (obj && obj != mole && obj.GetComponent<Elektro>())
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private float GetSpawnRateMultiplier()
+	{
+		if (mole)
+			return 0.0f;
+
+		float m = Settings.instance.GetDifficultySpawnRate ();
+
+		if (HasExplosionNearby ())
+			m *= nearbySpecialMultiplier;
+		if (HasElectroNearby(false) || HasElectroNearby(true))
+			m *= nearbySpecialMultiplier;
+
+
+
+		return m;
 	}
 }
