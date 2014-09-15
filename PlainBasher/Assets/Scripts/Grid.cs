@@ -46,6 +46,31 @@ public static class Grid {
         grid[x][y] = mole;
     }
 
+	public static Mole GetMole(int x, int y)
+	{
+		Spawner s = GetSpawner(x, y);
+		if (!s)
+			return null;
+		GameObject go = s.mole;
+		if (!go)
+			return null;
+		Mole m = go.GetComponent<Mole> ();
+		if (!m)
+			return null;
+		return m;
+	}
+
+    public static Spawner GetSpawner(int x, int y)
+	{
+		GameObject g = LookupGrid (x, y);
+		if (!g)
+			return null;
+		Spawner s = g.GetComponent<Spawner> ();
+		if (!s)
+			return null;
+		return s;
+	}
+
     public static GameObject LookupGrid(int x, int y)
     {
 		if (x > gridSizeX || x <= 0)

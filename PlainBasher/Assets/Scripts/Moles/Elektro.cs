@@ -70,15 +70,12 @@ public class Elektro : Mole
 		int maxValue = (expandY ? Grid.GetMaxY() : Grid.GetMaxX());
 		for (int i = 1; i <= maxValue; i++)
 		{
-			GameObject obj = (expandY ? Grid.LookupGrid(posX, i) : Grid.LookupGrid(i, posY));
-			if (obj && obj != gameObject)
-			{
-				Mole mole = obj.GetComponent<Mole>();
-				if (!mole.IsDead ())
-				{
-					mole.OnDeath();
-				}
-			}
+			Mole obj = (expandY ? Grid.GetMole(posX, i) : Grid.GetMole(i, posY));
+			if (!obj) continue;
+			if (obj.gameObject == gameObject) continue;
+			if (obj.IsDead()) continue;
+
+			obj.OnDeath();
 		}
 	}
 }

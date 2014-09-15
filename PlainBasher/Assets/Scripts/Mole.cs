@@ -56,7 +56,6 @@ public class Mole : MonoBehaviour {
 	{
 		posX = posx;
 		posY = posy;
-		Grid.InsertToGrid(posX, posY, gameObject);
 	}
 	
 	// Update is called once per frame

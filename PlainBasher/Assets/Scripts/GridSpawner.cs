@@ -42,6 +42,7 @@ public class GridSpawner : MonoBehaviour {
                 Spawner spawner = obj.GetComponent<Spawner>();
                 spawner.posX = gridPosX + 1;
                 spawner.posY = gridPosY + 1;
+				Grid.InsertToGrid(spawner.posX, spawner.posY, obj);
                 spawner.transform.parent = gameObject.transform;
                 if (spawnHoles)
                 {

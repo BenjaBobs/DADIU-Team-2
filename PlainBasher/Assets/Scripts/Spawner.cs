@@ -12,10 +12,14 @@ public class Spawner : MonoBehaviour {
     [HideInInspector]
 	public int posY;
 	public float nearbySpecialMultiplier = 20.0f;
+	public int minNearbyActivate = 1;
+	public int maxNearbyActivate = 5;
 
 	static List<GameObject> prefabs;
     static bool isLoaded = false;
     public List<GameObject> childs;
+
+	private Mole SpeedUpMole;
 
     #region Debugging
     [HideInInspector]
@@ -33,6 +37,8 @@ public class Spawner : MonoBehaviour {
     int DBGfreeezCount = 0;
     int DBGelektroCount = 0;
     int DBGexplosionCount = 0;
+
+	public GameObject mole;
 
     [HideInInspector]
     public bool Debugging = false;
@@ -57,7 +63,6 @@ public class Spawner : MonoBehaviour {
     }
     #endregion
 
-    public GameObject mole;
 	// Use this for initialization
 	void Start () {
 		CalculateFrequency ();
@@ -128,6 +133,9 @@ public class Spawner : MonoBehaviour {
 
 			timeSinceSpawn = 0.0f;
 			CalculateFrequency ();
+			int currentNearbyActivate = Random.Range (minNearbyActivate, maxNearbyActivate);
+			for (int i = 0; i < currentNearbyActivate; i++)
+				CheckNearbyActivate();
 		}
 	}
 
@@ -170,13 +178,30 @@ public class Spawner : MonoBehaviour {
 
 		float m = Settings.instance.GetDifficultySpawnRate ();
 
-		if (HasExplosionNearby ())
+		if (SpeedUpMole && SpeedUpMole.IsDead ())
+			SpeedUpMole = null;
+		else if (SpeedUpMole)
 			m *= nearbySpecialMultiplier;
-		if (HasElectroNearby(false) || HasElectroNearby(true))
-			m *= nearbySpecialMultiplier;
-
 
 
 		return m;
+	}
+
+	private void CheckNearbyActivate()
+	{
+		/*
+		List<Mole> m = new List<Mole> ();
+		for (int x = posX-1; x <= posX+1; x++)
+			for (int y = posY-1; y <= posY+1; y++)
+		{
+			GameObject obj = Grid.LookupGrid(x, y);
+			if (obj && obj != mole && obj.GetComponent<Explosion>())
+			{
+				return true;
+			}
+		}
+		*/
+		return;
+
 	}
 }
