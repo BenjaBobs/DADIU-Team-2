@@ -66,7 +66,7 @@ public class QADebugging : MonoBehaviour {
 
             //Difficulty info
             GUI.Box(new Rect(8, 280, 170, 60), "Difficulty info");
-            GUI.Label(new Rect(10, 300, 170, 20), "Difficulty: ");
+            GUI.Label(new Rect(10, 300, 170, 20), "Difficulty: " + Settings.instance.GetDifficultyIndex(timeUsed));
             GUI.Label(new Rect(10, 320, 170, 20), "Time: " + timeUsed.ToString("0.0") + "s");
 
 

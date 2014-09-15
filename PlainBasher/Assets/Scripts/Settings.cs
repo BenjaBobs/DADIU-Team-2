@@ -158,20 +158,18 @@ public class Settings : MonoBehaviour {
 	// retrieves the current index of difficulties
 	public int GetDifficultyIndex(float p)
 	{
-		int lowerBoundIndex = -1;
-		float lowerBound = 0;
-		for (int i = 0; i < Difficulties.Count; i++) {
+        float largestTime = 0;
+        int largestDiffIndex = 0;
+
+        for (int i = 0; i < Difficulties.Count; i++) {
 			float time = Difficulties [i].TimePosition;
 
-			// this is prior to this current time
-			if (time <= p) {
-					// we already have a better lower bound
-					if (lowerBoundIndex >= 0 && time > lowerBound)
-							continue;
-					lowerBound = time;
-					lowerBoundIndex = i;
-			}
+            if (time > largestTime && p >= time)
+            {
+                largestTime = time;
+                largestDiffIndex = i+1;
+            }
 		}
-		return lowerBoundIndex;
+        return largestDiffIndex;
 	}
 }
