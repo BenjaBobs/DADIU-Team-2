@@ -10,14 +10,19 @@ public class Freeez : Mole {
     {
         if (!hasLoaded)
         {
-            iceLayerPrefab = Resources.Load<GameObject>("Prefabs/iceLayerPrefab");
+            iceLayerPrefab = Resources.Load<GameObject>("Prefabs/iceBlock");
             hasLoaded = true;
         }
     }
 
+    void SpawnIceBlock()
+    {
+        GameObject ice = Instantiate(iceLayerPrefab, new Vector3(-2.2f, 6.7f, -9.8f), Quaternion.identity) as GameObject;
+    }
+
 	public override void OnDeath()
     {
-        GameObject ice = Instantiate(iceLayerPrefab, new Vector3(0, 10, 0), Quaternion.identity) as GameObject;
+        SpawnIceBlock();
         base.OnDeath();
     }
 
@@ -34,7 +39,7 @@ public class Freeez : Mole {
 
     protected override void OnFlee()
     {
+        SpawnIceBlock();
         base.OnFlee();
-        GameObject ice = Instantiate(iceLayerPrefab, new Vector3(0, 10, 0), Quaternion.identity) as GameObject;
     }
 }
