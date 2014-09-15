@@ -6,6 +6,25 @@ public class Jelly : Mole {
 	private Vector3 BoxOriginalSize;
 	public float ScaleYPositionOffset = 2.0f;
 	public int MaxJellyHealth = 4;
+	public GameObject jelly;
+	
+	public override void OnDeath ()
+	{
+		if(isDead)
+			return;
+		
+		isDead = true;
+		SplatSpawner();
+		isDead = false;
+		
+		base.OnDeath ();
+	}
+	
+	void SplatSpawner()
+	{
+		Vector3 positioning;
+		GameObject jellyObj = Instantiate(jelly, new Vector3(transform.position.x, transform.position.y+2, transform.position.z), Quaternion.Euler(270,0,0)) as GameObject;
+	}
 	
 	void Start () 
 	{

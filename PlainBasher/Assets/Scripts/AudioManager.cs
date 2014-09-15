@@ -45,8 +45,13 @@ public static class AudioManager {
 	private static AudioInstance Play(AudioClip clip, AudioTag tag = AudioTag.Default, float volume = 1f) {
 		return Play(clip, Camera.main.transform, tag, volume);
 	}
+	private static AudioInstance Play(AudioClip clip, AudioTag tag, AudioClip clip2, bool loop2 = false, float volume = 1f) {
+		AudioInstance ai = Play(clip, Camera.main.transform, tag, volume);
+		ai.ChangeClipWhenDone(clip2, loop2);
+		return ai;
+	}
 
-
+	
 	// Music
 	private static AudioInstance aiGameOver;
 	/// <summary>
@@ -64,7 +69,7 @@ public static class AudioManager {
 	/// </summary>
 	public static void PlayMusic() {
 		if (aiMusic == null)
-			aiMusic = Play (AudioClips.instance.music, AudioTag.Music);
+			aiMusic = Play (AudioClips.instance.music, AudioTag.Music, AudioClips.instance.musicLoop, true);
 		else
 			aiMusic.Play();
 	}
