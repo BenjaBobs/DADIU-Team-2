@@ -154,4 +154,22 @@ public class Settings : MonoBehaviour {
 		to = upperBound;
 		return true;
 	}
+
+	// retrieves the current index of difficulties
+	public int GetDifficultyIndex(float p)
+	{
+        float largestTime = 0;
+        int largestDiffIndex = 0;
+
+        for (int i = 0; i < Difficulties.Count; i++) {
+			float time = Difficulties [i].TimePosition;
+
+            if (time > largestTime && p >= time)
+            {
+                largestTime = time;
+                largestDiffIndex = i+1;
+            }
+		}
+        return largestDiffIndex;
+	}
 }
