@@ -4,6 +4,14 @@
 TagManager:
   tags:
   - Explosion
+  - Audio_Default
+  - Audio_Background
+  - Audio_Effect
+  - Audio_Music
+  - 
+  - 
+  - 
+  - 
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX
