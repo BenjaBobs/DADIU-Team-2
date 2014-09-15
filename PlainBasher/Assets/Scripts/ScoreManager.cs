@@ -100,6 +100,7 @@ public class ScoreManager : MonoBehaviour {
 	/// <param name="score">Score</param>
 	public static void AddScore(string name, int score) {
 		instance.StartCoroutine(instance.UploadScore(name, score));
+		lastScore = score;
 
 		if (!PlayerPrefs.HasKey ("highscore_score")) {
 			PlayerPrefs.SetInt ("highscore_score", score);
@@ -173,7 +174,7 @@ public class ScoreManager : MonoBehaviour {
 
 		if (index < 20) {
 			uploaded = true;
-			Debug.Log ("uploaded");
+			Debug.Log ("uploaded:" + name  + " score:" + score);
 		}
 		else
 			Debug.Log ("not uploaded");

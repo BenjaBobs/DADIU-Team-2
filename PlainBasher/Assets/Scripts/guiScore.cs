@@ -4,7 +4,7 @@ using System.Collections;
 
 
 public class guiScore : MonoBehaviour {
-
+    public static guiScore staticRef;
     public Vector3 flashPo = new Vector3(0.6f, 0.98f, 0f);
     public int flashSize = 20;
     public Color flashColor = new Color(255f,0f,0f);
@@ -22,6 +22,12 @@ public class guiScore : MonoBehaviour {
     private bool retardflash = false;
     private int retardcount = 0;
 	// Use this for initialization
+
+    void Awake()
+    {
+        staticRef = this;
+    }
+
 	void Start () {
         
         menuSkin = Resources.Load("GUI/GUIMenu") as GUISkin;
@@ -33,7 +39,6 @@ public class guiScore : MonoBehaviour {
             ScoreManager.LoadHighscore(); // load the HS
             sc = ScoreManager.IsHighscoreLoaded(); // did it get loaded?
             uploaded = true;
-            
         }
 
         
@@ -70,7 +75,6 @@ public class guiScore : MonoBehaviour {
 
                 ScoreManager.LoadHighscore(); // load the HS
                 sc = ScoreManager.IsHighscoreLoaded(); // did it get loaded?
-                Debug.Log("sc = " + sc.ToString());
                 if (sc)
                 {
                     hs = ScoreManager.GetHighscore(); //get the score
@@ -180,7 +184,7 @@ public class guiScore : MonoBehaviour {
 
         if (GUI.Button(new Rect(Screen.width/2, Screen.height/10 + 400, 100, 100), "Return to menu"))
         {
-            //Player.Reset();
+            Player.Reset();
             Application.LoadLevel(Application.loadedLevel);
             //gameObject.AddComponent("guiStart");
             //Destroy(this);

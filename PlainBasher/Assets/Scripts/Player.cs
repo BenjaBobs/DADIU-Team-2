@@ -45,6 +45,8 @@ public static class Player {
 		Settings.instance.SetPause(true);
 		//TODO: Initialize game end
 		QADebugging.staticRef.hasLost = true;
+        guiScore.staticRef.enabled = true;
+        
 	}
 
 	private static void OnTakeDamage(int dmg)
