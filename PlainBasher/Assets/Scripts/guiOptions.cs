@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class guiOptions : MonoBehaviour {
+    public static guiOptions staticref;
     private Texture background;
     public bool music = true;
     public bool sound = true;
@@ -10,6 +11,12 @@ public class guiOptions : MonoBehaviour {
     private Texture flagUK;
     private Texture flagDK;
 	// Use this for initialization
+
+    void Awake()
+    {
+        staticref = this;
+    }
+
 	void Start () {
 
         background = Resources.Load("GUI/loadingScreen") as Texture;
@@ -53,8 +60,10 @@ public class guiOptions : MonoBehaviour {
 
         if (GUI.Button(new Rect(Screen.width / 2, Screen.height / 4 + 250, 100, 100), "Return to menu"))
         {
-            gameObject.AddComponent("guiStart");
-            Destroy(this);
+            //gameObject.AddComponent("guiStart");
+            //Destroy(this);
+            guiStart.staticref.enabled = true;
+            this.enabled = false;
         }
 
         

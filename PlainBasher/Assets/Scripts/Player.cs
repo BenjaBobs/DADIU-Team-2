@@ -13,8 +13,8 @@ public static class Player {
         }
         set
         {
-			int dmg = value - lives;
-			if (dmg < 0) OnTakeDamage(dmg);
+			int dmg = value - lives;            
+			if (dmg > 0) OnTakeDamage(dmg);
 			else OnHeal(dmg*-1);
 
             if (lives > 0 && value <= 0)
@@ -45,6 +45,8 @@ public static class Player {
 		Settings.instance.SetPause(true);
 		//TODO: Initialize game end
 		QADebugging.staticRef.hasLost = true;
+        guiScore.staticRef.enabled = true;
+        
 	}
 
 	private static void OnTakeDamage(int dmg)
@@ -53,7 +55,6 @@ public static class Player {
 	}
 	private static void OnHeal(int heal_amount)
 	{
-
 	}
 
 	private static void OnScoreIncrease(int amount)

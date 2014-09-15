@@ -2,12 +2,18 @@
 using System.Collections;
 
 public class guiStart : MonoBehaviour {
-    //public string playerName ="";
+    public static guiStart staticref;
     private Texture background;
+
+    void Awake()
+    {
+        staticref = this;
+    }
 
 	// Use this for initialization
 	void Start () {
 
+        Settings.instance.SetPause(true);
         background = Resources.Load("GUI/loadingScreen") as Texture;
 	}
 	
@@ -25,17 +31,22 @@ public class guiStart : MonoBehaviour {
         //playerName = GUI.TextField(new Rect(Screen.width / 2, Screen.height / 4 , 200, 30), playerName, 25);
         if (GUI.Button(new Rect(Screen.width / 2, Screen.height / 4 +50, 100, 50), "START")) //localization ?
         {
-            //
+            Settings.instance.SetPause(false);
+            this.enabled = false;
         }
         if (GUI.Button(new Rect(Screen.width / 2, Screen.height / 4 + 100, 100, 50), Localization.instance.GetString(Localization.LocKey.Scoreboard)))
         {
-            gameObject.AddComponent("guiScore");
-            Destroy(this);
+            //gameObject.AddComponent("guiScore");
+            //Destroy(this);
+            guiScore.staticRef.enabled = true;
+            this.enabled = false;
         }
         if (GUI.Button(new Rect(Screen.width / 2, Screen.height / 4 + 150, 100, 50), Localization.instance.GetString(Localization.LocKey.Options)))
         {
-            gameObject.AddComponent("guiOptions");
-            Destroy(this);
+            //gameObject.AddComponent("guiOptions");
+            //Destroy(this);
+            guiOptions.staticref.enabled = true;
+            this.enabled = false;
         }
 
         if (GUI.Button(new Rect(Screen.width / 2, Screen.height / 4 + 200, 100, 50), Localization.instance.GetString(Localization.LocKey.Quit)))
