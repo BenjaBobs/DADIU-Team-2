@@ -10,12 +10,10 @@ public class ExplosionGrid : MonoBehaviour {
 	public int posX;
 	public int posY;
 
-	// Use this for initialization
 	void Start () {
 	
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 		Vector3 scale = transform.localScale;
 		scale.x += Settings.instance.GetDeltaTime() * expandSpeed / lifetime;
