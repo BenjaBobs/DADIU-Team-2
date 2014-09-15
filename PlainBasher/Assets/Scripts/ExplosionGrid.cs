@@ -5,7 +5,6 @@ public class ExplosionGrid : MonoBehaviour {
 	public float lifetime;
 	public float expandSpeed;
 	float currentLifetime = 0.0f;
-	float currentWidth = 0;
 	public int radius;
 	public int posX;
 	public int posY;
