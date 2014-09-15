@@ -154,4 +154,24 @@ public class Settings : MonoBehaviour {
 		to = upperBound;
 		return true;
 	}
+
+	// retrieves the current index of difficulties
+	public int GetDifficultyIndex(float p)
+	{
+		int lowerBoundIndex = -1;
+		float lowerBound = 0;
+		for (int i = 0; i < Difficulties.Count; i++) {
+			float time = Difficulties [i].TimePosition;
+
+			// this is prior to this current time
+			if (time <= p) {
+					// we already have a better lower bound
+					if (lowerBoundIndex >= 0 && time > lowerBound)
+							continue;
+					lowerBound = time;
+					lowerBoundIndex = i;
+			}
+		}
+		return lowerBoundIndex;
+	}
 }
