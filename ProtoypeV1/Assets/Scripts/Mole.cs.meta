@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: 571323e8e51a8734dbabde04371d6e17
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - exploderY: {instanceID: 0}
+  - exploderX: {instanceID: 0}
+  - iceLayer: {fileID: 100000, guid: 463c583b61ce39b4bb7f66a8c28d9e14, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 

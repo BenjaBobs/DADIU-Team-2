@@ -1,0 +1,290 @@
+fileFormatVersion: 2
+guid: e64fa1de5c90c4e49b211406190bf2f5
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: iceEnemy_Rig_mdl_bottom_ctrl
+    100004: iceEnemy_Rig_mdl_bottom_ctrl_zero
+    100006: iceEnemy_Rig_mdl_end_jnt
+    100008: iceEnemy_Rig_mdl_enemyBasic_rig
+    100010: iceEnemy_Rig_mdl_iceEnemy_geo
+    100012: iceEnemy_Rig_mdl_middle_ctrl
+    100014: iceEnemy_Rig_mdl_middle_ctrl_zero
+    100016: iceEnemy_Rig_mdl_root_ctrl
+    100018: iceEnemy_Rig_mdl_root_ctrl_zero
+    100020: iceEnemy_Rig_mdl_top_ctrl
+    100022: iceEnemy_Rig_mdl_top_ctrl_zero
+    400000: //RootNode
+    400002: iceEnemy_Rig_mdl_bottom_ctrl
+    400004: iceEnemy_Rig_mdl_bottom_ctrl_zero
+    400006: iceEnemy_Rig_mdl_end_jnt
+    400008: iceEnemy_Rig_mdl_enemyBasic_rig
+    400010: iceEnemy_Rig_mdl_iceEnemy_geo
+    400012: iceEnemy_Rig_mdl_middle_ctrl
+    400014: iceEnemy_Rig_mdl_middle_ctrl_zero
+    400016: iceEnemy_Rig_mdl_root_ctrl
+    400018: iceEnemy_Rig_mdl_root_ctrl_zero
+    400020: iceEnemy_Rig_mdl_top_ctrl
+    400022: iceEnemy_Rig_mdl_top_ctrl_zero
+    4300000: iceEnemy_Rig_mdl_iceEnemy_geo
+    7400000: freezeEnemy_anim_death
+    7400002: freezeEnemy_anim_idle
+    7400004: freezeEnemy_anim_entry
+    7400006: freezeEnemy_anim_exit
+    9500000: //RootNode
+    13700000: iceEnemy_Rig_mdl_iceEnemy_geo
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: freezeEnemy_anim_death
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 24
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: iceEnemy_Rig_mdl_enemyBasic_rig
+        weight: 1
+      - path: iceEnemy_Rig_mdl_enemyBasic_rig/iceEnemy_Rig_mdl_root_ctrl_zero
+        weight: 1
+      - path: iceEnemy_Rig_mdl_enemyBasic_rig/iceEnemy_Rig_mdl_root_ctrl_zero/iceEnemy_Rig_mdl_root_ctrl
+        weight: 1
+      - path: iceEnemy_Rig_mdl_enemyBasic_rig/iceEnemy_Rig_mdl_root_ctrl_zero/iceEnemy_Rig_mdl_root_ctrl/iceEnemy_Rig_mdl_bottom_ctrl_zero
+        weight: 1
+      - path: iceEnemy_Rig_mdl_enemyBasic_rig/iceEnemy_Rig_mdl_root_ctrl_zero/iceEnemy_Rig_mdl_root_ctrl/iceEnemy_Rig_mdl_bottom_ctrl_zero/iceEnemy_Rig_mdl_bottom_ctrl
+        weight: 1
+      - path: iceEnemy_Rig_mdl_enemyBasic_rig/iceEnemy_Rig_mdl_root_ctrl_zero/iceEnemy_Rig_mdl_root_ctrl/iceEnemy_Rig_mdl_bottom_ctrl_zero/iceEnemy_Rig_mdl_bottom_ctrl/iceEnemy_Rig_mdl_middle_ctrl_zero
+        weight: 1
+      - path: iceEnemy_Rig_mdl_enemyBasic_rig/iceEnemy_Rig_mdl_root_ctrl_zero/iceEnemy_Rig_mdl_root_ctrl/iceEnemy_Rig_mdl_bottom_ctrl_zero/iceEnemy_Rig_mdl_bottom_ctrl/iceEnemy_Rig_mdl_middle_ctrl_zero/iceEnemy_Rig_mdl_middle_ctrl
+        weight: 1
+      - path: iceEnemy_Rig_mdl_enemyBasic_rig/iceEnemy_Rig_mdl_root_ctrl_zero/iceEnemy_Rig_mdl_root_ctrl/iceEnemy_Rig_mdl_bottom_ctrl_zero/iceEnemy_Rig_mdl_bottom_ctrl/iceEnemy_Rig_mdl_middle_ctrl_zero/iceEnemy_Rig_mdl_middle_ctrl/iceEnemy_Rig_mdl_top_ctrl_zero
+        weight: 1
+      - path: iceEnemy_Rig_mdl_enemyBasic_rig/iceEnemy_Rig_mdl_root_ctrl_zero/iceEnemy_Rig_mdl_root_ctrl/iceEnemy_Rig_mdl_bottom_ctrl_zero/iceEnemy_Rig_mdl_bottom_ctrl/iceEnemy_Rig_mdl_middle_ctrl_zero/iceEnemy_Rig_mdl_middle_ctrl/iceEnemy_Rig_mdl_top_ctrl_zero/iceEnemy_Rig_mdl_top_ctrl
+        weight: 1
+      - path: iceEnemy_Rig_mdl_enemyBasic_rig/iceEnemy_Rig_mdl_root_ctrl_zero/iceEnemy_Rig_mdl_root_ctrl/iceEnemy_Rig_mdl_bottom_ctrl_zero/iceEnemy_Rig_mdl_bottom_ctrl/iceEnemy_Rig_mdl_middle_ctrl_zero/iceEnemy_Rig_mdl_middle_ctrl/iceEnemy_Rig_mdl_top_ctrl_zero/iceEnemy_Rig_mdl_top_ctrl/iceEnemy_Rig_mdl_end_jnt
+        weight: 1
+      - path: iceEnemy_Rig_mdl_iceEnemy_geo
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: freezeEnemy_anim_idle
+      takeName: Take 001
+      firstFrame: 30
+      lastFrame: 54
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: iceEnemy_Rig_mdl_enemyBasic_rig
+        weight: 1
+      - path: iceEnemy_Rig_mdl_enemyBasic_rig/iceEnemy_Rig_mdl_root_ctrl_zero
+        weight: 1
+      - path: iceEnemy_Rig_mdl_enemyBasic_rig/iceEnemy_Rig_mdl_root_ctrl_zero/iceEnemy_Rig_mdl_root_ctrl
+        weight: 1
+      - path: iceEnemy_Rig_mdl_enemyBasic_rig/iceEnemy_Rig_mdl_root_ctrl_zero/iceEnemy_Rig_mdl_root_ctrl/iceEnemy_Rig_mdl_bottom_ctrl_zero
+        weight: 1
+      - path: iceEnemy_Rig_mdl_enemyBasic_rig/iceEnemy_Rig_mdl_root_ctrl_zero/iceEnemy_Rig_mdl_root_ctrl/iceEnemy_Rig_mdl_bottom_ctrl_zero/iceEnemy_Rig_mdl_bottom_ctrl
+        weight: 1
+      - path: iceEnemy_Rig_mdl_enemyBasic_rig/iceEnemy_Rig_mdl_root_ctrl_zero/iceEnemy_Rig_mdl_root_ctrl/iceEnemy_Rig_mdl_bottom_ctrl_zero/iceEnemy_Rig_mdl_bottom_ctrl/iceEnemy_Rig_mdl_middle_ctrl_zero
+        weight: 1
+      - path: iceEnemy_Rig_mdl_enemyBasic_rig/iceEnemy_Rig_mdl_root_ctrl_zero/iceEnemy_Rig_mdl_root_ctrl/iceEnemy_Rig_mdl_bottom_ctrl_zero/iceEnemy_Rig_mdl_bottom_ctrl/iceEnemy_Rig_mdl_middle_ctrl_zero/iceEnemy_Rig_mdl_middle_ctrl
+        weight: 1
+      - path: iceEnemy_Rig_mdl_enemyBasic_rig/iceEnemy_Rig_mdl_root_ctrl_zero/iceEnemy_Rig_mdl_root_ctrl/iceEnemy_Rig_mdl_bottom_ctrl_zero/iceEnemy_Rig_mdl_bottom_ctrl/iceEnemy_Rig_mdl_middle_ctrl_zero/iceEnemy_Rig_mdl_middle_ctrl/iceEnemy_Rig_mdl_top_ctrl_zero
+        weight: 1
+      - path: iceEnemy_Rig_mdl_enemyBasic_rig/iceEnemy_Rig_mdl_root_ctrl_zero/iceEnemy_Rig_mdl_root_ctrl/iceEnemy_Rig_mdl_bottom_ctrl_zero/iceEnemy_Rig_mdl_bottom_ctrl/iceEnemy_Rig_mdl_middle_ctrl_zero/iceEnemy_Rig_mdl_middle_ctrl/iceEnemy_Rig_mdl_top_ctrl_zero/iceEnemy_Rig_mdl_top_ctrl
+        weight: 1
+      - path: iceEnemy_Rig_mdl_enemyBasic_rig/iceEnemy_Rig_mdl_root_ctrl_zero/iceEnemy_Rig_mdl_root_ctrl/iceEnemy_Rig_mdl_bottom_ctrl_zero/iceEnemy_Rig_mdl_bottom_ctrl/iceEnemy_Rig_mdl_middle_ctrl_zero/iceEnemy_Rig_mdl_middle_ctrl/iceEnemy_Rig_mdl_top_ctrl_zero/iceEnemy_Rig_mdl_top_ctrl/iceEnemy_Rig_mdl_end_jnt
+        weight: 1
+      - path: iceEnemy_Rig_mdl_iceEnemy_geo
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: freezeEnemy_anim_entry
+      takeName: Take 001
+      firstFrame: 62
+      lastFrame: 73
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: iceEnemy_Rig_mdl_enemyBasic_rig
+        weight: 1
+      - path: iceEnemy_Rig_mdl_enemyBasic_rig/iceEnemy_Rig_mdl_root_ctrl_zero
+        weight: 1
+      - path: iceEnemy_Rig_mdl_enemyBasic_rig/iceEnemy_Rig_mdl_root_ctrl_zero/iceEnemy_Rig_mdl_root_ctrl
+        weight: 1
+      - path: iceEnemy_Rig_mdl_enemyBasic_rig/iceEnemy_Rig_mdl_root_ctrl_zero/iceEnemy_Rig_mdl_root_ctrl/iceEnemy_Rig_mdl_bottom_ctrl_zero
+        weight: 1
+      - path: iceEnemy_Rig_mdl_enemyBasic_rig/iceEnemy_Rig_mdl_root_ctrl_zero/iceEnemy_Rig_mdl_root_ctrl/iceEnemy_Rig_mdl_bottom_ctrl_zero/iceEnemy_Rig_mdl_bottom_ctrl
+        weight: 1
+      - path: iceEnemy_Rig_mdl_enemyBasic_rig/iceEnemy_Rig_mdl_root_ctrl_zero/iceEnemy_Rig_mdl_root_ctrl/iceEnemy_Rig_mdl_bottom_ctrl_zero/iceEnemy_Rig_mdl_bottom_ctrl/iceEnemy_Rig_mdl_middle_ctrl_zero
+        weight: 1
+      - path: iceEnemy_Rig_mdl_enemyBasic_rig/iceEnemy_Rig_mdl_root_ctrl_zero/iceEnemy_Rig_mdl_root_ctrl/iceEnemy_Rig_mdl_bottom_ctrl_zero/iceEnemy_Rig_mdl_bottom_ctrl/iceEnemy_Rig_mdl_middle_ctrl_zero/iceEnemy_Rig_mdl_middle_ctrl
+        weight: 1
+      - path: iceEnemy_Rig_mdl_enemyBasic_rig/iceEnemy_Rig_mdl_root_ctrl_zero/iceEnemy_Rig_mdl_root_ctrl/iceEnemy_Rig_mdl_bottom_ctrl_zero/iceEnemy_Rig_mdl_bottom_ctrl/iceEnemy_Rig_mdl_middle_ctrl_zero/iceEnemy_Rig_mdl_middle_ctrl/iceEnemy_Rig_mdl_top_ctrl_zero
+        weight: 1
+      - path: iceEnemy_Rig_mdl_enemyBasic_rig/iceEnemy_Rig_mdl_root_ctrl_zero/iceEnemy_Rig_mdl_root_ctrl/iceEnemy_Rig_mdl_bottom_ctrl_zero/iceEnemy_Rig_mdl_bottom_ctrl/iceEnemy_Rig_mdl_middle_ctrl_zero/iceEnemy_Rig_mdl_middle_ctrl/iceEnemy_Rig_mdl_top_ctrl_zero/iceEnemy_Rig_mdl_top_ctrl
+        weight: 1
+      - path: iceEnemy_Rig_mdl_enemyBasic_rig/iceEnemy_Rig_mdl_root_ctrl_zero/iceEnemy_Rig_mdl_root_ctrl/iceEnemy_Rig_mdl_bottom_ctrl_zero/iceEnemy_Rig_mdl_bottom_ctrl/iceEnemy_Rig_mdl_middle_ctrl_zero/iceEnemy_Rig_mdl_middle_ctrl/iceEnemy_Rig_mdl_top_ctrl_zero/iceEnemy_Rig_mdl_top_ctrl/iceEnemy_Rig_mdl_end_jnt
+        weight: 1
+      - path: iceEnemy_Rig_mdl_iceEnemy_geo
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: freezeEnemy_anim_exit
+      takeName: Take 001
+      firstFrame: 79
+      lastFrame: 89
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: iceEnemy_Rig_mdl_enemyBasic_rig
+        weight: 1
+      - path: iceEnemy_Rig_mdl_enemyBasic_rig/iceEnemy_Rig_mdl_root_ctrl_zero
+        weight: 1
+      - path: iceEnemy_Rig_mdl_enemyBasic_rig/iceEnemy_Rig_mdl_root_ctrl_zero/iceEnemy_Rig_mdl_root_ctrl
+        weight: 1
+      - path: iceEnemy_Rig_mdl_enemyBasic_rig/iceEnemy_Rig_mdl_root_ctrl_zero/iceEnemy_Rig_mdl_root_ctrl/iceEnemy_Rig_mdl_bottom_ctrl_zero
+        weight: 1
+      - path: iceEnemy_Rig_mdl_enemyBasic_rig/iceEnemy_Rig_mdl_root_ctrl_zero/iceEnemy_Rig_mdl_root_ctrl/iceEnemy_Rig_mdl_bottom_ctrl_zero/iceEnemy_Rig_mdl_bottom_ctrl
+        weight: 1
+      - path: iceEnemy_Rig_mdl_enemyBasic_rig/iceEnemy_Rig_mdl_root_ctrl_zero/iceEnemy_Rig_mdl_root_ctrl/iceEnemy_Rig_mdl_bottom_ctrl_zero/iceEnemy_Rig_mdl_bottom_ctrl/iceEnemy_Rig_mdl_middle_ctrl_zero
+        weight: 1
+      - path: iceEnemy_Rig_mdl_enemyBasic_rig/iceEnemy_Rig_mdl_root_ctrl_zero/iceEnemy_Rig_mdl_root_ctrl/iceEnemy_Rig_mdl_bottom_ctrl_zero/iceEnemy_Rig_mdl_bottom_ctrl/iceEnemy_Rig_mdl_middle_ctrl_zero/iceEnemy_Rig_mdl_middle_ctrl
+        weight: 1
+      - path: iceEnemy_Rig_mdl_enemyBasic_rig/iceEnemy_Rig_mdl_root_ctrl_zero/iceEnemy_Rig_mdl_root_ctrl/iceEnemy_Rig_mdl_bottom_ctrl_zero/iceEnemy_Rig_mdl_bottom_ctrl/iceEnemy_Rig_mdl_middle_ctrl_zero/iceEnemy_Rig_mdl_middle_ctrl/iceEnemy_Rig_mdl_top_ctrl_zero
+        weight: 1
+      - path: iceEnemy_Rig_mdl_enemyBasic_rig/iceEnemy_Rig_mdl_root_ctrl_zero/iceEnemy_Rig_mdl_root_ctrl/iceEnemy_Rig_mdl_bottom_ctrl_zero/iceEnemy_Rig_mdl_bottom_ctrl/iceEnemy_Rig_mdl_middle_ctrl_zero/iceEnemy_Rig_mdl_middle_ctrl/iceEnemy_Rig_mdl_top_ctrl_zero/iceEnemy_Rig_mdl_top_ctrl
+        weight: 1
+      - path: iceEnemy_Rig_mdl_enemyBasic_rig/iceEnemy_Rig_mdl_root_ctrl_zero/iceEnemy_Rig_mdl_root_ctrl/iceEnemy_Rig_mdl_bottom_ctrl_zero/iceEnemy_Rig_mdl_bottom_ctrl/iceEnemy_Rig_mdl_middle_ctrl_zero/iceEnemy_Rig_mdl_middle_ctrl/iceEnemy_Rig_mdl_top_ctrl_zero/iceEnemy_Rig_mdl_top_ctrl/iceEnemy_Rig_mdl_end_jnt
+        weight: 1
+      - path: iceEnemy_Rig_mdl_iceEnemy_geo
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
