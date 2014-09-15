@@ -38,6 +38,7 @@ public class ExplosionGrid : MonoBehaviour {
 			{
 				Mole obj = Grid.GetMole(x,y);
 				if (!obj) continue;
+                obj.OnChain();
 				obj.OnDeath();
 			}
 		}

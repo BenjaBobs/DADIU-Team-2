@@ -48,6 +48,7 @@ public class ExplosionLine : MonoBehaviour
                 Mole mole = obj.GetComponent<Mole>();
                 if (true)
                 {
+                    mole.OnChain();
                     mole.OnDeath();
                 }
             }

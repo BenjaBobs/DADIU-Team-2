@@ -46,6 +46,7 @@ public class Explosion : Mole
 
                 if (obj && !obj.IsDead())
                 {
+                    obj.OnChain();
                     obj.OnDeath();
                 }
 
