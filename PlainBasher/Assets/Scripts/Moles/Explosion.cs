@@ -10,7 +10,12 @@ public class Explosion : Mole {
 		if (isDead)
 				return;
 
-        GameObject explosionObj = Instantiate(explosion, transform.position, Quaternion.identity) as GameObject;
+        Quaternion rot = Quaternion.Euler(270, 0, 0);
+
+
+        GameObject explosionObj = Instantiate(explosion, transform.position, rot) as GameObject;
+
+        DestroyAreaOfMoles();
 
         base.OnDeath();
     }
@@ -29,7 +34,21 @@ public class Explosion : Mole {
 
     void DestroyAreaOfMoles()
     {
-
+        for(int i = -1; i <= 1; i++)
+        {
+            for (int j = -1; j <= 1; j++)
+            {
+                GameObject obj = Grid.LookupGrid(posX + i, posY + j);
+                if (obj && obj != gameObject)
+                {
+                    Mole mole = obj.GetComponent<Mole>();
+                    if (!mole.IsDead())
+                    {
+                        mole.OnDeath();
+                    }
+                }
+            }
+        }
     }
 }
 
