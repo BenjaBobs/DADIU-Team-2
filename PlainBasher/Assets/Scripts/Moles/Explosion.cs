@@ -3,16 +3,14 @@ using System.Collections;
 
 public class Explosion : Mole {
 
+    public GameObject explosion;
+
 	public override void OnDeath()
     {
 		if (isDead)
-						return;
-        GameObject explosionGrid = Resources.Load<GameObject>("Prefabs/ExplosionGrid");
+				return;
 
-        GameObject exTransform = Instantiate(explosionGrid, transform.position, transform.rotation) as GameObject;
-        ExplosionGrid explosion = exTransform.GetComponent<ExplosionGrid>();
-        explosion.posX = posX;
-        explosion.posY = posY;
+        GameObject explosionObj = Instantiate(explosion, transform.position, Quaternion.identity) as GameObject;
 
         base.OnDeath();
     }
@@ -23,8 +21,25 @@ public class Explosion : Mole {
 		Health--;
 	}
 
+
 	protected override void PlayDeathSound()
 	{
 		AudioManager.PlayDestroyExplosion ();
 	}
+
+    void DestroyAreaOfMoles()
+    {
+
+    }
 }
+
+
+
+
+
+//GameObject explosionGrid = Resources.Load<GameObject>("Prefabs/ExplosionGrid");
+
+//GameObject exTransform = Instantiate(explosionGrid, transform.position, transform.rotation) as GameObject;
+//ExplosionGrid explosion = exTransform.GetComponent<ExplosionGrid>();
+//explosion.posX = posX;
+//explosion.posY = posY;

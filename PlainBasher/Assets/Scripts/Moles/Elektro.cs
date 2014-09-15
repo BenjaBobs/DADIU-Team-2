@@ -54,7 +54,6 @@ public class Elektro : Mole
     void LightningSpawner(int theRotation)
     {
         Quaternion rot = Quaternion.Euler(0, theRotation, 0);
-        Vector3 positioning;
 
         GameObject lightningObj = Instantiate(lightning, transform.position, rot) as GameObject;
         
