@@ -14,10 +14,13 @@ public class Jelly : Mole {
 
 	protected override void OnTap()
 	{
+		if (Health > 2)
+			AudioManager.PlayTapBigJelly ();
+		else if (Health > 1)
+			AudioManager.PlayTapSmallJelly ();
+
 		//mist liv
 		Health--;
-		if (Health > 0)
-			AudioManager.PlayTapBigJelly ();
 	}
 
 	private void UpdateScale()

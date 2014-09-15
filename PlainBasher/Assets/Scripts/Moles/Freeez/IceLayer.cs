@@ -13,6 +13,7 @@ public class IceLayer : MonoBehaviour
 
     void OnMouseDown()
     {
+		AudioManager.PlayTapIce ();
         Health--;
         if (Health <= 0)
             Destroy(gameObject);
