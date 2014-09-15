@@ -57,6 +57,8 @@ public static class Grid {
 		Mole m = go.GetComponent<Mole> ();
 		if (!m)
 			return null;
+		if (m.IsDead ())
+			return null;
 		return m;
 	}
 

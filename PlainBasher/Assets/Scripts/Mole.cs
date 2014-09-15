@@ -26,6 +26,19 @@ public class Mole : MonoBehaviour {
     bool movingDown = false;
 	protected bool isDead = false;
 
+    //Scrolling point stuff
+    static GameObject textPrefab;
+    bool textLoaded = false;
+
+    void Awake()
+    {
+        if (!textLoaded)
+        {
+            textLoaded = true;
+            textPrefab = Resources.Load<GameObject>("Prefabs/PointText");
+        }
+    }
+
 	public int Health 
 	{
 		get
@@ -87,10 +100,23 @@ public class Mole : MonoBehaviour {
 	public virtual void OnDeath()
 	{
 		if (isDead)
-						return;
+		    return;
+
 		isDead = true;
         Player.Score++;
 		PlayDeathSound ();
+
+        GameObject pointText = Instantiate(textPrefab) as GameObject;
+        GUIText gText = pointText.GetComponent<GUIText>();
+        gText.text = scoreValue.ToString();
+        
+        Vector3 textLocation = Camera.main.WorldToScreenPoint(transform.position);
+        textLocation.x /= Screen.width;
+        textLocation.y /= Screen.height;
+        textLocation.y += 0.1f;
+
+        pointText.transform.localPosition = textLocation;
+
         DestroyImmediate(gameObject);
         //TODO: Add score to score manager
 	}
