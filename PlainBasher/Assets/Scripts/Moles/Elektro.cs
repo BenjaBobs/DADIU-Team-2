@@ -53,15 +53,8 @@ public class Elektro : Mole
 
     void LightningSpawner(int theRotation)
     {
-<<<<<<< HEAD
 		Quaternion rot = Quaternion.Euler (0, theRotation, 0);
-        Instantiate(lightning, transform.position, rot);
-=======
-        Quaternion rot = Quaternion.Euler(0, theRotation, 0);
-
-        GameObject lightningObj = Instantiate(lightning, transform.position, rot) as GameObject;
->>>>>>> origin/ExplosionParticles
-        
+        Instantiate(lightning, transform.position, rot); 
     }
 
 	protected override void PlayDeathSound()

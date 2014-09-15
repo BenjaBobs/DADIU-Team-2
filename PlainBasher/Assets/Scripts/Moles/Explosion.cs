@@ -1,14 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Explosion : Mole {
+public class Explosion : Mole
+{
 
     public GameObject explosion;
 
-	public override void OnDeath()
+    public override void OnDeath()
     {
-		if (isDead)
-				return;
+        if (isDead)
+            return;
+
+        isDead = true;
 
         Quaternion rot = Quaternion.Euler(270, 0, 0);
 
@@ -17,36 +20,35 @@ public class Explosion : Mole {
 
         DestroyAreaOfMoles();
 
+        isDead = false;
         base.OnDeath();
     }
 
-	protected override void OnTap()
-	{
-		//mist liv
-		Health--;
-	}
+    protected override void OnTap()
+    {
+        //mist liv
+        Health--;
+    }
 
 
-	protected override void PlayDeathSound()
-	{
-		AudioManager.PlayDestroyExplosion ();
-	}
+    protected override void PlayDeathSound()
+    {
+        AudioManager.PlayDestroyExplosion();
+    }
 
     void DestroyAreaOfMoles()
     {
-        for(int i = -1; i <= 1; i++)
+        for (int i = -1; i <= 1; i++)
         {
             for (int j = -1; j <= 1; j++)
             {
-                GameObject obj = Grid.LookupGrid(posX + i, posY + j);
-                if (obj && obj != gameObject)
+                Mole obj = Grid.GetMole(posX + i, posY + j);
+
+                if (obj && !obj.IsDead())
                 {
-                    Mole mole = obj.GetComponent<Mole>();
-                    if (!mole.IsDead())
-                    {
-                        mole.OnDeath();
-                    }
+                    obj.OnDeath();
                 }
+
             }
         }
     }
