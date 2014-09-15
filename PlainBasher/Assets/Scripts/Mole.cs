@@ -129,6 +129,8 @@ public class Mole : MonoBehaviour {
         {
             distance = 0;
 			currentTimeUp += Settings.instance.GetDeltaTime() * Settings.instance.GetDifficultyStayTime();
+			if (currentTimeUp >= timeUp)
+				OnFlee();
         }
 
         if (movingDown)
@@ -150,4 +152,11 @@ public class Mole : MonoBehaviour {
             Destroy(gameObject);
         }
     }
+
+	protected virtual void OnFlee()
+	{
+		Animator anim = gameObject.GetComponentInChildren<Animator>();
+		if (anim)
+			anim.SetBool("Exiting", true);
+	}
 }
