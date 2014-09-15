@@ -36,6 +36,9 @@ public class Elektro : Mole
         line.posY = posY;
         */
 
+		// once again to avoid infinte loops
+		isDead = false;
+
 
 
 
