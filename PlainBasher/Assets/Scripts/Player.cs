@@ -13,7 +13,11 @@ public static class Player {
         }
         set
         {
+			int dmg = value - lives;
             lives = value;
+			if (dmg > 0) OnTakeDamage(dmg);
+			else OnHeal(dmg*-1);
+
             if (lives < 1)
             {
                 Settings.instance.SetPause(true);
@@ -22,6 +26,13 @@ public static class Player {
             }
         }
     }
+
+	private void OnTakeDamage(int dmg)
+	{
+	}
+	private void OnHeal(int heal_amount)
+	{
+	}
 
     public static void Reset()
     {
