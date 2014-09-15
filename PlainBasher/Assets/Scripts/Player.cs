@@ -27,10 +27,10 @@ public static class Player {
         }
     }
 
-	private void OnTakeDamage(int dmg)
+	private static void OnTakeDamage(int dmg)
 	{
 	}
-	private void OnHeal(int heal_amount)
+	private static void OnHeal(int heal_amount)
 	{
 	}
 
