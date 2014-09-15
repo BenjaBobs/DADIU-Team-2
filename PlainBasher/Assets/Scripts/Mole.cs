@@ -103,7 +103,7 @@ public class Mole : MonoBehaviour {
 		    return;
 
 		isDead = true;
-        Player.Score++;
+        Player.Score += scoreValue;
 		PlayDeathSound ();
 
         GameObject pointText = Instantiate(textPrefab) as GameObject;
@@ -116,7 +116,7 @@ public class Mole : MonoBehaviour {
         textLocation.y += 0.1f;
 
         if (scoreValue > 10)
-            gText.fontSize = 65;
+            gText.fontSize = 45;
 
         pointText.transform.localPosition = textLocation;
 
