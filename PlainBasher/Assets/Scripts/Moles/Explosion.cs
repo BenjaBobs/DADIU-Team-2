@@ -15,7 +15,7 @@ public class Explosion : Mole {
         base.OnDeath();
     }
 
-	protected override void OnHold()
+	protected override void OnTap()
 	{
 		//mist liv
 		Health--;
