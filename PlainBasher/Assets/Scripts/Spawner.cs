@@ -84,8 +84,8 @@ public class Spawner : MonoBehaviour {
 			else if (prefab.GetComponent<Freeez>())
 			{
 				occurenceFactor = (int)(occurenceFactor * Settings.instance.GetDifficultyFreezeMultiplier());
-				//int CurrentFreeezNum = GameObject.FindGameObjectsWithTag("Freeez").Length;
-				int CurrentFreeezNum = 0;
+				int CurrentFreeezNum = GameObject.FindGameObjectsWithTag("Enemy_Freeez").Length;
+				//int CurrentFreeezNum = 0;
 				if (CurrentFreeezNum >= Settings.instance.MaxFreeezAtOnce)
 					occurenceFactor = 0;
 			}
