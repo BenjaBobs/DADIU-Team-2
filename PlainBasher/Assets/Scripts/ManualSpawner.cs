@@ -26,7 +26,7 @@ public class ManualSpawner : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+	    //STUFF
 	}
 
     //Methods for manual blob placement
