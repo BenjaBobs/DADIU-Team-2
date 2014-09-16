@@ -182,7 +182,7 @@ public class guiScore : MonoBehaviour {
         //    Destroy(this);
         //}
 
-        if (GUI.Button(new Rect(Screen.width/2, Screen.height/10 + 400, 100, 100), Localization.instance.GetString(Localization.LocKey.ReturnToMenu)))
+        if (GUI.Button(new Rect(Screen.width/2, Screen.height/10 + 400, 100, 100), "Return to menu")) //localization
         {
             Player.Reset();
             Application.LoadLevel(Application.loadedLevel);

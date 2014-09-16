@@ -45,9 +45,10 @@ public class AudioClips : MonoBehaviour {
 	public AudioClip tapIce3;
 	public float tapIceVolume = 1f;
 
-	private void Awake() {
+	private void Start() {
 		instance = this;
 		//AudioManager.PlayMusic();
 		AudioManager.PlaySplashMusic();
+		ScoreManager.LoadTotalHighscore();
 	}
 }

@@ -17,7 +17,7 @@ public class Freeez : Mole {
 
     void SpawnIceBlock()
     {
-        GameObject ice = Instantiate(iceLayerPrefab, new Vector3(-2.2f, 6.7f, -9.8f), Quaternion.identity) as GameObject;
+        Instantiate(iceLayerPrefab, new Vector3(-2.2f, 6.7f, -9.8f), Quaternion.identity);
     }
 
 	public override void OnDeath()
