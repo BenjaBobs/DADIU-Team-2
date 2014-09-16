@@ -31,7 +31,6 @@ public class Explosion : Mole
         Health--;
     }
 
-
     protected override void PlayDeathSound()
     {
         AudioManager.PlayDestroyExplosion();

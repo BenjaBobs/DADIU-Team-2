@@ -4,6 +4,7 @@ using System.Collections;
 public class Jelly : Mole {
 
 	private Vector3 BoxOriginalSize;
+	public Vector3 OriginalScale;
 	private Vector3 OriginalLocalPosition;
 	public float ScaleYPositionOffset = 2.0f;
 	public int MaxJellyHealth = 4;
@@ -29,6 +30,7 @@ public class Jelly : Mole {
 	{
 		BoxOriginalSize = gameObject.GetComponent<BoxCollider> ().size;
 		OriginalLocalPosition = transform.localPosition;
+		OriginalScale = gameObject.transform.localScale;
 
 		int TargetHealth = Random.Range (1, MaxJellyHealth+1);
 		float FatJellyMulti = Settings.instance.GetDifficultyFatJelliesMultiplier ();
@@ -51,16 +53,10 @@ public class Jelly : Mole {
 		Health--;
 	}
 
-    public override void OnChain()
-    {
-        
-
-    }
-
 	private void UpdateScale()
 	{
 		float s = (1.0f + (Health-MaxJellyHealth) * 0.25f);
-		transform.localScale = new Vector3(3,3,3) * s;
+		transform.localScale = OriginalScale * s;
 
 		// push up mesh if larger than standard
 		Vector3 localpos = OriginalLocalPosition + new Vector3 (0, (s-1.0f)*ScaleYPositionOffset, 0);

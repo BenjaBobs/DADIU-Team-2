@@ -36,6 +36,7 @@ public class Localization {
         noUpload,
         LocalBest,
         OnlineBest,
+        ToMenu,
         // ADD ABOVE
 		Count,
         
@@ -108,6 +109,8 @@ public class Localization {
         translations[LocKey.noUpload][LocLanguage.English] = "Cannot upload a score of 0";
         translations[LocKey.noUpload][LocLanguage.Danish] = "Kan ikke uploade et resultat på 0";
 
+        translations[LocKey.ToMenu][LocLanguage.English] = "Return to menu";
+        translations[LocKey.ToMenu][LocLanguage.Danish] = "Tilbage til menuen";
 
 
 

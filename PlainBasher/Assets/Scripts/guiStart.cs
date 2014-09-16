@@ -15,7 +15,7 @@ public class guiStart : MonoBehaviour {
 	void Start () {
 
         Settings.instance.SetPause(true);
-        background = Resources.Load("GUI/IntroScene") as Texture;
+        background = Resources.Load("GUI/StartScreenV2") as Texture;
         skinMenu = Resources.Load("GUI/GUIMenu") as GUISkin;
 	}
 	
@@ -44,7 +44,6 @@ public class guiStart : MonoBehaviour {
                 guiPlayer.staticref.enabled = true;
             }
 
-            ManualSpawner.staticRef.ManuallyPlaceBlobs();
 
             this.enabled = false;
         }
