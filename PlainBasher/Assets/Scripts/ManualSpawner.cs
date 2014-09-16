@@ -12,62 +12,135 @@ public class ManualSpawner : MonoBehaviour {
     {
         public int positionX;
         public int positionY;
-        public int waitTime;
+        public float waitTime;
         public GameObject blobType;
         public int hitNumber;
     }
 
+    public List<int> eventTimers;
+    private int timeToNextEvent;
+
+    List<Spawner> allSpawners = new List<Spawner>();
 
 
-	// Use this for initialization
+
 	void Start () {
-	
+        //place all spawner scripts in list
+        for(int x = 0; x < Grid.GetMaxX(); x++)
+        {
+            for (int y = 0; y < Grid.GetMaxY(); y++)
+            {
+                Spawner s = Grid.GetSpawner(x, y);
+                allSpawners.Add(s);
+            }
+        }
+
+
+        if (eventTimers.Count != 0)
+            timeToNextEvent = eventTimers[0];
+        else
+            return;
 	}
-	
-	// Update is called once per frame
+
+
 	void Update () {
-	    //STUFF
+
 	}
 
     //Methods for manual blob placement
-    void ManuallyPlaceBlobs()
+    public void ManuallyPlaceBlobs()
     {
-        StopSpawning();
+        //Call this from other script
         StartCoroutine(BlobPlacement());
     }
 
 
     void StopSpawning()
     {
-        //Removal of existing blobs
         //Stop further spawning
+        foreach(Spawner s in allSpawners)
+        {
+            s.isSpawning = false;
+        }
+
+        //Removal of existing blobs
+        Grid.WipeBoard();
     }
 
+
+    //Start standard spawn again
     void StartSpawning()
     {
-        //Start standard spawn again
-        //done when every manually placed blob is dealt with (dead or escaped)
+        foreach (Spawner s in allSpawners)
+            s.isSpawning = true;
     }
 
+
+    //Placement of event blobs. Stops all other spawning while event is running
     IEnumerator BlobPlacement()
     {
-        float wait = 0;
+        bool anyMoreEvents = true;
+        int listProgress = 0;
 
-        for (int i = 0; i < manualBlobs.Count; i++)
+        while (anyMoreEvents)
         {
-            if (i > 0)
+            //wait for next event
+            yield return new WaitForSeconds(timeToNextEvent);
+
+
+            //wipe board and stop the spawning
+            StopSpawning();
+
+
+            //spawn manually
+            float wait = 0;
+
+            for (int i = 0; i < manualBlobs.Count; i++)
             {
-                wait = manualBlobs[i].waitTime - manualBlobs[i - 1].waitTime;
+                if (i > 0)
+                {
+                    wait = manualBlobs[i].waitTime - manualBlobs[i - 1].waitTime;
+                }
+                else
+                {
+                    wait = manualBlobs[i].waitTime;
+                }
+                //wait for the specific blob to spawn
+                yield return new WaitForSeconds(wait);
+
+                Spawner theSpawner = Grid.GetSpawner(manualBlobs[i].positionX, manualBlobs[i].positionY);
+                theSpawner.PlaceMole(manualBlobs[i].blobType);
             }
+
+
+            //wait for the board to be cleared
+            bool anyMolesLeft = true;
+
+            while(anyMolesLeft == true)
+            {
+                anyMolesLeft = false;
+                for (int x = 0; x < Grid.GetMaxX(); x++)
+                {
+                    for (int y = 0; y < Grid.GetMaxY(); y++)
+                    {
+                        if(Grid.GetMole(x,y))
+                            anyMolesLeft = true;
+                    }
+                }
+                yield return new WaitForSeconds(1);
+            }
+
+            //wipes board, just in case
+            Grid.WipeBoard();
+
+
+            //if no more events, make the loop exit
+            listProgress++;
+
+            if (listProgress == eventTimers.Count)
+                anyMoreEvents = false;
             else
-            {
-                wait = manualBlobs[i].waitTime;
-            }
-
-            yield return new WaitForSeconds(wait);
-
-            Spawner theSpawner = Grid.GetSpawner(manualBlobs[i].positionX, manualBlobs[i].positionY);
-			theSpawner.PlaceMole(manualBlobs[i].blobType);
+                timeToNextEvent = eventTimers[listProgress] - eventTimers[listProgress-1];
         }
 
 
