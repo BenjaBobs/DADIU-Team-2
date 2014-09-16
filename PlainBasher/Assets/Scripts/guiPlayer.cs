@@ -26,9 +26,10 @@ public class guiPlayer : MonoBehaviour {
 		lhs = ScoreManager.GetLocalHighscore();
 
 
-		GUI.Label(new Rect(10, 10, 100, 20), "Lives: " + Player.Lives);
-		GUI.Label(new Rect(10, 30, 100, 20), "Score: " + Player.Score);
-		GUI.Label(new Rect(10, 50, 200, 20), "Previous Best: " + lhs[0]);
+		GUI.Label(new Rect(10, 40, 100, 20), Localization.instance.GetString(Localization.LocKey.Cows) + ": " + Player.Lives);
+        GUI.Label(new Rect(10, 60, 100, 20), Localization.instance.GetString(Localization.LocKey.Score) + ": " + Player.Score);
+        GUI.Label(new Rect(10, 80, 200, 20), Localization.instance.GetString(Localization.LocKey.LocalBest) + ": " + lhs[0]);
+        GUI.Label(new Rect(10, 100, 200, 20), Localization.instance.GetString(Localization.LocKey.OnlineBest) + ": " + ScoreManager.GetTotalHighscore());
 
 		/*
 		guiScores.text = lives + Player.Lives + "\n"
