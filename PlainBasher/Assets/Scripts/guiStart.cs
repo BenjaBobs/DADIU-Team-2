@@ -31,9 +31,11 @@ public class guiStart : MonoBehaviour {
         //playerName = GUI.TextField(new Rect(Screen.width / 2, Screen.height / 4 , 200, 30), playerName, 25);
         if (GUI.Button(new Rect(Screen.width / 2, Screen.height / 4 +50, 100, 50), "START")) //localization ?
         {
+			AudioManager.StopSplashMusic(true);
 			AudioManager.PlayButton();
             Settings.instance.SetPause(false);
-            this.enabled = false;
+			AudioManager.PlayMusic();
+			this.enabled = false;
         }
         if (GUI.Button(new Rect(Screen.width / 2, Screen.height / 4 + 100, 100, 50), Localization.instance.GetString(Localization.LocKey.Scoreboard)))
         {

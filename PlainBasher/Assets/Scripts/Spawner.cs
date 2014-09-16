@@ -27,17 +27,7 @@ public class Spawner : MonoBehaviour {
     [HideInInspector]
     public float moleOffset = 0.0f;
 
-    //blobs that can be placed manually in a given point in time;
-    public List<SingleBlobPlacementProperties> manualBlobs = new List<SingleBlobPlacementProperties>();
-    [System.Serializable]
-    public class SingleBlobPlacementProperties
-    {
-        public int positionX;
-        public int positionY;
-        public int waitTime;
-        public GameObject blobType;
-        public int hitNumber;
-    }
+
 
     #region Debugging
     [HideInInspector]
@@ -268,16 +258,5 @@ public class Spawner : MonoBehaviour {
         }
     }
 
-    //Methods for manual blob placement
-    void ManuallyPlaceBlobs()
-    {
-        foreach (SingleBlobPlacementProperties pp in manualBlobs)
-        {
-            PlaceSingleBlob(pp);
-        }
-    }
-    void PlaceSingleBlob(SingleBlobPlacementProperties props)
-    {
 
-    }
 }
