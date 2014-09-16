@@ -33,7 +33,9 @@ public class Localization {
         Language,
         Scoreboard,
         noUpload,
-        ReturnToMenu
+        // ADD ABOVE
+		Count,
+        
 	};
 	
 	// Add dictionary lookups
@@ -43,9 +45,8 @@ public class Localization {
 		isPopulated = true;
 		
 		translations = new Dictionary<LocKey, Dictionary<LocLanguage, string>> ();
-        int count = System.Enum.GetNames(typeof(LocKey)).Length;
 		
-		for (int i = 0; i < count; i++)
+		for (int i = 0; i < (int)LocKey.Count; i++)
 		{
 			translations[(LocKey)i] = new Dictionary<LocLanguage, string>();
 		}
@@ -89,8 +90,7 @@ public class Localization {
         translations[LocKey.noUpload][LocLanguage.English] = "Cannot upload a score of 0";
         translations[LocKey.noUpload][LocLanguage.Danish] = "Kan ikke uploade et resultat på 0";
 
-        translations[LocKey.ReturnToMenu][LocLanguage.Danish] = "Tilbage til menuen";
-        translations[LocKey.ReturnToMenu][LocLanguage.English] = "Return to menu";
+
 
 
 	}
@@ -111,6 +111,18 @@ public class Localization {
 		language = l;
 		return true;
 	}
+    public bool GetLanguage()
+    {
+        if (language == 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
 	
 	public string GetString(LocKey inputKey)
 	{
