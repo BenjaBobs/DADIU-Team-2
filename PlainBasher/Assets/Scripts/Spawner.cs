@@ -137,10 +137,12 @@ public class Spawner : MonoBehaviour {
 
 			// Instantiate mole and set its parent
 			CalculateChildren();
-			hole.GetComponent<Hole>().DisplayParticles();
-			mole = (GameObject)Instantiate(childs[Random.Range(0, childs.Count)], transform.position, transform.rotation);
-			mole.transform.parent = gameObject.transform;
-			mole.GetComponent<Mole>().UpdateGridPosition(posX, posY);
+            GameObject type = childs[Random.Range(0, childs.Count)];
+            PlaceMole(type);
+            //hole.GetComponent<Hole>().DisplayParticles();
+            //mole = (GameObject)Instantiate(childs[Random.Range(0, childs.Count)], transform.position, transform.rotation);
+            //mole.transform.parent = gameObject.transform;
+            //mole.GetComponent<Mole>().UpdateGridPosition(posX, posY);
 
 			timeSinceSpawn = 0.0f;
 			CalculateFrequency ();
@@ -149,6 +151,14 @@ public class Spawner : MonoBehaviour {
 				CheckNearbyActivate();
 		}
 	}
+
+    public void PlaceMole(GameObject type)
+    {
+        hole.GetComponent<Hole>().DisplayParticles();
+        mole = (GameObject)Instantiate(type, transform.position, transform.rotation);
+        mole.transform.parent = gameObject.transform;
+        mole.GetComponent<Mole>().UpdateGridPosition(posX, posY);
+    }
 
 	void CalculateFrequency()
 	{
