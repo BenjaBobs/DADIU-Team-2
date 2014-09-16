@@ -150,6 +150,9 @@ public class Spawner : MonoBehaviour {
 		if (mole)
 			return;
 
+        if (!type)
+            return;
+
 		CreateHole();
 
 		hole.GetComponent<Hole>().DisplayParticles();

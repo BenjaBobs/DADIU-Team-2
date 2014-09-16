@@ -4,11 +4,18 @@ using System.Collections;
 public class IceLayer : MonoBehaviour
 {
 
+    static IceLayer currentLayer;
+
     public int Health = 3;
 	public GameObject breakParticle;
 
 	void Start()
 	{
+        if (currentLayer != null)
+            DestroyImmediate(gameObject);
+        else
+            currentLayer = this;
+
 		AudioManager.PlayIceAppear();
 		AudioManager.LowPassFilter(true);
 	}
@@ -23,6 +30,7 @@ public class IceLayer : MonoBehaviour
 			if (breakParticle)
 				Instantiate(breakParticle, transform.position, transform.rotation); 
 			AudioManager.LowPassFilter(false);
+            currentLayer = null;
             DestroyImmediate(gameObject);
 		}
 
