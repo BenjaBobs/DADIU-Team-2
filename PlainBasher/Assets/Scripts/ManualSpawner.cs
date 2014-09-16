@@ -17,6 +17,8 @@ public class ManualSpawner : MonoBehaviour {
         public int hitNumber;
     }
 
+
+
 	// Use this for initialization
 	void Start () {
 	
@@ -30,33 +32,43 @@ public class ManualSpawner : MonoBehaviour {
     //Methods for manual blob placement
     void ManuallyPlaceBlobs()
     {
-        RemoveExistingBlobs();
+        StopSpawning();
         StartCoroutine(BlobPlacement());
     }
 
 
-    void RemoveExistingBlobs()
+    void StopSpawning()
     {
         //Removal of existing blobs
         //Stop further spawning
     }
 
+    void StartSpawning()
+    {
+        //Start standard spawn again
+        //done when every manually placed blob is dealt with (dead or escaped)
+    }
 
     IEnumerator BlobPlacement()
     {
+        float wait = 0;
 
         for (int i = 0; i < manualBlobs.Count; i++)
         {
             if (i > 0)
             {
-                yield return new WaitForSeconds(manualBlobs[i].waitTime - manualBlobs[i - 1].waitTime);
+                wait = manualBlobs[i].waitTime - manualBlobs[i - 1].waitTime;
             }
             else
             {
-                yield return new WaitForSeconds(manualBlobs[i].waitTime);
+                wait = manualBlobs[i].waitTime;
             }
 
-            Grid.GetSpawner(manualBlobs[i].positionX, manualBlobs[i].positionY);
+            yield return new WaitForSeconds(wait);
+
+            Spawner theSpawner = Grid.GetSpawner(manualBlobs[i].positionX, manualBlobs[i].positionY);
+
+            List<GameObject> moleTypes = new List<GameObject>(Resources.LoadAll<GameObject>("Resources/Moles")); //Rigtig sti?
         }
 
 
