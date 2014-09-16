@@ -244,22 +244,22 @@ public static class AudioManager {
 	/// </summary>
 	public static void PlayTapIce() {
 		++iceTapCounter;
-		if (aiTapGround == null)
-			aiTapGround = PlayIce (AudioClips.instance.tapIce1, AudioTag.Effect, AudioClips.instance.tapIceVolume);
+		if (aiTapIce == null)
+			aiTapIce = PlayIce (AudioClips.instance.tapIce1, AudioTag.Effect, AudioClips.instance.tapIceVolume);
 		else {
 			switch (iceTapCounter) {
 			case 1:
-				aiTapGround.SetClip(AudioClips.instance.tapIce1);
+				aiTapIce.SetClip(AudioClips.instance.tapIce1);
 				break;
 			case 2:
-				aiTapGround.SetClip(AudioClips.instance.tapIce2);
+				aiTapIce.SetClip(AudioClips.instance.tapIce2);
 				break;
 			default:
 				iceTapCounter = 0;
-				aiTapGround.SetClip(AudioClips.instance.tapIce3);
+				aiTapIce.SetClip(AudioClips.instance.tapIce3);
 				break;
 			}
-			aiTapGround.Play();
+			aiTapIce.Play();
 		}
 	}
 

@@ -5,7 +5,14 @@ using System.Collections.Generic;
 public class QADebugging : MonoBehaviour {
 
     public static QADebugging staticRef;
-    public bool hasLost = false;
+    public bool godmode = false;
+
+    GameObject prefabFreeez;
+    GameObject prefabJelly;
+    GameObject prefabElektro;
+    GameObject prefabExplosion;
+
+
 
     float timeUsed = 0;
 
@@ -18,7 +25,10 @@ public class QADebugging : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        
+        prefabFreeez = Resources.Load<GameObject>("Moles/Freeez");
+        prefabExplosion = Resources.Load<GameObject>("Moles/Explosion");
+        prefabElektro = Resources.Load<GameObject>("Moles/Elektro");
+        prefabJelly = Resources.Load<GameObject>("Moles/Jelly");
 	}
 	
 	// Update is called once per frame
@@ -47,41 +57,48 @@ public class QADebugging : MonoBehaviour {
                 //GridSpawner.staticRef.ResetGrid();
             }
 
-            //Player Information
-            GUI.Box(new Rect(8, 30, 102, 60), "Player Info");
-            GUI.Label(new Rect(10, 50, 100, 20), "Lives: " + Player.Lives);
-            GUI.Label(new Rect(10, 70, 100, 20), "Score: " + Player.Score);
+            if (GUI.Button(new Rect(220, 0, 100, 25), "Spawn Jelly"))
+            {
+                spawnRef.PlaceMole(prefabJelly);
+            }
+            if (GUI.Button(new Rect(320, 0, 100, 25), "Spawn Elektro"))
+            {
+                spawnRef.PlaceMole(prefabElektro);
+            }
+            if (GUI.Button(new Rect(420, 0, 120, 25), "Spawn Explosion"))
+            {
+                spawnRef.PlaceMole(prefabExplosion);
+            }
+            if (GUI.Button(new Rect(540, 0, 100, 25), "Spawn Freeez"))
+            {
+                spawnRef.PlaceMole(prefabFreeez);
+            }
 
-            //Spawn Chances
-            GUI.Box(new Rect(8, 100, 170, 100), "Spawn Chances");
-            GUI.Label(new Rect(10, 120, 170, 20), "Jelly chance: " + spawnRef.DBGjellyChance.ToString("P1"));
-            GUI.Label(new Rect(10, 140, 170, 20), "Freeez chance: " + spawnRef.DBGfreeezChance.ToString("P1"));
-            GUI.Label(new Rect(10, 160, 170, 20), "Elektro chance: " + spawnRef.DBGelektroChance.ToString("P1"));
-            GUI.Label(new Rect(10, 180, 170, 20), "Explosion chance: " + spawnRef.DBGexplosionChance.ToString("P1"));
+            if (GUI.Button(new Rect(660, 0, 100, 25), "Godmode " + (godmode ? "On" : "Off")))
+            {
+                godmode = !godmode;
+            }
 
-            //Spawn Rates
-            GUI.Box(new Rect(200, 30, 170, 60), "Spawner Rates");
-            GUI.Label(new Rect(210, 50, 170, 20), "Min Spawn time: " + (spawnRef.minFrequency * Settings.instance.GetDifficultySpawnRate()).ToString("0.0") + "s");
-			GUI.Label(new Rect(210, 70, 170, 20), "Max Spawn time: " + (spawnRef.maxFrequency * Settings.instance.GetDifficultySpawnRate()).ToString("0.0") + "s");
+            ////Player Information
+            //GUI.Box(new Rect(8, 30, 102, 60), "Player Info");
+            //GUI.Label(new Rect(10, 50, 100, 20), "Lives: " + Player.Lives);
+            //GUI.Label(new Rect(10, 70, 100, 20), "Score: " + Player.Score);
 
+            ////Spawn Rates
+            //GUI.Box(new Rect(120, 30, 150, 60), "Spawner Rates");
+            //GUI.Label(new Rect(130, 50, 120, 20), "Min Spawn time: " + (spawnRef.minFrequency * Settings.instance.GetDifficultySpawnRate()).ToString("0.0") + "s");
+            //GUI.Label(new Rect(130, 70, 140, 20), "Max Spawn time: " + (spawnRef.maxFrequency * Settings.instance.GetDifficultySpawnRate()).ToString("0.0") + "s");
+          
             //Difficulty info
-            GUI.Box(new Rect(200, 100, 170, 60), "Difficulty info");
-            GUI.Label(new Rect(210, 120, 170, 20), "Difficulty: " + Settings.instance.GetDifficultyIndex(timeUsed));
-            GUI.Label(new Rect(210, 140, 170, 20), "Time: " + timeUsed.ToString("0.0") + "s");
-
+            GUI.Box(new Rect(280, 30, 140, 60), "Difficulty info");
+            GUI.Label(new Rect(290, 50, 140, 20), "Difficulty: " + Settings.instance.GetDifficultyIndex(timeUsed));
+            GUI.Label(new Rect(290, 70, 140, 20), "Time: " + timeUsed.ToString("0.0") + "s");
 
             if (GUI.Button(new Rect(Screen.width - 100, 0, 100, 25), "Exit"))
             {
                 Application.Quit();
             }
 
-            if (hasLost)
-            {
-            
-                GUI.Box(new Rect(0, 25, Screen.width, Screen.height - 25), "");
-                GUI.Box(new Rect(0, 25, Screen.width, Screen.height - 25), "");
-                GUI.Label(new Rect(Screen.width / 2, Screen.height / 2, 100, 20), "Du har tabt!");
-            }
         }
     }
 }
