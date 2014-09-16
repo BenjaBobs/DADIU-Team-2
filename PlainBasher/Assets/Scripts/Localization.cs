@@ -23,6 +23,7 @@ public class Localization {
 		Danish,
 		Score,
 		Health,
+        Cows,
         NPB,
         Local,
         Options,
@@ -33,6 +34,8 @@ public class Localization {
         Language,
         Scoreboard,
         noUpload,
+        LocalBest,
+        OnlineBest,
         // ADD ABOVE
 		Count,
         
@@ -63,8 +66,23 @@ public class Localization {
 		translations[LocKey.Health][LocLanguage.English] = "Health";
 		translations[LocKey.Health][LocLanguage.Danish] = "Liv";
 
+        translations[LocKey.Cows][LocLanguage.English] = "Cows";
+        translations[LocKey.Cows][LocLanguage.Danish] = "Køer";
+
         translations[LocKey.NPB][LocLanguage.English] = "New Personal Best";
         translations[LocKey.NPB][LocLanguage.Danish] = "Ny Personlig Rekord";
+
+        translations[LocKey.LocalBest][LocLanguage.English] = "Local Best";
+        translations[LocKey.LocalBest][LocLanguage.Danish] = "Lokalt Bedste";
+
+        translations[LocKey.OnlineBest][LocLanguage.English] = "Online Best";
+        translations[LocKey.OnlineBest][LocLanguage.Danish] = "Online Bedste";
+
+        translations[LocKey.NPB][LocLanguage.English] = "";
+        translations[LocKey.NPB][LocLanguage.Danish] = "Din bedste";
+
+        translations[LocKey.NPB][LocLanguage.English] = "Local Best";
+        translations[LocKey.NPB][LocLanguage.Danish] = "Local Best";
 
         translations[LocKey.Local][LocLanguage.English] = "Local";
         translations[LocKey.Local][LocLanguage.Danish] = "Lokal";
@@ -72,8 +90,8 @@ public class Localization {
         translations[LocKey.Options][LocLanguage.English] = "Options";
         translations[LocKey.Options][LocLanguage.Danish] = "Indstillinger";
 
-        translations[LocKey.PlayerName][LocLanguage.English] = "Player name";
-        translations[LocKey.PlayerName][LocLanguage.Danish] = "Spiller navn";
+        translations[LocKey.PlayerName][LocLanguage.English] = "Player Name";
+        translations[LocKey.PlayerName][LocLanguage.Danish] = "Spillernavn";
 
         translations[LocKey.Quit][LocLanguage.English] = "Quit";
         translations[LocKey.Quit][LocLanguage.Danish] = "Afslut";

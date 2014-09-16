@@ -144,6 +144,9 @@ public class Spawner : MonoBehaviour {
 
 	public void PlaceMole(GameObject type)
 	{
+		if (mole)
+			return;
+
 		CreateHole();
 
 		hole.GetComponent<Hole>().DisplayParticles();
