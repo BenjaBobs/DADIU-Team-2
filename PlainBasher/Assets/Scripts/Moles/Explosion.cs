@@ -6,22 +6,23 @@ public class Explosion : Mole
 
     public GameObject explosion;
 
-    public override void OnDeath()
+	public override void OnDeath(bool give_bonus = true)
     {
         if (isDead)
             return;
 
         isDead = true;
 
-        Quaternion rot = Quaternion.Euler(270, 0, 0);
+		if (give_bonus)
+		{
+			Quaternion rot = Quaternion.Euler (270, 0, 0);
+			Instantiate (explosion, transform.position, rot);
 
-
-        Instantiate(explosion, transform.position, rot);
-
-        DestroyAreaOfMoles();
+			DestroyAreaOfMoles ();
+		}
 
         isDead = false;
-        base.OnDeath();
+		base.OnDeath(give_bonus);
     }
 
     protected override void OnTap()

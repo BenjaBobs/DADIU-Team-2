@@ -4,7 +4,7 @@ using System.Collections;
 public class Elektro : Mole
 {
     public GameObject lightning;
-    public override void OnDeath()
+    public override void OnDeath(bool give_bonus = true)
     {
 		if (isDead)
 			return;
@@ -12,37 +12,19 @@ public class Elektro : Mole
 		// need it here to avoid infinite loop
 		isDead = true;
 
-        for (int i = 0; i <= 270; i = i + 90)
-        {
-            LightningSpawner(i);
-        }
-		DestroyNearbyMoles (false);
-		DestroyNearbyMoles(true);
-
-
-        /*
-        GameObject exploder = Resources.Load<GameObject>("Prefabs/ExplosionLine");
-
-        ExplosionLine line = null;
-        GameObject explosionX = Instantiate(exploder, transform.position, transform.rotation) as GameObject;
-        line = explosionX.GetComponent<ExplosionLine>();
-        line.expandY = false;
-        line.posX = posX;
-        line.posY = posY;
-        GameObject explosionY = Instantiate(exploder, transform.position, transform.rotation) as GameObject;
-        line = explosionY.GetComponent<ExplosionLine>();
-        line.expandY = true;
-        line.posX = posX;
-        line.posY = posY;
-        */
+		if (give_bonus)
+		{
+			for (int i = 0; i <= 270; i = i + 90) {
+					LightningSpawner (i);
+			}
+			DestroyNearbyMoles (false);
+			DestroyNearbyMoles (true);
+		}
 
 		// once again to avoid infinte loops
 		isDead = false;
 
-
-
-
-        base.OnDeath();
+		base.OnDeath(give_bonus);
     }
 
     protected override void OnTap()

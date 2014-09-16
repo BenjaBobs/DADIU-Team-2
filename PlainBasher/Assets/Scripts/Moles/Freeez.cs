@@ -20,11 +20,11 @@ public class Freeez : Mole {
         Instantiate(iceLayerPrefab, new Vector3(-2.2f, 6.7f, -9.8f), Quaternion.identity);
     }
 
-	public override void OnDeath()
+	public override void OnDeath(bool give_bonus = true)
     {
 		AudioManager.StopHoldFreeze(false);
-        SpawnIceBlock();
-        base.OnDeath();
+		if (give_bonus) SpawnIceBlock();
+		base.OnDeath(give_bonus);
     }
 
 	protected override void OnHold()
