@@ -19,8 +19,6 @@ public class Spawner : MonoBehaviour {
     static bool isLoaded = false;
     public List<GameObject> childs;
 
-	private Mole SpeedUpMole;
-
     public GameObject hole;
     [HideInInspector]
     public float holeOffset = 0.0f;
@@ -218,13 +216,6 @@ public class Spawner : MonoBehaviour {
 			return 0.0f;
 
 		float m = Settings.instance.GetDifficultySpawnRate ();
-
-		if (SpeedUpMole && SpeedUpMole.IsDead ())
-			SpeedUpMole = null;
-		else if (SpeedUpMole)
-			m *= nearbySpecialMultiplier;
-
-
 		return m;
 	}
 
@@ -240,7 +231,7 @@ public class Spawner : MonoBehaviour {
 			Spawner s = GetRandomWithinElectro();
 			if (s)
 			{
-				s.SpeedUpMole = m;
+				s.PlaceMole();
 			}
 		}
 		if (mole.GetComponent<Explosion> ())
@@ -248,7 +239,7 @@ public class Spawner : MonoBehaviour {
 			Spawner s = GetRandomWithinExplosion();
 			if (s)
 			{
-				s.SpeedUpMole = m;
+				s.PlaceMole();
 			}
 		}
 
