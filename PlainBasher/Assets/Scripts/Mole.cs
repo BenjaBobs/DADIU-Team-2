@@ -25,6 +25,7 @@ public class Mole : MonoBehaviour {
     float currentTimeUp = 0.0f;
     bool movingDown = false;
 	protected bool isDead = false;
+    protected bool isFleeing = false;
 	public int damageToPlayer = 1;
 
     //Scrolling point stuff
@@ -186,44 +187,59 @@ public class Mole : MonoBehaviour {
 
     void MoleMovement()
     {
-        float currentPopSpeed = (currentDistance / popDistance);
-        if (!movingDown)
-            currentPopSpeed = 1 - currentPopSpeed;
-		float distance = (currentPopSpeed * lerpSpeed + popSpeed) * Settings.instance.GetDeltaTime();
-        if (!movingDown)
+        currentTimeUp += Settings.instance.GetDeltaTime() * Settings.instance.GetDifficultyStayTime();
+        if (currentTimeUp > timeUp && !isFleeing)
         {
-            distance = Mathf.Min(distance + currentDistance, popDistance) - currentDistance;
+            OnFlee();
         }
-        Vector3 currentPosition = transform.position;
-
-        if (movingDown && currentTimeUp < timeUp)
+        if (currentTimeUp > timeUp + 1)
         {
-            distance = 0;
-			currentTimeUp += Settings.instance.GetDeltaTime() * Settings.instance.GetDifficultyStayTime();
-			if (currentTimeUp >= timeUp)
-				OnFlee();
-        }
-
-        if (movingDown)
-        {
-            distance *= -1;
-        }
-        currentPosition.y += distance;
-        transform.position = currentPosition;
-
-        currentDistance += distance;
-
-        if (currentDistance >= popDistance)
-        {
-            movingDown = true;
-        }
-        else if (currentDistance <= 0)
-        {
-			isDead = true;
-			if (damageToPlayer > 0)
-				Player.Lives -= damageToPlayer;
+            isDead = true;
+            if (damageToPlayer > 0)
+                Player.Lives -= damageToPlayer;
             Destroy(gameObject);
         }
+        
+
+
+        //float currentpopspeed = (currentdistance / popdistance);
+        //if (!movingdown)
+        //    currentpopspeed = 1 - currentpopspeed;
+        //float distance = (currentpopspeed * lerpspeed + popspeed) * settings.instance.getdeltatime();
+        //if (!movingdown)
+        //{
+        //    distance = mathf.min(distance + currentdistance, popdistance) - currentdistance;
+        //}
+        //Vector3 currentPosition = transform.position;
+
+        //if (movingDown && currentTimeUp < timeUp)
+        //{
+        //distance = 0;
+        //currentTimeUp += Settings.instance.GetDeltaTime() * Settings.instance.GetDifficultyStayTime();
+        //if (currentTimeUp >= timeUp)
+        //    OnFlee();
+        //}
+
+        //if (movingDown)
+        //{
+        //    distance *= -1;
+        //}
+        //currentPosition.y += distance;
+        //transform.position = currentPosition;
+
+        //currentDistance += distance;
+
+        //if (currentDistance >= popDistance)
+        //{
+        //    movingDown = true;
+        //}
+        //else if (currentDistance <= 0)
+        //{
+        //    isDead = true;
+        //    if (damageToPlayer > 0)
+        //        Player.Lives -= damageToPlayer;
+        //    Destroy(gameObject);
+        //}
     }
 
 	protected virtual void OnFlee()

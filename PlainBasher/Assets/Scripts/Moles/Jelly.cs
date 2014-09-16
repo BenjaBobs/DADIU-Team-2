@@ -55,7 +55,7 @@ public class Jelly : Mole {
 
 	private void UpdateScale()
 	{
-		float s = (1.0f + (Health-MaxJellyHealth) * 0.25f);
+		float s = (1.0f + (Health-MaxJellyHealth) * 0.125f);
 		transform.localScale = OriginalScale * s;
 
 		// push up mesh if larger than standard
