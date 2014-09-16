@@ -6,7 +6,7 @@ public class AudioInstance : MonoBehaviour {
 	private AudioSource source;
 	private AudioClip nextClip;
 	private bool loopNext = false;
-	public AudioManager.AudioTag AudioTag = AudioManager.AudioTag.Default;
+	public AudioManager.AudioTag AudioTag = AudioManager.AudioTag.Effect;
 	public float volume = 1f;
 /*	public bool loop = false;
 	public int loopTimes = 0;
@@ -15,12 +15,15 @@ public class AudioInstance : MonoBehaviour {
 
 	private void Awake() {
 		defaultVolume = volume;
-		Debug.Log (AudioManager.effectVolume);
-		//volume = AudioTag == AudioManager.AudioTag.Music ? defaultVolume * AudioManager.effectVolume : defaultVolume * AudioManager.musicVolume;
 		source = gameObject.GetComponent<AudioSource>();
 		AudioManager.ChangeVolume += ChangeVolume;
 	}
-
+	
+	private void Start() {
+		volume = AudioTag == AudioManager.AudioTag.Music ? defaultVolume * AudioManager.effectVolume : defaultVolume * AudioManager.musicVolume;
+		source.volume = volume;
+	}
+	
 	public void SetDefaultVolume(float value) {
 		defaultVolume = value;
 	}
@@ -56,7 +59,6 @@ public class AudioInstance : MonoBehaviour {
 
 	private void ChangeVolume(string tag, float vol) {
 		if (tag == gameObject.tag) {
-			Debug.Log ("weqe");
 			volume = vol * defaultVolume;
 			source.volume = volume;
 		}

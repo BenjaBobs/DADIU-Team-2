@@ -263,7 +263,6 @@ public static class AudioManager {
 	/// Toggle effect sounds
 	/// </summary>
 	public static void ToggleEffects() {
-		Debug.Log (effectVolume);
 		effectVolume = effectVolume == 1f ? 0f : 1f;
 		ChangeVolume(GetTag(AudioTag.Effect), effectVolume);
 	}
