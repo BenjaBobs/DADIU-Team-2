@@ -25,9 +25,16 @@ public class ManualSpawner : MonoBehaviour {
 
     private int timeToNextEvent;
 
+
+    public static ManualSpawner staticRef;
+
     List<Spawner> allSpawners = new List<Spawner>();
 
 
+    void Awake()
+    {
+        staticRef = this;
+    }
 
 	void Start () {
         //place all spawner scripts in list
@@ -40,6 +47,7 @@ public class ManualSpawner : MonoBehaviour {
             }
         }
 
+        SetBlobType();
 
         if (eventTimers.Count != 0)
             timeToNextEvent = eventTimers[0];
