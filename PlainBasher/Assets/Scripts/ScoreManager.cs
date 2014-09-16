@@ -209,8 +209,6 @@ public class ScoreManager : MonoBehaviour {
 			totalHighscore = int.Parse(www.text);
 		else
 			totalHighscore = !PlayerPrefs.HasKey ("highscore_score") ? 0 : PlayerPrefs.GetInt ("highscore_score");
-
-		Debug.Log(totalHighscore);
 	}
 	
 	
