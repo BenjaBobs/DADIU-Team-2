@@ -103,7 +103,7 @@ public class guiScore : MonoBehaviour {
     }
 
 	void OnGUI() {
-		GUI.Box(new Rect(Screen.width/2 - 250, Screen.height/20, 500, 500), "Highscore menu"); //No need for translation
+		GUI.Box(new Rect(Screen.width/2 - 250, Screen.height/20, 500, 500), ""); //No need for translation
 		//add highscore content to box - get from highscore module
 		GUI.Label(new Rect(Screen.width / 2 - 250, Screen.height/10, 100, 25), Localization.instance.GetString(Localization.LocKey.Score) + ": " + Player.Score.ToString());
 
@@ -156,7 +156,7 @@ public class guiScore : MonoBehaviour {
 		//    Destroy(this);
 		//}
 
-		if (GUI.Button(new Rect(Screen.width/2, Screen.height/10 + 400, 100, 100), "Return to menu")) { //localization
+		if (GUI.Button(new Rect(Screen.width/2 - 75, Screen.height/10 + 400, 150, 50), "Return to menu")) { //localization
 			Player.Reset();
 			Application.LoadLevel(Application.loadedLevel);
 		//gameObject.AddComponent("guiStart");
