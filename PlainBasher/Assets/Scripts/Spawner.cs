@@ -15,6 +15,7 @@ public class Spawner : MonoBehaviour {
 	public int minNearbyActivate = 1;
 	public int maxNearbyActivate = 5;
     public bool isSpawning = true;
+    public Quaternion moleRotation = Quaternion.Euler(0, 90, 0);
 
 	static List<GameObject> prefabs;
     static bool isLoaded = false;
@@ -152,7 +153,7 @@ public class Spawner : MonoBehaviour {
 		CreateHole();
 
 		hole.GetComponent<Hole>().DisplayParticles();
-		mole = (GameObject)Instantiate(type, transform.position, transform.rotation);
+		mole = (GameObject)Instantiate(type, transform.position, moleRotation);
 		mole.transform.parent = gameObject.transform;
 		mole.GetComponent<Mole>().UpdateGridPosition(posX, posY);
 
