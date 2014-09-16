@@ -30,6 +30,9 @@ public class Mole : MonoBehaviour {
     //Scrolling point stuff
     static GameObject textPrefab;
     bool textLoaded = false;
+    [HideInInspector]
+    public bool isChained;
+
 
     void Awake()
     {
@@ -115,7 +118,6 @@ public class Mole : MonoBehaviour {
 			GameObject pointText = Instantiate (textPrefab) as GameObject;
             PointText pText = pointText.GetComponent<PointText>();
             pText.scoreValue = scoreValue;
-            pText.CheckCombo(this);
 
 			GUIText gText = pointText.GetComponent<GUIText> ();
 
@@ -127,18 +129,21 @@ public class Mole : MonoBehaviour {
 			if (scoreValue > 10)
 					gText.fontSize = 45;
 
-            
-
 			pointText.transform.localPosition = textLocation;
+
+            if (isChained || ! (this is Jelly))
+                ComboManager.AddChain(pText);
+
+            Destroy(gameObject);
 		}
 
-        DestroyImmediate(gameObject);
         //TODO: Add score to score manager
 	}
 
     public virtual void OnChain()
     {
-        
+        isChained = true;
+        ComboManager.StartChain();
     }
 
 	void OnMouseDown()

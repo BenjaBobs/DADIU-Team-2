@@ -29,12 +29,4 @@ public class PointText : MonoBehaviour {
         }
 	}
 
-    public void CheckCombo(Mole creator)
-    {
-        if (creator is Jelly)
-            ComboManager.AddCasualty(this);
-        else
-            ComboManager.AddChain(this);
-    }
-
 }

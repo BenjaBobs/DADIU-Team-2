@@ -9,23 +9,24 @@ public class ComboManager : MonoBehaviour
     static ComboManager staticRef;
     void Awake()
     {
-        staticRef = this;
+        if (!staticRef)
+            staticRef = this;
     }
     #endregion
 
-    static int scoreMultiplier = 1;
+    static int scoreMultiplier = 0;
     static List<PointText> comboObjects = new List<PointText>();
-    static float comboTime = 0.2f;
+    static float comboTime = 0.1f;
+    static bool isComboing = false;
 
     void Update()
     {
-
-    }
-
-
-    public static void StartCombo(PointText starter)
-    {
-        comboObjects.Add(starter);
+        if (isComboing)
+        {
+            comboTime -= Settings.instance.GetDeltaTime();
+            if (comboTime < 0)
+                EndCombo();
+        }
     }
 
     public static void AddChain(PointText chainer)
@@ -39,14 +40,16 @@ public class ComboManager : MonoBehaviour
         }
     }
 
-    //Jellies don't increase the multiplier
-    public static void AddCasualty(PointText casualty)
+    public static void StartChain()
     {
-        comboObjects.Add(casualty);
+        isComboing = true;
     }
     
     static void EndCombo()
     {
+        isComboing = false;
+        comboTime = 0.1f;
+
         int totalScore = 0;
 
         foreach (PointText pointText in comboObjects)
