@@ -38,6 +38,7 @@ public class guiStart : MonoBehaviour {
 			AudioManager.PlayButton();
             Settings.instance.SetPause(false);
 			AudioManager.PlayMusic();
+            guiPlayer.staticref.enabled = true;
             this.enabled = false;
         }
         if (GUI.Button(new Rect(Screen.width / 2 - (butonWidth / 2), Screen.height / 4 + 130, butonWidth, 50), Localization.instance.GetString(Localization.LocKey.Scoreboard).ToUpper()))

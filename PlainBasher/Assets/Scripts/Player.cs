@@ -46,6 +46,7 @@ public static class Player {
 		AudioManager.PlayGameOver ();
 		Settings.instance.SetPause(true);
 		//TODO: Initialize game end
+        guiPlayer.staticref.enabled = false;
 		QADebugging.staticRef.hasLost = true;
         guiScore.staticRef.enabled = true;
         
