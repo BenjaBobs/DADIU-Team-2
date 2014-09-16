@@ -4,10 +4,12 @@ using System.Collections;
 public class AudioInstance : MonoBehaviour {
 	private float defaultVolume;
 	private AudioSource source;
+	private AudioLowPassFilter lowPass;
 	private AudioClip nextClip;
 	private bool loopNext = false;
 	public AudioManager.AudioTag AudioTag = AudioManager.AudioTag.Effect;
 	public float volume = 1f;
+	private bool ice = false;
 /*	public bool loop = false;
 	public int loopTimes = 0;
 	public bool destroy = false;
@@ -22,6 +24,8 @@ public class AudioInstance : MonoBehaviour {
 	private void Start() {
 		volume = AudioTag == AudioManager.AudioTag.Music ? defaultVolume * AudioManager.effectVolume : defaultVolume * AudioManager.musicVolume;
 		source.volume = volume;
+		if (!ice)
+			lowPass = gameObject.AddComponent<AudioLowPassFilter>();
 	}
 	
 	public void SetDefaultVolume(float value) {
@@ -42,6 +46,10 @@ public class AudioInstance : MonoBehaviour {
 			source.Stop();
 		else
 			StartCoroutine(FadeOut());
+	}
+
+	public void SetIce() {
+		ice = true;
 	}
 
 	public void ChangeClipWhenDone(AudioClip clip,  bool loop = false) {

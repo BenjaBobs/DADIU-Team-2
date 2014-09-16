@@ -45,6 +45,11 @@ public static class AudioManager {
 	private static AudioInstance Play(AudioClip clip, AudioTag tag = AudioTag.Default, float volume = 1f, bool loop = false) {
 		return Play(clip, Camera.main.transform, tag, volume, loop);
 	}
+	private static AudioInstance PlayIce(AudioClip clip, AudioTag tag, float volume = 1f) {
+		AudioInstance ai = Play(clip, Camera.main.transform, tag, volume);
+		ai.SetIce();
+		return ai;
+	}
 	private static AudioInstance Play(AudioClip clip, AudioTag tag, AudioClip clip2, bool loop2 = false, float volume = 1f) {
 		AudioInstance ai = Play(clip, Camera.main.transform, tag, volume);
 		ai.ChangeClipWhenDone(clip2, loop2);
@@ -228,7 +233,7 @@ public static class AudioManager {
 	/// </summary>
 	public static void PlayIceAppear() {
 		if (aiIceAppear == null)
-			aiIceAppear = Play (AudioClips.instance.iceAppear, AudioTag.Effect, AudioClips.instance.iceAppearVolume);
+			aiIceAppear = PlayIce (AudioClips.instance.iceAppear, AudioTag.Effect, AudioClips.instance.iceAppearVolume);
 		else
 			aiIceAppear.Play();
 	}
@@ -240,7 +245,7 @@ public static class AudioManager {
 	public static void PlayTapIce() {
 		++iceTapCounter;
 		if (aiTapGround == null)
-			aiTapGround = Play (AudioClips.instance.tapIce1, AudioTag.Effect, AudioClips.instance.tapIceVolume);
+			aiTapGround = PlayIce (AudioClips.instance.tapIce1, AudioTag.Effect, AudioClips.instance.tapIceVolume);
 		else {
 			switch (iceTapCounter) {
 			case 1:
