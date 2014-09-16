@@ -6,8 +6,6 @@ public class guiOptions : MonoBehaviour {
     private Texture background;
     public bool music = true;
     public bool sound = true;
-    private bool bflag = true;
-    private Texture flag;
     private Texture flagUK;
     private Texture flagDK;
 	// Use this for initialization
@@ -22,10 +20,6 @@ public class guiOptions : MonoBehaviour {
         background = Resources.Load("GUI/loadingScreen") as Texture;
         flagUK = Resources.Load("GUI/flagUK") as Texture;
         flagDK = Resources.Load("GUI/flagDK") as Texture;
-        flag = flagUK;
-
-
-	
 	}
 	
 	// Update is called once per frame

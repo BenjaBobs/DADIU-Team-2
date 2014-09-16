@@ -23,8 +23,7 @@ public class Jelly : Mole {
 	
 	void SplatSpawner()
 	{
-		Vector3 positioning;
-		GameObject jellyObj = Instantiate(jelly, new Vector3(transform.position.x, transform.position.y+2, transform.position.z), Quaternion.Euler(270,0,0)) as GameObject;
+		Instantiate(jelly, new Vector3(transform.position.x, transform.position.y+2, transform.position.z), Quaternion.Euler(270,0,0));
 	}
 	
 	void Start () 
@@ -56,6 +55,7 @@ public class Jelly : Mole {
     public override void OnChain()
     {
         
+
     }
 
 	private void UpdateScale()

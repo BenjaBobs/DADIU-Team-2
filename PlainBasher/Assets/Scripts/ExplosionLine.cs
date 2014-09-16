@@ -21,7 +21,6 @@ public class ExplosionLine : MonoBehaviour
     void Update()
     {
         
-        Vector3 scale = transform.localScale;
         if (expandY)
         {
             HitLine(posX, expandY);
