@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ParticleDeath : MonoBehaviour {
 
-    float deathTime = 2;
+    public float deathTime = 2;
 	
 	// Update is called once per frame
 	void Update () {
