@@ -18,7 +18,7 @@ public class IceLayer : MonoBehaviour
 		AudioManager.PlayTapIce ();
         Health--;
         if (Health <= 0)
-            Destroy(gameObject);
+            DestroyImmediate(gameObject);
 
         if (Health == 2)
             renderer.material.mainTextureOffset = new Vector2(1/3f,0);
