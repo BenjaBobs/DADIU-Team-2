@@ -30,6 +30,9 @@ public class Mole : MonoBehaviour {
     //Scrolling point stuff
     static GameObject textPrefab;
     bool textLoaded = false;
+    [HideInInspector]
+    public bool isChained;
+
 
     void Awake()
     {
@@ -110,12 +113,13 @@ public class Mole : MonoBehaviour {
 		isDead = true;
 		if (give_bonus)
 		{
-			Player.Score += scoreValue;
 			PlayDeathSound ();
 
 			GameObject pointText = Instantiate (textPrefab) as GameObject;
+            PointText pText = pointText.GetComponent<PointText>();
+            pText.scoreValue = scoreValue;
+
 			GUIText gText = pointText.GetComponent<GUIText> ();
-			gText.text = scoreValue.ToString ();
 
 			Vector3 textLocation = Camera.main.WorldToScreenPoint (transform.position);
 			textLocation.x /= Screen.width;
@@ -126,15 +130,20 @@ public class Mole : MonoBehaviour {
 					gText.fontSize = 45;
 
 			pointText.transform.localPosition = textLocation;
+
+            if (isChained || ! (this is Jelly))
+                ComboManager.AddChain(pText);
+
+            Destroy(gameObject);
 		}
 
-        DestroyImmediate(gameObject);
         //TODO: Add score to score manager
 	}
 
     public virtual void OnChain()
     {
-        scoreValue += 10;
+        isChained = true;
+        ComboManager.StartChain();
     }
 
 	void OnMouseDown()

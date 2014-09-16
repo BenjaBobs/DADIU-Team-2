@@ -4,6 +4,7 @@ using System.Collections;
 public static class Player {
 	static int lives = 3;
     private static int score;
+    
 
     public static int Lives
     {
