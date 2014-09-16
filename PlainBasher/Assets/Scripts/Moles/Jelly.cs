@@ -9,16 +9,15 @@ public class Jelly : Mole {
 	public int MaxJellyHealth = 4;
 	public GameObject jelly;
 	
-	public override void OnDeath ()
+	public override void OnDeath (bool give_bonus = true)
 	{
 		if(isDead)
 			return;
 		
-		isDead = true;
-		SplatSpawner();
-		isDead = false;
+		if (give_bonus)
+			SplatSpawner();
 		
-		base.OnDeath ();
+		base.OnDeath (give_bonus);
 	}
 	
 	void SplatSpawner()

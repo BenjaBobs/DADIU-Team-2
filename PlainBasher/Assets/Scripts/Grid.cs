@@ -86,6 +86,23 @@ public static class Grid {
             return null;
     }
 
+	public static void WipeBoard()
+	{
+		for (int x = 1; x <= gridSizeX; x++)
+		{
+			for (int y = 1; y <= gridSizeY; y++)
+			{
+				Mole m = GetMole (x, y);
+				if (!m)
+					continue;
+				RemoveFromGrid (x, y);
+				if (m.IsDead ())
+					continue;
+				m.OnDeath (false);
+			}
+		}
+	}
+
     public static void RemoveFromGrid(int x, int y)
     {
         grid[x][y] = null;

@@ -11,8 +11,10 @@ public class guiOptions : MonoBehaviour {
     private Texture flagUK;
     private Texture flagDK;
     private GUISkin skinMenu;
+    private bool oldsound= true;
+    private bool oldmusic = true;
 	// Use this for initialization
-
+    
     void Awake()
     {
         staticref = this;
@@ -42,10 +44,41 @@ public class guiOptions : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        if (sound != oldsound)
+        {
+            ToggleEffect();
+            oldsound = sound;
+        }
+
+        if (music != oldmusic)
+        {
+            ToggleMusic();
+            oldmusic = music;
+        }
+
 	}
+
+    void ToggleMusic()
+    {
+        if (AudioManager.musicVolume == 1f)
+        { music = false; AudioManager.ToggleMusic(); }
+        else
+        { music = true; AudioManager.ToggleMusic(); }
+        Debug.Log("music: " + music.ToString() + "   " + AudioManager.musicVolume.ToString());
+    }
+
+    void ToggleEffect()
+    {
+        if (AudioManager.effectVolume == 1f)
+        { sound = false; AudioManager.ToggleEffects(); }
+        else
+        { sound = true; AudioManager.ToggleEffects(); }
+        Debug.Log("sound: " + sound.ToString() + "   " + AudioManager.effectVolume.ToString());
+    }
 
     void OnGUI()
     {
+        
         GUI.skin = skinMenu;
         GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), background, ScaleMode.ScaleToFit);
 
@@ -55,7 +88,7 @@ public class guiOptions : MonoBehaviour {
         GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height / 4 - 25, 200, 30), "Toggle " + Localization.instance.GetString(Localization.LocKey.Soundfx));
         sound = GUI.Toggle(new Rect(Screen.width / 2 + 100, Screen.height / 4 -25  , 40, 40), sound, "");
 
-        if (GUI.Button(new Rect(Screen.width/2 - 45, Screen.height/4 + 50,100,300),flag))
+        if (GUI.Button(new Rect(Screen.width/2 - 45, Screen.height/4 + 50,100,80),flag))
         {
             bflag = !bflag;
             flag = bflag ? flagUK : flagDK;
@@ -70,7 +103,7 @@ public class guiOptions : MonoBehaviour {
             
         }
 
-        if (GUI.Button(new Rect(Screen.width / 2, Screen.height / 4 + 250, 200, 100), "Return to menu")) // localization
+        if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 4 + 250, 200, 100), "Return to menu")) // localization
         {
             //gameObject.AddComponent("guiStart");
             //Destroy(this);
