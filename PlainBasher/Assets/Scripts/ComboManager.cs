@@ -6,7 +6,10 @@ public class ComboManager : MonoBehaviour {
 
     static ComboManager staticRef;
 
-    
+    void Awake()
+    {
+        staticRef = this;
+    }
 
     public static int scoreMultiplier = 1;
     static List<PointText> comboObjects = new List<PointText>();
