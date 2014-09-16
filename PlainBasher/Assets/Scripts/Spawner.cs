@@ -137,6 +137,7 @@ public class Spawner : MonoBehaviour {
 
 			// Instantiate mole and set its parent
 			CalculateChildren();
+			hole.GetComponent<Hole>().DisplayParticles();
 			mole = (GameObject)Instantiate(childs[Random.Range(0, childs.Count)], transform.position, transform.rotation);
 			mole.transform.parent = gameObject.transform;
 			mole.GetComponent<Mole>().UpdateGridPosition(posX, posY);
