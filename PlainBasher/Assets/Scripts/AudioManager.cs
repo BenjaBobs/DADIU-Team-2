@@ -29,7 +29,7 @@ public static class AudioManager {
 	
 
 	private static AudioInstance Play(AudioClip clip, Transform emitter, AudioTag tag = AudioTag.Default, float volume = 1f, bool loop = false, int loopTimes = 0, bool destroy = false, float length = 0f) {
-		GameObject go = new GameObject("Audio: " + clip.name);
+		GameObject go = new GameObject("Audio: " + (clip != null ? clip.name : ""));
 		go.transform.parent = emitter;
 		go.transform.position = emitter.position;
 		go.tag = GetTag(tag);
@@ -37,10 +37,12 @@ public static class AudioManager {
 		AudioInstance audioInstance = go.AddComponent<AudioInstance>();
 		if (volume < 1f)
 			audioInstance.SetDefaultVolume(volume);
-		source.clip = clip;
+		if (clip != null)
+			source.clip = clip;
 		source.volume = volume;
 		source.loop = loop;
-		audioInstance.Play();
+		if (clip != null)
+			audioInstance.Play();
 		if (destroy)
 			MonoBehaviour.Destroy(go, length > 0f ? length : (loop ? clip.length * (loopTimes == 0 ? 1 : loopTimes) : clip.length));
 		return audioInstance;

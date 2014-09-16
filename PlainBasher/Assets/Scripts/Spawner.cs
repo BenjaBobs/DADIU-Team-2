@@ -89,7 +89,9 @@ public class Spawner : MonoBehaviour {
 	{
 		childs = new List<GameObject> ();
 		foreach (GameObject prefab in prefabs) {
-			int occurenceFactor = prefab.GetComponent<Mole>().occurenceFactor;
+			Mole m = prefab.GetComponent<Mole>();
+			if (!m) continue;
+			int occurenceFactor = m.occurenceFactor;
 
 			if (prefab.GetComponent<Jelly>()) occurenceFactor = (int)(occurenceFactor * Settings.instance.GetDifficultyJelliesMultiplier());
 			else if (prefab.GetComponent<Elektro>()) occurenceFactor = (int)(occurenceFactor * Settings.instance.GetDifficultyElectroMultiplier());
