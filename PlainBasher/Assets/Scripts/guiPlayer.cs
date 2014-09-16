@@ -17,12 +17,9 @@ public class guiPlayer : MonoBehaviour {
 	{
 		staticref = this;
 	}
-	
+
 	void OnGUI () 
 	{
-		ScoreManager.LoadHighscore(); // load the HS
-		sc = ScoreManager.IsHighscoreLoaded(); // did it get loaded?
-		
 		lhs = ScoreManager.GetLocalHighscore();
 
 

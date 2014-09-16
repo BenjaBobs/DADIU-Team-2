@@ -27,9 +27,12 @@ public class guiScore : MonoBehaviour {
     }
 
 	void Start () {
+		ScoreManager.UnsetHighscore();
+
         menuSkin = Resources.Load("GUI/GUIMenu") as GUISkin;
         uploaded = false;
 
+        
         if (Player.Score == 0)
         {
             ScoreManager.LoadHighscore(); // load the HS
@@ -70,12 +73,12 @@ public class guiScore : MonoBehaviour {
             {
 
 
-                ScoreManager.LoadHighscore(); // load the HS
+                //ScoreManager.LoadHighscore(); // load the HS
                 sc = ScoreManager.IsHighscoreLoaded(); // did it get loaded?
                 if (sc)
                 {
                     hs = ScoreManager.GetHighscore(); //get the score
-                    if (ScoreManager.GetHighscore().Length > 0)
+					if (hs.Length > 0)
                         sc = false;
                     
                 }
@@ -127,6 +130,7 @@ public class guiScore : MonoBehaviour {
 
 		if (Player.Score > 0) {
 			if (!uploaded) {
+				//ScoreManager.UnsetHighscore();
 
 				// Show score
 				GUI.Label (new Rect (Screen.width / 2 - (Screen.height - size * 2) / 2 + 20f, size * 4.6f, Screen.height - size * 2, size * 2), Localization.instance.GetString (Localization.LocKey.Score) + ": " + Player.Score.ToString ());
@@ -134,10 +138,13 @@ public class guiScore : MonoBehaviour {
 				if (lhs.GetLength (0) > 0)
 					GUI.Label (new Rect (Screen.width / 2 - (Screen.height - size * 2) / 2 + 20f, size * 6.6f, Screen.height - size * 2, size * 2), Localization.instance.GetString (Localization.LocKey.Local) + " highscore: " + lhs [0].ToString ());
 
-                // if newbest, then flash will make "new personal best" blink
-				if (flash){
-                    GUI.Label(new Rect(Screen.width / 2 - (Screen.height - size * 2) / 2 + 20f + (Screen.height - (size * 10)) + 0f, size * 4.6f, Screen.height - size * 2, size * 2), Localization.instance.GetString(Localization.LocKey.NPB));
-                    }
+				// Local best
+				if (flash) {
+					GUI.skin.label.alignment = TextAnchor.MiddleRight;
+					GUI.Label (new Rect (Screen.width / 2 - (Screen.height - size * 2) / 2 - 20f, size * 4.6f, Screen.height - size * 2, size * 2), Localization.instance.GetString (Localization.LocKey.NPB));
+				}
+				GUI.skin.label.alignment = TextAnchor.MiddleLeft;
+
 				// Player name
 				GUI.Label (new Rect (Screen.width / 2 - (Screen.height - size * 2) / 2f + 20f, size * 8.6f, (Screen.height - size * 2f) / 2f - 10f, size * 2), Localization.instance.GetString (Localization.LocKey.PlayerName) + ":");
 
@@ -152,7 +159,7 @@ public class guiScore : MonoBehaviour {
 						noName = true;
 				}
 				if (noNameflash)
-                    GUI.Label(new Rect(Screen.width / 2 - (Screen.height - size * 2) / 2f + 10f +5f, size * 10 + 10f -1f, (Screen.height - size * 2f) / 2f - 10f, 30f), Localization.instance.GetString(Localization.LocKey.PlayerName));
+					GUI.Label (new Rect (Screen.width / 2 - (Screen.height - size * 2) / 2f + 20f, size * 10.6f, (Screen.height - size * 2f) / 2f - 10f, size * 2), Localization.instance.GetString (Localization.LocKey.PlayerName));
 			}
 			else {
 
@@ -176,15 +183,14 @@ public class guiScore : MonoBehaviour {
 				else
 					GUI.Label (new Rect (Screen.width / 2 - 50, Screen.height / 2, 100, 50), "Fejl...");
 			}
-			sc2 = false; 
+			sc2 = false;
 		}
 		/*else {
 			GUI.skin.label.alignment = TextAnchor.MiddleCenter;
 			GUI.Label (new Rect (Screen.width / 2 - 50, Screen.height / 2, 100, 50), "Loader...");
 		}*/
 
-		if (GUI.Button(new Rect(Screen.width / 2 + size * 1f, Screen.height - size * 1.5f - 50f, (Screen.height - size * 8f) / 2f, 50f), "Retry".ToUpper())) //TODO, add localization for Retry
-        {
+		/*if (GUI.Button(new Rect(Screen.width / 2 + size * 1f, Screen.height - size * 1.5f - 50f, (Screen.height - size * 8f) / 2f, 50f), "Retry".ToUpper())) {
 			AudioManager.StopSplashMusic();
 			AudioManager.PlayButton();
 			Settings.instance.SetPause(false);
@@ -192,9 +198,15 @@ public class guiScore : MonoBehaviour {
 			this.enabled = false;
 		}
 
-		if (GUI.Button(new Rect(Screen.width / 2 - (Screen.height - size * 3f) / 2, Screen.height - size * 1.5f - 50f, (Screen.height - size * 4f) / 2f, 50f), Localization.instance.GetString(Localization.LocKey.ToMenu).ToUpper() )) {
-            AudioManager.PlayButton();
-            Player.Reset();
+		if (GUI.Button(new Rect(Screen.width / 2 - (Screen.height - size * 6f) / 2, Screen.height - size * 1.5f - 50f, (Screen.height - size * 8f) / 2f, 50f), "Return to menu".ToUpper())) {
+			Player.Reset();
+			Application.LoadLevel(Application.loadedLevel);
+			//gameObject.AddComponent("guiStart");
+			//Destroy(this);
+		}*/
+
+		if (GUI.Button(new Rect(Screen.width / 2 - (Screen.height - size * 8f) / 4f, Screen.height - size * 1.5f - 50f, (Screen.height - size * 8f) / 2f, 50f), "Return to menu".ToUpper())) {
+			Player.Reset();
 			Application.LoadLevel(Application.loadedLevel);
 			//gameObject.AddComponent("guiStart");
 			//Destroy(this);
