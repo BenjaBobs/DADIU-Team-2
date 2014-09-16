@@ -25,6 +25,7 @@ public class Mole : MonoBehaviour {
     float currentTimeUp = 0.0f;
     bool movingDown = false;
 	protected bool isDead = false;
+	public int damageToPlayer = 1;
 
     //Scrolling point stuff
     static GameObject textPrefab;
@@ -206,7 +207,8 @@ public class Mole : MonoBehaviour {
         }
         else if (currentDistance <= 0)
         {
-			Player.Lives--;
+			if (damageToPlayer > 0)
+				Player.Lives -= damageToPlayer;
             Destroy(gameObject);
         }
     }
