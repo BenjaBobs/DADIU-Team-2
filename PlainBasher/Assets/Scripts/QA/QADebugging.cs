@@ -33,7 +33,6 @@ public class QADebugging : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        timeUsed += Settings.instance.GetDeltaTime();
         if (!spawnRef)
             spawnRef = Spawner.DBGstaticRef;
 	}
@@ -79,6 +78,11 @@ public class QADebugging : MonoBehaviour {
                 godmode = !godmode;
             }
 
+            if (GUI.Button(new Rect(800, 0, 100, 25), "Next Difficulty"))
+            {
+                Settings.instance.SkipDifficulty();
+            }
+
             ////Player Information
             //GUI.Box(new Rect(8, 30, 102, 60), "Player Info");
             //GUI.Label(new Rect(10, 50, 100, 20), "Lives: " + Player.Lives);
@@ -91,13 +95,9 @@ public class QADebugging : MonoBehaviour {
           
             //Difficulty info
             GUI.Box(new Rect(280, 30, 140, 60), "Difficulty info");
-            GUI.Label(new Rect(290, 50, 140, 20), "Difficulty: " + Settings.instance.GetDifficultyIndex(timeUsed));
-            GUI.Label(new Rect(290, 70, 140, 20), "Time: " + timeUsed.ToString("0.0") + "s");
+            GUI.Label(new Rect(290, 50, 140, 20), "Difficulty: " + Settings.instance.GetDifficultyIndex());
+            GUI.Label(new Rect(290, 70, 140, 20), "Time: " + Settings.instance.GetGameTime().ToString("0.0") + "s");
 
-            if (GUI.Button(new Rect(Screen.width - 100, 0, 100, 25), "Exit"))
-            {
-                Application.Quit();
-            }
 
         }
     }

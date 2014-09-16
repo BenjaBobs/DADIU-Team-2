@@ -149,9 +149,6 @@ public class ScoreManager : MonoBehaviour {
 					highscore[index++] = line;
 			}
 
-			foreach (string entry in highscore)
-				Debug.Log (entry);
-
 			highscoreLoaded = false;
 			highscoreDoneLoading = true;
 		}
