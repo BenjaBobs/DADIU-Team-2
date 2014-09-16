@@ -2,17 +2,25 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class ComboManager : MonoBehaviour {
+public class ComboManager : MonoBehaviour
+{
 
+    #region Static stuff
     static ComboManager staticRef;
-
     void Awake()
     {
         staticRef = this;
     }
+    #endregion
 
-    public static int scoreMultiplier = 1;
+    static int scoreMultiplier = 1;
     static List<PointText> comboObjects = new List<PointText>();
+    static float comboTime = 0.2f;
+
+    void Update()
+    {
+
+    }
 
 
     public static void StartCombo(PointText starter)
