@@ -4,7 +4,7 @@ using System.Collections;
 public class IceLayer : MonoBehaviour
 {
 
-    public int Health = 2;
+    public int Health = 3;
 
 	void Start()
 	{
@@ -18,9 +18,11 @@ public class IceLayer : MonoBehaviour
         if (Health <= 0)
             Destroy(gameObject);
 
-        Color clr = renderer.material.color;
-        clr.a -= 0.05f;
-        renderer.material.color = clr;
+        if (Health == 2)
+            renderer.material.mainTextureOffset = new Vector2(1/3f,0);
+        else if (Health == 1)
+            renderer.material.mainTextureOffset = new Vector2(2/3f, 0);
+        
     }
 
 }
