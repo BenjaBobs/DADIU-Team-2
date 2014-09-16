@@ -211,7 +211,7 @@ public class Settings : MonoBehaviour {
 	}
 
 	// retrieves the current index of difficulties
-	public int GetDifficultyIndex(float p)
+	public int GetDifficultyIndex()
 	{
         float largestTime = 0;
         int largestDiffIndex = 0;
@@ -219,7 +219,7 @@ public class Settings : MonoBehaviour {
         for (int i = 0; i < Difficulties.Count; i++) {
 			float time = Difficulties [i].TimePosition;
 
-            if (time > largestTime && p >= time)
+            if (time > largestTime && gameTime >= time)
             {
                 largestTime = time;
                 largestDiffIndex = i+1;
@@ -227,4 +227,25 @@ public class Settings : MonoBehaviour {
 		}
         return largestDiffIndex;
 	}
+
+    public void SkipDifficulty()
+    {
+        for (int i = 0; i < Difficulties.Count; i++)
+        {
+            float time = Difficulties[i].TimePosition;
+            Debug.Log("Time " + time);
+            Debug.Log("Game time " + time);
+            if (time > gameTime)
+            {
+                gameTime = time;
+                return;
+            }
+            
+        }
+    }
+
+    public float GetGameTime()
+    {
+        return gameTime;
+    }
 }
