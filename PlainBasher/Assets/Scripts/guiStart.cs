@@ -34,11 +34,15 @@ public class guiStart : MonoBehaviour {
         //playerName = GUI.TextField(new Rect(Screen.width / 2, Screen.height / 4 , 200, 30), playerName, 25);
         if (GUI.Button(new Rect(Screen.width / 2 - (butonWidth / 2), Screen.height / 4 + 50, butonWidth, 50), "START")) //no need for localization
         {
+			AudioManager.StopSplashMusic();
+			AudioManager.PlayButton();
             Settings.instance.SetPause(false);
+			AudioManager.PlayMusic();
             this.enabled = false;
         }
         if (GUI.Button(new Rect(Screen.width / 2 - (butonWidth / 2), Screen.height / 4 + 130, butonWidth, 50), Localization.instance.GetString(Localization.LocKey.Scoreboard).ToUpper()))
         {
+			AudioManager.PlayButton();
             //gameObject.AddComponent("guiScore");
             //Destroy(this);
             guiScore.staticRef.enabled = true;
@@ -46,6 +50,7 @@ public class guiStart : MonoBehaviour {
         }
         if (GUI.Button(new Rect(Screen.width / 2 - (butonWidth / 2), Screen.height / 4 + 210, butonWidth, 50), Localization.instance.GetString(Localization.LocKey.Options).ToUpper()))
         {
+			AudioManager.PlayButton();
             //gameObject.AddComponent("guiOptions");
             //Destroy(this);
             guiOptions.staticref.enabled = true;
@@ -54,6 +59,7 @@ public class guiStart : MonoBehaviour {
 
         if (GUI.Button(new Rect(Screen.width / 2 - (butonWidth / 2), Screen.height / 4 + 290, butonWidth, 50), Localization.instance.GetString(Localization.LocKey.Quit).ToUpper()))
         {
+			AudioManager.PlayButton();
             Application.Quit();
         }
     }
