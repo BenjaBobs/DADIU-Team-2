@@ -73,13 +73,14 @@ public class AudioInstance : MonoBehaviour {
 
 	private void IceEvent(bool on) {
 		if (!ice) {
-			if (on && lowPass == null) {
-				lowPass = gameObject.AddComponent<AudioLowPassFilter>();
-				lowPass.cutoffFrequency = 500f;
+			if (on) {
+				if (gameObject.GetComponent<AudioLowPassFilter>() == null)
+					gameObject.AddComponent<AudioLowPassFilter>().cutoffFrequency = 500f;
+				else
+					gameObject.GetComponent<AudioLowPassFilter>().enabled = true;
 			}
-			else if (lowPass != null) {
-				DestroyImmediate(lowPass);
-				lowPass = null;
+			else if (gameObject.GetComponent<AudioLowPassFilter>() != null) {
+				gameObject.GetComponent<AudioLowPassFilter>().enabled = false;
 			}
 		}
 	}
