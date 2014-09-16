@@ -56,7 +56,7 @@ public class ManualSpawner : MonoBehaviour {
                 yield return new WaitForSeconds(manualBlobs[i].waitTime);
             }
 
-            Spawner theSpawner = Grid.GetSpawner(manualBlobs[i].positionX, manualBlobs[i].positionY);
+            Grid.GetSpawner(manualBlobs[i].positionX, manualBlobs[i].positionY);
         }
 
 

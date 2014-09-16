@@ -247,7 +247,7 @@ public class Spawner : MonoBehaviour {
 
 	}
 
-    private void CreateHole()
+    public void CreateHole()
     {
         if (!hole)
         {
