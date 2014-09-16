@@ -3,25 +3,32 @@ guid: c06bc94c4a73b47e0bee0911ba682890
 MonoImporter:
   serializedVersion: 2
   defaultReferences:
-  - gameOver: {fileID: 8300000, guid: eddba05a8b79f3046a0d5f01a85be76d, type: 3}
-  - music: {fileID: 8300000, guid: 215fa2ab09d43674dac3c8d0e33e2e48, type: 3}
-  - musicLoop: {fileID: 8300000, guid: 215fa2ab09d43674dac3c8d0e33e2e48, type: 3}
-  - musicSplash: {fileID: 8300000, guid: b6db0fa2ec8cd5046b3f7f371e568289, type: 3}
-  - button: {fileID: 8300000, guid: d187d63c3a6f2db418777edc33a5f679, type: 3}
+  - gameOver: {fileID: 8300000, guid: af339213cac33e44997e1814e3ee0cbc, type: 3}
+  - music: {fileID: 8300000, guid: f53d567be1a2d174a92189ed7e60dea5, type: 3}
+  - musicLoop: {fileID: 8300000, guid: f53d567be1a2d174a92189ed7e60dea5, type: 3}
+  - musicSplash: {fileID: 8300000, guid: 7eb86d6f15ce89f408197798f5ed519f, type: 3}
+  - button: {fileID: 8300000, guid: 1fb09aba9888a8a4fb52f704efb49283, type: 3}
   - loseLife: {fileID: 8300000, guid: f74a99706a2af454ebff34ebda3ddf46, type: 3}
   - pointCount: {fileID: 8300000, guid: 937da5abccf1ccc409dd2e60e5fbee38, type: 3}
-  - destroyElektro: {fileID: 8300000, guid: 69edb1158fd55d440844c6737aadba13, type: 3}
-  - destroyExplosion: {fileID: 8300000, guid: 418a4f7b22604d5478e51abd9f88ba34, type: 3}
-  - destroyFreeze: {fileID: 8300000, guid: 54f55b67f78c5b547b05dda2399c1ec3, type: 3}
-  - holdFreeze: {fileID: 8300000, guid: 2ca94f9119629a94694a361166f05302, type: 3}
-  - tapBigJelly: {fileID: 8300000, guid: 4b159be1d4d4e4148bc6f517fd463e05, type: 3}
-  - tapSmallJelly: {fileID: 8300000, guid: 47f90fbb4e401124c909f4d09fe71d46, type: 3}
-  - destroyJelly: {fileID: 8300000, guid: 0a67fc0cbdfe75445b9ec518cf43de82, type: 3}
-  - tapGround: {fileID: 8300000, guid: fca3213b25d82f543ac6a84c6855218a, type: 3}
-  - iceAppear: {fileID: 8300000, guid: 404084c937f45114782773bfedc103f5, type: 3}
-  - tapIce1: {fileID: 8300000, guid: 8edffae5af8f3a7418dd080bdeeb9116, type: 3}
-  - tapIce2: {fileID: 8300000, guid: 294224236b7fe7f43803635d6066e962, type: 3}
-  - tapIce3: {fileID: 8300000, guid: d620b214b46e79449890834a8149da60, type: 3}
+  - destroyElektro: {fileID: 8300000, guid: b95d39fb41033cc4e8af988bb7c4f2bf, type: 3}
+  - destroyExplosion: {fileID: 8300000, guid: 8bdd4ff3265c2194daa6f71b1e5812b3, type: 3}
+  - destroyFreeze: {fileID: 8300000, guid: 2fd6379acf645ff4282d5504fdcd92b1, type: 3}
+  - holdFreeze: {fileID: 8300000, guid: b9674186daec9bb43aa35b6eb0c95b67, type: 3}
+  - tapBigJelly: {fileID: 8300000, guid: f2d4a0a6d7bbf1e4cabb6448afce988e, type: 3}
+  - tapSmallJelly: {fileID: 8300000, guid: 9b41091f66286464485d31e4bfad3e59, type: 3}
+  - destroyJelly1: {fileID: 8300000, guid: 4585c6dba383d44cbb33a892034bc43e, type: 3}
+  - destroyJelly2: {fileID: 8300000, guid: d57233b04d91d41259e12021829cb862, type: 3}
+  - destroyJelly3: {fileID: 8300000, guid: 446762aa8748a443198d71f6408d9d21, type: 3}
+  - destroyJelly4: {fileID: 8300000, guid: 6962372714c224a21b3f177854927cbd, type: 3}
+  - destroyJelly5: {fileID: 8300000, guid: 71b981b71a7d749f2be0ef56612545fd, type: 3}
+  - destroyJelly6: {fileID: 8300000, guid: d9846bdc4a070464bab60d0c98388fb8, type: 3}
+  - destroyJelly7: {fileID: 8300000, guid: cbbd9de0359e648acaddd519feba5b77, type: 3}
+  - destroyJelly8: {fileID: 8300000, guid: e69919019589d4ef8abba1bec744451d, type: 3}
+  - tapGround: {fileID: 8300000, guid: 04896ff98610d0c47ad2dd4076b3b404, type: 3}
+  - iceAppear: {fileID: 8300000, guid: fffdd04064b0d6245a5fe6434ec5e4cc, type: 3}
+  - tapIce1: {fileID: 8300000, guid: 8621b18847c107742a63ff1b2647c87b, type: 3}
+  - tapIce2: {fileID: 8300000, guid: 7f0a5944c9e60b343a4254ae6ba44348, type: 3}
+  - tapIce3: {fileID: 8300000, guid: 80ad35326d6ab7b41ac59192b4dae462, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

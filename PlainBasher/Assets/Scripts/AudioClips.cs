@@ -32,7 +32,14 @@ public class AudioClips : MonoBehaviour {
 	public float tapBigJellyVolume = 1f;
 	public AudioClip tapSmallJelly;
 	public float tapSmallJellyVolume = 1f;
-	public AudioClip destroyJelly;
+	public AudioClip destroyJelly1;
+	public AudioClip destroyJelly2;
+	public AudioClip destroyJelly3;
+	public AudioClip destroyJelly4;
+	public AudioClip destroyJelly5;
+	public AudioClip destroyJelly6;
+	public AudioClip destroyJelly7;
+	public AudioClip destroyJelly8;
 	public float destroyJellyVolume = 1f;
 
 	public AudioClip tapGround;

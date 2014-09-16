@@ -15,6 +15,7 @@ public class Spawner : MonoBehaviour {
 	public int minNearbyActivate = 1;
 	public int maxNearbyActivate = 5;
     public bool isSpawning = true;
+    public Quaternion moleRotation = Quaternion.Euler(0, 90, 0);
 
 	static List<GameObject> prefabs;
     static bool isLoaded = false;
@@ -89,7 +90,9 @@ public class Spawner : MonoBehaviour {
 	{
 		childs = new List<GameObject> ();
 		foreach (GameObject prefab in prefabs) {
-			int occurenceFactor = prefab.GetComponent<Mole>().occurenceFactor;
+			Mole m = prefab.GetComponent<Mole>();
+			if (!m) continue;
+			int occurenceFactor = m.occurenceFactor;
 
 			if (prefab.GetComponent<Jelly>()) occurenceFactor = (int)(occurenceFactor * Settings.instance.GetDifficultyJelliesMultiplier());
 			else if (prefab.GetComponent<Elektro>()) occurenceFactor = (int)(occurenceFactor * Settings.instance.GetDifficultyElectroMultiplier());
@@ -144,10 +147,13 @@ public class Spawner : MonoBehaviour {
 
 	public void PlaceMole(GameObject type)
 	{
+		if (mole)
+			return;
+
 		CreateHole();
 
 		hole.GetComponent<Hole>().DisplayParticles();
-		mole = (GameObject)Instantiate(type, transform.position, transform.rotation);
+		mole = (GameObject)Instantiate(type, transform.position, moleRotation);
 		mole.transform.parent = gameObject.transform;
 		mole.GetComponent<Mole>().UpdateGridPosition(posX, posY);
 
