@@ -90,12 +90,29 @@ public class ScoreManager : MonoBehaviour {
 	public static int GetNumberOfBestScores() {
 		return numberBest;
 	}
+
+    /// <summary>
+    /// Saves the local highscore if it is bigger than the current score
+    /// </summary>
+    /// <param name="score">The score achieved</param>
+    public static void SaveLocalScore(int score)
+    {
+        if (!PlayerPrefs.HasKey("highscore_score"))
+        {
+            PlayerPrefs.SetInt("highscore_score", score);
+        }
+        else if (score > PlayerPrefs.GetInt("highscore_score"))
+        {
+            oldHighscoreScore = PlayerPrefs.GetInt("highscore_score");
+            PlayerPrefs.SetInt("highscore_score", score);
+        }
+    }
 	
 	/// <summary>
 	/// Saves the name and score
 	/// 
 	/// Add score:
-	///  ScoreManager.AddScore ("Navn", 0);
+	///  ScoreManager.AddScore ("Name", 0);
 	/// </summary>
 	/// <param name="name">Name</param>
 	/// <param name="score">Score</param>
@@ -105,14 +122,6 @@ public class ScoreManager : MonoBehaviour {
 
 		instance.StartCoroutine(instance.UploadScore(name, score));
 		lastScore = score;
-
-		if (!PlayerPrefs.HasKey ("highscore_score")) {
-			PlayerPrefs.SetInt ("highscore_score", score);
-		}
-		else if (score > PlayerPrefs.GetInt ("highscore_score")) {
-			oldHighscoreScore = PlayerPrefs.GetInt ("highscore_score");
-			PlayerPrefs.SetInt ("highscore_score", score);
-		}
 	}
 
 
