@@ -17,6 +17,14 @@ public class guiStart : MonoBehaviour {
         Settings.instance.SetPause(true);
         background = Resources.Load("GUI/IntroScene") as Texture;
         skinMenu = Resources.Load("GUI/GUIMenu") as GUISkin;
+        if (!gameObject.GetComponent("guiPlayer"))
+        {
+            gameObject.AddComponent("guiPlayer");
+            if (guiPlayer.staticref)
+            {
+                guiPlayer.staticref.enabled = false;
+            }
+        }
 	}
 	
 	// Update is called once per frame
