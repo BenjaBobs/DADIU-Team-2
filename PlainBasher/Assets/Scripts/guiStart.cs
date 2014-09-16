@@ -42,6 +42,10 @@ public class guiStart : MonoBehaviour {
             if (guiPlayer.staticref)
             {
                 guiPlayer.staticref.enabled = true;
+            }
+
+            if (ManualSpawner.staticRef)
+            {
                 ManualSpawner.staticRef.ManuallyPlaceBlobs();
             }
 

@@ -53,16 +53,18 @@ public class guiOptions : MonoBehaviour {
 
         if (sound != oldsound)
         {
+            AudioManager.PlayButton();
             ToggleEffect();
             oldsound = sound;
-            AudioManager.PlayButton();
+            
         }
 
         if (music != oldmusic)
         {
+            AudioManager.PlayButton();
             ToggleMusic();
             oldmusic = music;
-            AudioManager.PlayButton();
+            
         }
 
 	}
