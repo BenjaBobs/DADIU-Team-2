@@ -47,6 +47,7 @@ public static class Player {
 
 	private static void OnGameOver()
 	{
+		AudioManager.StopMusic ();
 		AudioManager.PlayGameOver ();
 		Settings.instance.SetPause(true);
 		//TODO: Initialize game end

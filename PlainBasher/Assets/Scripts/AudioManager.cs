@@ -83,6 +83,10 @@ public static class AudioManager {
 		else
 			aiMusic.Play();
 	}
+	public static void StopMusic() {
+		if (aiMusic == null)
+			aiMusic.Stop(false);
+	}
 	/// <summary>
 	/// Short loop of background music to be looped when the original background music stops, after 5:19min into the gameplay
 	/// </summary>
@@ -266,10 +270,12 @@ public static class AudioManager {
 	/// Play when ice block appears on screen and freezes the game
 	/// </summary>
 	public static void PlayIceAppear() {
-		if (aiIceAppear == null)
-			aiIceAppear = PlayIce (AudioClips.instance.iceAppear, AudioTag.Effect, AudioClips.instance.iceAppearVolume);
-		else
-			aiIceAppear.Play();
+		if (!Settings.instance.GetPaused()) {
+			if (aiIceAppear == null)
+				aiIceAppear = PlayIce (AudioClips.instance.iceAppear, AudioTag.Effect, AudioClips.instance.iceAppearVolume);
+			else
+				aiIceAppear.Play();
+		}
 	}
 	private static AudioInstance aiTapIce;
 	private static int iceTapCounter = 0;

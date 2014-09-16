@@ -184,7 +184,7 @@ public class guiScore : MonoBehaviour {
 			GUI.Label (new Rect (Screen.width / 2 - 50, Screen.height / 2, 100, 50), "Loader...");
 		}*/
 
-		if (GUI.Button(new Rect(Screen.width / 2 + size * 1f, Screen.height - size * 1.5f - 50f, (Screen.height - size * 8f) / 2f, 50f), "Retry".ToUpper())) {
+		/*if (GUI.Button(new Rect(Screen.width / 2 + size * 1f, Screen.height - size * 1.5f - 50f, (Screen.height - size * 8f) / 2f, 50f), "Retry".ToUpper())) {
 			AudioManager.StopSplashMusic();
 			AudioManager.PlayButton();
 			Settings.instance.SetPause(false);
@@ -193,6 +193,13 @@ public class guiScore : MonoBehaviour {
 		}
 
 		if (GUI.Button(new Rect(Screen.width / 2 - (Screen.height - size * 6f) / 2, Screen.height - size * 1.5f - 50f, (Screen.height - size * 8f) / 2f, 50f), "Return to menu".ToUpper())) {
+			Player.Reset();
+			Application.LoadLevel(Application.loadedLevel);
+			//gameObject.AddComponent("guiStart");
+			//Destroy(this);
+		}*/
+
+		if (GUI.Button(new Rect(Screen.width / 2 - (Screen.height - size * 8f) / 4f, Screen.height - size * 1.5f - 50f, (Screen.height - size * 8f) / 2f, 50f), "Return to menu".ToUpper())) {
 			Player.Reset();
 			Application.LoadLevel(Application.loadedLevel);
 			//gameObject.AddComponent("guiStart");
