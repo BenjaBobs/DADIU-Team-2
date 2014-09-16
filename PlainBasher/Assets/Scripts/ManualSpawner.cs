@@ -30,14 +30,35 @@ public class ManualSpawner : MonoBehaviour {
     //Methods for manual blob placement
     void ManuallyPlaceBlobs()
     {
-        foreach (SingleBlobPlacementProperties pp in manualBlobs)
-        {
-            StartCoroutine(PlaceSingleBlob(pp));
-        }
+        RemoveExistingBlobs();
+        StartCoroutine(BlobPlacement());
     }
-    IEnumerator PlaceSingleBlob(SingleBlobPlacementProperties props)
+
+
+    void RemoveExistingBlobs()
     {
-        yield return new WaitForSeconds(props.waitTime);
+        //Removal of existing blobs
+        //Stop further spawning
+    }
+
+
+    IEnumerator BlobPlacement()
+    {
+
+        for (int i = 0; i < manualBlobs.Count; i++)
+        {
+            if (i > 0)
+            {
+                yield return new WaitForSeconds(manualBlobs[i].waitTime - manualBlobs[i - 1].waitTime);
+            }
+            else
+            {
+                yield return new WaitForSeconds(manualBlobs[i].waitTime);
+            }
+
+            Spawner theSpawner = Grid.GetSpawner(manualBlobs[i].positionX, manualBlobs[i].positionY);
+        }
+
 
     }
 }

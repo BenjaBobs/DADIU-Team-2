@@ -16,7 +16,7 @@ public class Explosion : Mole
         Quaternion rot = Quaternion.Euler(270, 0, 0);
 
 
-        GameObject explosionObj = Instantiate(explosion, transform.position, rot) as GameObject;
+        Instantiate(explosion, transform.position, rot);
 
         DestroyAreaOfMoles();
 

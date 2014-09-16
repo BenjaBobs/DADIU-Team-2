@@ -6,7 +6,7 @@ public class AudioInstance : MonoBehaviour {
 	private AudioSource source;
 	private AudioClip nextClip;
 	private bool loopNext = false;
-	public AudioManager.AudioTag tag = AudioManager.AudioTag.Default;
+	public AudioManager.AudioTag AudioTag = AudioManager.AudioTag.Default;
 	public float volume = 1f;
 /*	public bool loop = false;
 	public int loopTimes = 0;

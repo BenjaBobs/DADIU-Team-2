@@ -137,8 +137,8 @@ public class Spawner : MonoBehaviour {
 
 			// Instantiate mole and set its parent
 			CalculateChildren();
-			Vector3 pos = transform.position + new Vector3(0, moleOffset, 0);
-			mole = (GameObject)Instantiate(childs[Random.Range(0, childs.Count)], pos, transform.rotation);
+			hole.GetComponent<Hole>().DisplayParticles();
+			mole = (GameObject)Instantiate(childs[Random.Range(0, childs.Count)], transform.position, transform.rotation);
 			mole.transform.parent = gameObject.transform;
 			mole.GetComponent<Mole>().UpdateGridPosition(posX, posY);
 
@@ -247,13 +247,12 @@ public class Spawner : MonoBehaviour {
 
 	}
 
-    public void CreateHole()
+    private void CreateHole()
     {
         if (!hole)
         {
             GameObject holePrefab = Resources.Load<GameObject>("Prefabs/dirtHole");
-			Vector3 pos = transform.position + new Vector3(0, holeOffset, 0);
-            hole = (GameObject)Instantiate(holePrefab, pos, transform.rotation);
+            hole = (GameObject)Instantiate(holePrefab, transform.position, transform.rotation);
             hole.transform.parent = transform;
         }
     }
