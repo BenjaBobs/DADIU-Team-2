@@ -72,6 +72,7 @@ public static class AudioManager {
 			aiGameOver = Play (AudioClips.instance.gameOver, AudioTag.Music, AudioClips.instance.gameOverVolume);
 		else
 			aiGameOver.Play();
+		StopMusic ();
 	}
 	private static AudioInstance aiMusic;
 	/// <summary>
@@ -84,8 +85,9 @@ public static class AudioManager {
 			aiMusic.Play();
 	}
 	public static void StopMusic() {
-		if (aiMusic == null)
+		if (aiMusic != null)
 			aiMusic.Stop(false);
+		aiMusic = null;
 	}
 	/// <summary>
 	/// Short loop of background music to be looped when the original background music stops, after 5:19min into the gameplay
