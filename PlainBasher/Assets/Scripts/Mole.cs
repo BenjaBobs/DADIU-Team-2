@@ -102,28 +102,31 @@ public class Mole : MonoBehaviour {
 
 	}
 
-	public virtual void OnDeath()
+	public virtual void OnDeath(bool give_bonus = true)
 	{
 		if (isDead)
 		    return;
 
 		isDead = true;
-        Player.Score += scoreValue;
-		PlayDeathSound ();
+		if (give_bonus)
+		{
+			Player.Score += scoreValue;
+			PlayDeathSound ();
 
-        GameObject pointText = Instantiate(textPrefab) as GameObject;
-        GUIText gText = pointText.GetComponent<GUIText>();
-        gText.text = scoreValue.ToString();
-        
-        Vector3 textLocation = Camera.main.WorldToScreenPoint(transform.position);
-        textLocation.x /= Screen.width;
-        textLocation.y /= Screen.height;
-        textLocation.y += 0.1f;
+			GameObject pointText = Instantiate (textPrefab) as GameObject;
+			GUIText gText = pointText.GetComponent<GUIText> ();
+			gText.text = scoreValue.ToString ();
 
-        if (scoreValue > 10)
-            gText.fontSize = 45;
+			Vector3 textLocation = Camera.main.WorldToScreenPoint (transform.position);
+			textLocation.x /= Screen.width;
+			textLocation.y /= Screen.height;
+			textLocation.y += 0.1f;
 
-        pointText.transform.localPosition = textLocation;
+			if (scoreValue > 10)
+					gText.fontSize = 45;
+
+			pointText.transform.localPosition = textLocation;
+		}
 
         DestroyImmediate(gameObject);
         //TODO: Add score to score manager
@@ -207,6 +210,7 @@ public class Mole : MonoBehaviour {
         }
         else if (currentDistance <= 0)
         {
+			isDead = true;
 			if (damageToPlayer > 0)
 				Player.Lives -= damageToPlayer;
             Destroy(gameObject);

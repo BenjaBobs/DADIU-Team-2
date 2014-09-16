@@ -21,6 +21,8 @@ public static class Player {
             {
 				OnGameOver ();
             }
+			else if (lives > value && value > 0)
+				Grid.WipeBoard();
 			lives = value;
         }
     }
