@@ -110,12 +110,11 @@ public class Mole : MonoBehaviour {
 		isDead = true;
 		if (give_bonus)
 		{
-			Player.Score += scoreValue;
 			PlayDeathSound ();
 
 			GameObject pointText = Instantiate (textPrefab) as GameObject;
+            pointText.GetComponent<PointText>().scoreValue = scoreValue;
 			GUIText gText = pointText.GetComponent<GUIText> ();
-			gText.text = scoreValue.ToString ();
 
 			Vector3 textLocation = Camera.main.WorldToScreenPoint (transform.position);
 			textLocation.x /= Screen.width;
@@ -134,7 +133,7 @@ public class Mole : MonoBehaviour {
 
     public virtual void OnChain()
     {
-        scoreValue += 10;
+        
     }
 
 	void OnMouseDown()

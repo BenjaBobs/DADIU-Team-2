@@ -31,6 +31,12 @@ public class Explosion : Mole
         Health--;
     }
 
+    public override void OnChain()
+    {
+        if ()
+
+    }
+
 
     protected override void PlayDeathSound()
     {
