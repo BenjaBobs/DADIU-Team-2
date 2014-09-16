@@ -9,6 +9,7 @@ public class IceLayer : MonoBehaviour
 	void Start()
 	{
 		AudioManager.PlayIceAppear();
+		AudioManager.LowPassFilter(true);
 	}
 
     void OnMouseDown()
@@ -17,8 +18,10 @@ public class IceLayer : MonoBehaviour
 
 		AudioManager.PlayTapIce ();
         Health--;
-        if (Health <= 0)
+        if (Health <= 0) {
+			AudioManager.LowPassFilter(false);
             DestroyImmediate(gameObject);
+		}
 
         if (Health == 2)
             renderer.material.mainTextureOffset = new Vector2(1/3f,0);
