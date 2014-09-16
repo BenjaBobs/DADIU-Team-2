@@ -42,8 +42,8 @@ public static class AudioManager {
 			MonoBehaviour.Destroy(go, length > 0f ? length : (loop ? clip.length * (loopTimes == 0 ? 1 : loopTimes) : clip.length));
 		return audioInstance;
 	}
-	private static AudioInstance Play(AudioClip clip, AudioTag tag = AudioTag.Default, float volume = 1f) {
-		return Play(clip, Camera.main.transform, tag, volume);
+	private static AudioInstance Play(AudioClip clip, AudioTag tag = AudioTag.Default, float volume = 1f, bool loop = false) {
+		return Play(clip, Camera.main.transform, tag, volume, loop);
 	}
 	private static AudioInstance Play(AudioClip clip, AudioTag tag, AudioClip clip2, bool loop2 = false, float volume = 1f) {
 		AudioInstance ai = Play(clip, Camera.main.transform, tag, volume);
@@ -88,9 +88,12 @@ public static class AudioManager {
 	/// </summary>
 	public static void PlaySplashMusic() {
 		if (aiSplashMusic == null)
-			aiSplashMusic = Play (AudioClips.instance.musicSplash, AudioTag.Music, AudioClips.instance.musicSplashVolume);
+			aiSplashMusic = Play (AudioClips.instance.musicSplash, AudioTag.Music, AudioClips.instance.musicSplashVolume, true);
 		else
 			aiSplashMusic.Play();
+	}
+	public static void StopSplashMusic(bool fade = true) {
+		aiSplashMusic.Stop(fade);
 	}
 
 
