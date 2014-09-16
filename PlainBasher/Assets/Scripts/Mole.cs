@@ -113,7 +113,10 @@ public class Mole : MonoBehaviour {
 			PlayDeathSound ();
 
 			GameObject pointText = Instantiate (textPrefab) as GameObject;
-            pointText.GetComponent<PointText>().scoreValue = scoreValue;
+            PointText pText = pointText.GetComponent<PointText>();
+            pText.scoreValue = scoreValue;
+            pText.CheckCombo(this);
+
 			GUIText gText = pointText.GetComponent<GUIText> ();
 
 			Vector3 textLocation = Camera.main.WorldToScreenPoint (transform.position);
@@ -123,6 +126,8 @@ public class Mole : MonoBehaviour {
 
 			if (scoreValue > 10)
 					gText.fontSize = 45;
+
+            
 
 			pointText.transform.localPosition = textLocation;
 		}

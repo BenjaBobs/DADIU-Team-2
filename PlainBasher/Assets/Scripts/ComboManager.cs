@@ -2,41 +2,45 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public static class ComboManager {
+public class ComboManager : MonoBehaviour {
+
+    static ComboManager staticRef;
+
+    
 
     public static int scoreMultiplier = 1;
-    static List<GameObject> comboObjects = new List<GameObject>();
+    static List<PointText> comboObjects = new List<PointText>();
 
 
-    public void StartCombo(GameObject starter)
+    public static void StartCombo(PointText starter)
     {
         comboObjects.Add(starter);
     }
 
-    public void AddChain(GameObject chainer)
+    public static void AddChain(PointText chainer)
     {
         scoreMultiplier++;
         comboObjects.Add(chainer);
 
-        foreach (GameObject pointText in comboObjects)
+        foreach (PointText pointText in comboObjects)
         {
-            pointText.GetComponent<PointText>().scoreMultiplier = scoreMultiplier;
+            pointText.scoreMultiplier = scoreMultiplier;
         }
     }
 
     //Jellies don't increase the multiplier
-    public void AddCasualty(GameObject casualty)
+    public static void AddCasualty(PointText casualty)
     {
         comboObjects.Add(casualty);
     }
     
-    void EndCombo()
+    static void EndCombo()
     {
         int totalScore = 0;
 
-        foreach (GameObject pointText in comboObjects)
+        foreach (PointText pointText in comboObjects)
         {
-            totalScore += pointText.GetComponent<PointText>().scoreValue;
+            totalScore += pointText.scoreValue;
         }
 
         totalScore *= scoreMultiplier;
