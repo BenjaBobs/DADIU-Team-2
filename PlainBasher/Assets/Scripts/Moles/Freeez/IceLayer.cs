@@ -13,6 +13,8 @@ public class IceLayer : MonoBehaviour
 
     void OnMouseDown()
     {
+        if (Settings.instance.GetPaused()) return;
+
 		AudioManager.PlayTapIce ();
         Health--;
         if (Health <= 0)
