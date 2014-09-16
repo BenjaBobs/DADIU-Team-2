@@ -47,6 +47,7 @@ public class AudioClips : MonoBehaviour {
 
 	private void Awake() {
 		instance = this;
-		AudioManager.PlayMusic();
+		//AudioManager.PlayMusic();
+		AudioManager.PlaySplashMusic();
 	}
 }

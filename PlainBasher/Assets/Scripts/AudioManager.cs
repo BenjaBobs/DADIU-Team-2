@@ -92,6 +92,9 @@ public static class AudioManager {
 		else
 			aiSplashMusic.Play();
 	}
+	public static void StopSplashMusic(bool fade = true) {
+		aiSplashMusic.Stop(fade);
+	}
 
 
 	// Sfx
