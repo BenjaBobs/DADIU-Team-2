@@ -51,4 +51,11 @@ public class AudioClips : MonoBehaviour {
 		AudioManager.PlaySplashMusic();
 		ScoreManager.LoadTotalHighscore();
 	}
+
+	private void Update() {
+		if (Input.GetKeyDown(KeyCode.T))
+			AudioManager.ToggleEffects();
+		if (Input.GetKeyDown(KeyCode.Y))
+			AudioManager.ToggleMusic();
+	}
 }

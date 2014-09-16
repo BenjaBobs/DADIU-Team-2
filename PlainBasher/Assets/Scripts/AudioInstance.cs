@@ -15,6 +15,8 @@ public class AudioInstance : MonoBehaviour {
 
 	private void Awake() {
 		defaultVolume = volume;
+		Debug.Log (AudioManager.effectVolume);
+		//volume = AudioTag == AudioManager.AudioTag.Music ? defaultVolume * AudioManager.effectVolume : defaultVolume * AudioManager.musicVolume;
 		source = gameObject.GetComponent<AudioSource>();
 		AudioManager.ChangeVolume += ChangeVolume;
 	}
@@ -54,6 +56,7 @@ public class AudioInstance : MonoBehaviour {
 
 	private void ChangeVolume(string tag, float vol) {
 		if (tag == gameObject.tag) {
+			Debug.Log ("weqe");
 			volume = vol * defaultVolume;
 			source.volume = volume;
 		}

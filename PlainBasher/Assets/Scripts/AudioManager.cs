@@ -5,8 +5,8 @@ public static class AudioManager {
 	public delegate void ChangeVolumeEvent(string tag, float volume);
 	public static event ChangeVolumeEvent ChangeVolume;
 
-	private static float effectVolume = 1f;
-	private static float musicVolume = 1f;
+	public static float effectVolume = 1f;
+	public static float musicVolume = 1f;
 
 	public enum AudioTag {
 		Default,
@@ -262,6 +262,7 @@ public static class AudioManager {
 	/// Toggle effect sounds
 	/// </summary>
 	public static void ToggleEffects() {
+		Debug.Log (effectVolume);
 		effectVolume = effectVolume == 1f ? 0f : 1f;
 		ChangeVolume(GetTag(AudioTag.Effect), effectVolume);
 	}
