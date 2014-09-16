@@ -170,7 +170,7 @@ public class guiScore : MonoBehaviour {
         {
             foreach (string item in hs)
             {
-                if (item.Length > 0)
+                if (item != null && item.Length > 0)
                 {
                     GUI.Label(new Rect(Screen.width / 2 - 225, Screen.height / 10 + 100 + (25 * i), 450, 25), item.ToString());
                     i++;
