@@ -13,16 +13,28 @@ public class ManualSpawner : MonoBehaviour {
         public int positionX;
         public int positionY;
         public float waitTime;
+        //public int hitNumber;
+        public enum BlobTypes { Jelly1, Jelly2, Jelly3, Elektro, Explosion, Freeez };
+        public BlobTypes type = BlobTypes.Jelly1;
+        [HideInInspector]
         public GameObject blobType;
-        public int hitNumber;
     }
 
     public List<int> eventTimers;
+    float waitForSeconds = 1f;
+
     private int timeToNextEvent;
+
+
+    public static ManualSpawner staticRef;
 
     List<Spawner> allSpawners = new List<Spawner>();
 
 
+    void Awake()
+    {
+        staticRef = this;
+    }
 
 	void Start () {
         //place all spawner scripts in list
@@ -35,6 +47,7 @@ public class ManualSpawner : MonoBehaviour {
             }
         }
 
+        SetBlobType();
 
         if (eventTimers.Count != 0)
             timeToNextEvent = eventTimers[0];
@@ -46,6 +59,37 @@ public class ManualSpawner : MonoBehaviour {
 	void Update () {
 
 	}
+
+    void SetBlobType()
+    {
+        List<GameObject> prefabs = new List<GameObject>(Resources.LoadAll<GameObject>("Moles"));
+
+        foreach(SingleBlobPlacementProperties pp in manualBlobs)
+        {
+            switch (pp.type)
+            {
+                case SingleBlobPlacementProperties.BlobTypes.Jelly1:
+                    pp.blobType = prefabs.Find(x => x.gameObject.name == "Jelly");
+                    break;
+                case SingleBlobPlacementProperties.BlobTypes.Jelly2:
+                    pp.blobType = prefabs.Find(x => x.gameObject.name == "Jelly");
+                    break;
+                case SingleBlobPlacementProperties.BlobTypes.Jelly3:
+                    pp.blobType = prefabs.Find(x => x.gameObject.name == "Jelly");
+                    break;
+                case SingleBlobPlacementProperties.BlobTypes.Elektro:
+                    pp.blobType = prefabs.Find(x => x.gameObject.name == "Elektro");
+                    break;
+                case SingleBlobPlacementProperties.BlobTypes.Explosion:
+                    pp.blobType = prefabs.Find(x => x.gameObject.name == "Explosion");
+                    break;
+                case SingleBlobPlacementProperties.BlobTypes.Freeez:
+                    pp.blobType = prefabs.Find(x => x.gameObject.name == "Freeez");
+                    break;
+            }
+        }
+    }
+
 
     //Methods for manual blob placement
     public void ManuallyPlaceBlobs()
@@ -79,13 +123,31 @@ public class ManualSpawner : MonoBehaviour {
     //Placement of event blobs. Stops all other spawning while event is running
     IEnumerator BlobPlacement()
     {
+
+
         bool anyMoreEvents = true;
         int listProgress = 0;
+        float seconds;
 
         while (anyMoreEvents)
         {
+            seconds = 0;
+
             //wait for next event
-            yield return new WaitForSeconds(timeToNextEvent);
+            while(seconds < timeToNextEvent)
+            {
+                //TODO: tjek, om spillet er paused
+                while(Settings.instance.GetPaused() == true)
+                {
+                    yield return null;
+                }
+
+                yield return new WaitForSeconds(waitForSeconds);
+                seconds = seconds + waitForSeconds;
+
+            }
+            
+            
 
 
             //wipe board and stop the spawning
@@ -97,6 +159,11 @@ public class ManualSpawner : MonoBehaviour {
 
             for (int i = 0; i < manualBlobs.Count; i++)
             {
+                while (Settings.instance.GetPaused() == true)
+                {
+                    yield return null;
+                }
+
                 if (i > 0)
                 {
                     wait = manualBlobs[i].waitTime - manualBlobs[i - 1].waitTime;
@@ -105,8 +172,10 @@ public class ManualSpawner : MonoBehaviour {
                 {
                     wait = manualBlobs[i].waitTime;
                 }
+
                 //wait for the specific blob to spawn
                 yield return new WaitForSeconds(wait);
+                //TODO: pause her
 
                 Spawner theSpawner = Grid.GetSpawner(manualBlobs[i].positionX, manualBlobs[i].positionY);
                 theSpawner.PlaceMole(manualBlobs[i].blobType);
@@ -118,6 +187,10 @@ public class ManualSpawner : MonoBehaviour {
 
             while(anyMolesLeft == true)
             {
+                while (Settings.instance.GetPaused() == true)
+                {
+                    yield return null;
+                }
                 anyMolesLeft = false;
                 for (int x = 0; x < Grid.GetMaxX(); x++)
                 {
@@ -127,7 +200,7 @@ public class ManualSpawner : MonoBehaviour {
                             anyMolesLeft = true;
                     }
                 }
-                yield return new WaitForSeconds(1);
+                yield return new WaitForSeconds(0.1f);
             }
 
             //wipes board, just in case
