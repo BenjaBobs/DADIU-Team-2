@@ -14,9 +14,12 @@ public class Elektro : Mole
 
 		if (give_bonus)
 		{
+			LightningSpawner (90);
+			/*
 			for (int i = 0; i <= 270; i = i + 90) {
 					LightningSpawner (i);
 			}
+			*/
 			DestroyNearbyMoles (false);
 			DestroyNearbyMoles (true);
 		}
@@ -36,8 +39,8 @@ public class Elektro : Mole
     void LightningSpawner(int theRotation)
     {
 		Quaternion rot = Quaternion.Euler (0, theRotation, 0);
-        Instantiate(lightning, transform.position, rot); 
-    }
+		Instantiate(lightning, transform.position, rot); 
+	}
 
 	protected override void PlayDeathSound()
 	{
