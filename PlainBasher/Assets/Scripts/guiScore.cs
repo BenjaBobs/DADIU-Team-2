@@ -49,6 +49,7 @@ public class guiScore : MonoBehaviour {
             if (Player.Score > lhs[0])
             {
                 newBest = true;
+                ScoreManager.SaveLocalScore(Player.Score);
             }
         }
 	}

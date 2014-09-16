@@ -14,6 +14,7 @@ public class Spawner : MonoBehaviour {
 	public float nearbySpecialMultiplier = 20.0f;
 	public int minNearbyActivate = 1;
 	public int maxNearbyActivate = 5;
+    public bool isSpawning = true;
 
 	static List<GameObject> prefabs;
     static bool isLoaded = false;
@@ -129,7 +130,7 @@ public class Spawner : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		timeSinceSpawn += Settings.instance.GetDeltaTime() * GetSpawnRateMultiplier();
-		if (timeSinceSpawn >= currentFrequency) {
+		if (timeSinceSpawn >= currentFrequency && isSpawning == true) {
 			// Instantiate mole and set its parent
 			PlaceMole();
 		}
