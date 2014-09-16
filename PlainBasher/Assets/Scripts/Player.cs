@@ -13,17 +13,20 @@ public static class Player {
         }
         set
         {
-			int dmg = value - lives;            
-			if (dmg < 0) OnTakeDamage(dmg);
-			else OnHeal(dmg*-1);
-
-            if (lives > 0 && value <= 0)
+            if (!QADebugging.staticRef.godmode)
             {
-				OnGameOver ();
+			    int dmg = value - lives;            
+			    if (dmg < 0) OnTakeDamage(dmg);
+			    else OnHeal(dmg*-1);
+
+                if (lives > 0 && value <= 0)
+                {
+				    OnGameOver ();
+                }
+			    else if (lives > value && value > 0)
+				    Grid.WipeBoard();
+			    lives = value;
             }
-			else if (lives > value && value > 0)
-				Grid.WipeBoard();
-			lives = value;
         }
     }
 
@@ -46,7 +49,8 @@ public static class Player {
 		AudioManager.PlayGameOver ();
 		Settings.instance.SetPause(true);
 		//TODO: Initialize game end
-		QADebugging.staticRef.hasLost = true;
+        guiPlayer.staticref.enabled = false;
+
         guiScore.staticRef.enabled = true;
         
 	}
