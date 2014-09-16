@@ -170,10 +170,15 @@ public class guiScore : MonoBehaviour {
         {
             foreach (string item in hs)
             {
-                GUI.Label(new Rect(Screen.width / 2 - 225, Screen.height / 10 + 100 + (25 * i), 450, 25), item.ToString());
-                i++;
-                sc2 = false;
+                if (item.Length > 0)
+                {
+                    GUI.Label(new Rect(Screen.width / 2 - 225, Screen.height / 10 + 100 + (25 * i), 450, 25), item.ToString());
+                    i++;
+                    
+                }
+
             }
+            sc2 = false; 
         }
 
         //if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 10 + 400, 100, 100), "Retry"))
