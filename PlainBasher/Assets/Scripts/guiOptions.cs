@@ -25,7 +25,7 @@ public class guiOptions : MonoBehaviour {
 
 	void Start () {
 
-        background = Resources.Load("GUI/StartScreenV2") as Texture;
+        background = Resources.Load("GUI/StartScreenV3") as Texture;
         flagUKnot = Resources.Load("GUI/flagUK") as Texture;
         flagDKnot = Resources.Load("GUI/flagDK") as Texture;
         flagUKSelected = Resources.Load("GUI/flagUKselected") as Texture;
