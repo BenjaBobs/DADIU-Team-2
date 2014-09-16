@@ -15,7 +15,7 @@ public class Spawner : MonoBehaviour {
 	public int minNearbyActivate = 1;
 	public int maxNearbyActivate = 5;
     public bool isSpawning = true;
-    public Quaternion moleRotation = Quaternion.Euler(0, 90, 0);
+    private Quaternion moleRotation = Quaternion.Euler(0, 180, 0);
 
 	static List<GameObject> prefabs;
     static bool isLoaded = false;
