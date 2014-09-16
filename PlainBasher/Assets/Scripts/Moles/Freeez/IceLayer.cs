@@ -5,6 +5,7 @@ public class IceLayer : MonoBehaviour
 {
 
     public int Health = 3;
+	public GameObject breakParticle;
 
 	void Start()
 	{
@@ -19,6 +20,8 @@ public class IceLayer : MonoBehaviour
 		AudioManager.PlayTapIce ();
         Health--;
         if (Health <= 0) {
+			if (breakParticle)
+				Instantiate(breakParticle, transform.position, transform.rotation); 
 			AudioManager.LowPassFilter(false);
             DestroyImmediate(gameObject);
 		}
