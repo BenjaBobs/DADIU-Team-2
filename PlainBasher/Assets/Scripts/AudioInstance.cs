@@ -19,13 +19,12 @@ public class AudioInstance : MonoBehaviour {
 		defaultVolume = volume;
 		source = gameObject.GetComponent<AudioSource>();
 		AudioManager.ChangeVolume += ChangeVolume;
+		AudioManager.IceEvent += IceEvent;
 	}
 	
 	private void Start() {
 		volume = AudioTag == AudioManager.AudioTag.Music ? defaultVolume * AudioManager.effectVolume : defaultVolume * AudioManager.musicVolume;
 		source.volume = volume;
-		if (!ice)
-			lowPass = gameObject.AddComponent<AudioLowPassFilter>();
 	}
 	
 	public void SetDefaultVolume(float value) {
@@ -69,6 +68,19 @@ public class AudioInstance : MonoBehaviour {
 		if (tag == gameObject.tag) {
 			volume = vol * defaultVolume;
 			source.volume = volume;
+		}
+	}
+
+	private void IceEvent(bool on) {
+		if (!ice) {
+			if (on && lowPass == null) {
+				lowPass = gameObject.AddComponent<AudioLowPassFilter>();
+				lowPass.cutoffFrequency = 500f;
+			}
+			else if (lowPass != null) {
+				Destroy(lowPass);
+				lowPass = null;
+			}
 		}
 	}
 
