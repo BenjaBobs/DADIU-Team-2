@@ -42,10 +42,12 @@ public class guiOptions : MonoBehaviour {
 		if (GUI.Button(new Rect(posx - 100 - 150, Screen.height/4 + 50,200,200),flagUK))
         {
 			Localization.instance.SetLanguage(Localization.LocLanguage.English);
+			AudioManager.PlayButton();
         }
 		if (GUI.Button(new Rect(posx - 100 + 150, Screen.height/4 + 50,200,200),flagDK))
 		{
 			Localization.instance.SetLanguage(Localization.LocLanguage.Danish);
+			AudioManager.PlayButton();
 		}
 
 		if (GUI.Button(new Rect(posx- 75, Screen.height *0.8f, 150, 75), Localization.instance.GetString(Localization.LocKey.ReturnToMenu)))
@@ -54,6 +56,7 @@ public class guiOptions : MonoBehaviour {
             //Destroy(this);
             guiStart.staticref.enabled = true;
             this.enabled = false;
+			AudioManager.PlayButton();
         }
 
         
