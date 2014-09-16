@@ -67,8 +67,7 @@ public class ManualSpawner : MonoBehaviour {
             yield return new WaitForSeconds(wait);
 
             Spawner theSpawner = Grid.GetSpawner(manualBlobs[i].positionX, manualBlobs[i].positionY);
-
-            List<GameObject> moleTypes = new List<GameObject>(Resources.LoadAll<GameObject>("Resources/Moles")); //Rigtig sti?
+			theSpawner.PlaceMole(manualBlobs[i].blobType);
         }
 
 

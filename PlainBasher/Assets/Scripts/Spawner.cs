@@ -132,24 +132,33 @@ public class Spawner : MonoBehaviour {
 	void Update () {
 		timeSinceSpawn += Settings.instance.GetDeltaTime() * GetSpawnRateMultiplier();
 		if (timeSinceSpawn >= currentFrequency) {
-
-            CreateHole();
-
 			// Instantiate mole and set its parent
-			CalculateChildren();
-			hole.GetComponent<Hole>().DisplayParticles();
-			mole = (GameObject)Instantiate(childs[Random.Range(0, childs.Count)], transform.position, transform.rotation);
-			mole.transform.parent = gameObject.transform;
-			mole.GetComponent<Mole>().UpdateGridPosition(posX, posY);
-
-			timeSinceSpawn = 0.0f;
-			CalculateFrequency ();
-			int currentNearbyActivate = Random.Range (minNearbyActivate, maxNearbyActivate);
-			for (int i = 0; i < currentNearbyActivate; i++)
-				CheckNearbyActivate();
+			PlaceMole();
 		}
 	}
 
+	public void PlaceMole()
+	{
+		CalculateChildren();
+		PlaceMole(childs[Random.Range(0, childs.Count)]);
+	}
+
+	public void PlaceMole(GameObject type)
+	{
+		CreateHole();
+
+		hole.GetComponent<Hole>().DisplayParticles();
+		mole = (GameObject)Instantiate(type, transform.position, transform.rotation);
+		mole.transform.parent = gameObject.transform;
+		mole.GetComponent<Mole>().UpdateGridPosition(posX, posY);
+
+		timeSinceSpawn = 0.0f;
+		CalculateFrequency ();
+		int currentNearbyActivate = Random.Range (minNearbyActivate, maxNearbyActivate);
+		for (int i = 0; i < currentNearbyActivate; i++)
+			CheckNearbyActivate();
+	}
+	
 	void CalculateFrequency()
 	{
 		currentFrequency = Random.Range (minFrequency, maxFrequency);
