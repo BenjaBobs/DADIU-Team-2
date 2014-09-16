@@ -65,16 +65,16 @@ public class QADebugging : MonoBehaviour {
             {
                 spawnRef.PlaceMole(prefabElektro);
             }
-            if (GUI.Button(new Rect(420, 0, 100, 25), "Spawn Explosion"))
+            if (GUI.Button(new Rect(420, 0, 120, 25), "Spawn Explosion"))
             {
                 spawnRef.PlaceMole(prefabExplosion);
             }
-            if (GUI.Button(new Rect(520, 0, 100, 25), "Spawn Freeez"))
+            if (GUI.Button(new Rect(540, 0, 100, 25), "Spawn Freeez"))
             {
                 spawnRef.PlaceMole(prefabFreeez);
             }
 
-            if (GUI.Button(new Rect(640, 0, 100, 25), "Godmode " + (godmode ? "On" : "Off")))
+            if (GUI.Button(new Rect(660, 0, 100, 25), "Godmode " + (godmode ? "On" : "Off")))
             {
                 godmode = !godmode;
             }
