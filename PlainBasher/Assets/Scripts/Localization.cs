@@ -89,7 +89,7 @@ public class Localization {
         translations[LocKey.noUpload][LocLanguage.English] = "Cannot upload a score of 0";
         translations[LocKey.noUpload][LocLanguage.Danish] = "Kan ikke uploade et resultat på 0";
 
-        translations[LocKey.ReturnToMenu][LocLanguage.Danish] = "Gå tilbage til menuen";
+        translations[LocKey.ReturnToMenu][LocLanguage.Danish] = "Tilbage til menuen";
         translations[LocKey.ReturnToMenu][LocLanguage.English] = "Return to menu";
 
 
