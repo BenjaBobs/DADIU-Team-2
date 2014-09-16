@@ -7,9 +7,12 @@ public class guiOptions : MonoBehaviour {
     public bool music = true;
     public bool sound = true;
     private bool bflag = true;
-    private Texture flag;
     private Texture flagUK;
     private Texture flagDK;
+    private Texture flagUKnot;
+    private Texture flagDKnot;
+    private Texture flagUKSelected;
+    private Texture flagDKSelected;
     private GUISkin skinMenu;
     private bool oldsound= true;
     private bool oldmusic = true;
@@ -22,19 +25,23 @@ public class guiOptions : MonoBehaviour {
 
 	void Start () {
 
-        background = Resources.Load("GUI/loadingScreen") as Texture;
-        flagUK = Resources.Load("GUI/flagUK") as Texture;
-        flagDK = Resources.Load("GUI/flagDK") as Texture;
+        background = Resources.Load("GUI/IntroScene") as Texture;
+        flagUKnot = Resources.Load("GUI/flagUK") as Texture;
+        flagDKnot = Resources.Load("GUI/flagDK") as Texture;
+        flagUKSelected = Resources.Load("GUI/flagUKselected") as Texture;
+        flagDKSelected = Resources.Load("GUI/flagDKselected") as Texture;
 
         if (Localization.instance.GetLanguage())
         {
             bflag = true;
-            flag = flagUK;
+            flagUK = flagUKSelected;
+            flagDK = flagDKnot;
         }
         else
         {
             bflag = false;
-            flag = flagDK;
+            flagUK = flagUKnot;
+            flagDK = flagDKSelected;
         }
         skinMenu = Resources.Load("GUI/GUIMenu") as GUISkin;
 
@@ -78,29 +85,33 @@ public class guiOptions : MonoBehaviour {
 
     void OnGUI()
     {
-        
-        GUI.skin = skinMenu;
-        GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), background, ScaleMode.ScaleToFit);
 
+
+        GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), background, ScaleMode.StretchToFill);
+        GUI.skin = skinMenu;
         GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height / 4 -100, 200, 30), "Toggle "+ Localization.instance.GetString(Localization.LocKey.Music));
         music = GUI.Toggle(new Rect(Screen.width / 2 + 100 , Screen.height / 4 -100, 40, 40), music, "");
 
         GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height / 4 - 25, 200, 30), "Toggle " + Localization.instance.GetString(Localization.LocKey.Soundfx));
         sound = GUI.Toggle(new Rect(Screen.width / 2 + 100, Screen.height / 4 -25  , 40, 40), sound, "");
 
-        if (GUI.Button(new Rect(Screen.width/2 - 45, Screen.height/4 + 50,100,80),flag))
+        if (GUI.Button(new Rect(Screen.width/2 - 100, Screen.height/4 + 50,100,80),flagUK))
         {
-            bflag = !bflag;
-            flag = bflag ? flagUK : flagDK;
-            if (bflag)
-            {
+            bflag = true;
+
                 Localization.instance.SetLanguage(Localization.LocLanguage.English);
-            }
-            else
-            {
-                Localization.instance.SetLanguage(Localization.LocLanguage.Danish);
-            }
+                flagUK = flagUKSelected;
+                flagDK = flagDKnot;
             
+        }
+
+        if (GUI.Button(new Rect(Screen.width / 2 +50, Screen.height / 4 + 50, 100, 80), flagDK))
+        {
+            bflag = false;
+
+                Localization.instance.SetLanguage(Localization.LocLanguage.Danish);
+                flagUK = flagUKnot;
+                flagDK = flagDKSelected;
         }
 
         if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 4 + 250, 200, 100), "Return to menu")) // localization

@@ -15,7 +15,7 @@ public class guiStart : MonoBehaviour {
 	void Start () {
 
         Settings.instance.SetPause(true);
-        background = Resources.Load("GUI/loadingScreen") as Texture;
+        background = Resources.Load("GUI/IntroScene") as Texture;
         skinMenu = Resources.Load("GUI/GUIMenu") as GUISkin;
 	}
 	
@@ -26,10 +26,10 @@ public class guiStart : MonoBehaviour {
 
     void OnGUI()
     {
-        GUI.skin = skinMenu;
+        
         //Le´background, cause it is awsome
-        GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), background, ScaleMode.ScaleToFit);
-
+        GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), background, ScaleMode.StretchToFill);
+        GUI.skin = skinMenu;
         //GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height/4, 100, 30), Localization.instance.GetString(Localization.LocKey.PlayerName));
         //playerName = GUI.TextField(new Rect(Screen.width / 2, Screen.height / 4 , 200, 30), playerName, 25);
         if (GUI.Button(new Rect(Screen.width / 2 - (butonWidth / 2), Screen.height / 4 + 50, butonWidth, 50), "START")) //no need for localization
