@@ -95,7 +95,6 @@ public static class Grid {
 				Mole m = GetMole (x, y);
 				if (!m)
 					continue;
-				RemoveFromGrid (x, y);
 				if (m.IsDead ())
 					continue;
 				m.OnDeath (false);

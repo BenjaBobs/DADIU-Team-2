@@ -207,14 +207,43 @@ public static class AudioManager {
 			aiTapSmallJelly.Play();
 	}
 	private static AudioInstance aiDestroyJelly;
+	private static int lastPlayed = 0;
+	private static AudioClip GetJellySound() {
+		int newId;
+		do {
+			newId = Random.Range(1,9);
+		} while (newId == lastPlayed);
+		lastPlayed = newId;
+
+		switch(lastPlayed) {
+		case 1:
+			return AudioClips.instance.destroyJelly1;
+		case 2:
+			return AudioClips.instance.destroyJelly2;
+		case 3:
+			return AudioClips.instance.destroyJelly3;
+		case 4:
+			return AudioClips.instance.destroyJelly4;
+		case 5:
+			return AudioClips.instance.destroyJelly5;
+		case 6:
+			return AudioClips.instance.destroyJelly6;
+		case 7:
+			return AudioClips.instance.destroyJelly7;
+		default:
+			return AudioClips.instance.destroyJelly8;
+		}
+	}
 	/// <summary>
 	/// Play when Jelly destroys
 	/// </summary>
 	public static void PlayDestroyJelly() {
 		if (aiDestroyJelly == null)
-			aiDestroyJelly = Play (AudioClips.instance.destroyJelly, AudioTag.Effect, AudioClips.instance.destroyJellyVolume);
-		else
+			aiDestroyJelly = Play (GetJellySound(), AudioTag.Effect, AudioClips.instance.destroyJellyVolume);
+		else {
+			aiDestroyJelly.SetClip(GetJellySound());
 			aiDestroyJelly.Play();
+		}
 	}
 
 	// Ground
