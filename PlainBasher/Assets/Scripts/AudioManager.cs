@@ -42,8 +42,8 @@ public static class AudioManager {
 			MonoBehaviour.Destroy(go, length > 0f ? length : (loop ? clip.length * (loopTimes == 0 ? 1 : loopTimes) : clip.length));
 		return audioInstance;
 	}
-	private static AudioInstance Play(AudioClip clip, AudioTag tag = AudioTag.Default, float volume = 1f) {
-		return Play(clip, Camera.main.transform, tag, volume);
+	private static AudioInstance Play(AudioClip clip, AudioTag tag = AudioTag.Default, float volume = 1f, bool loop = false) {
+		return Play(clip, Camera.main.transform, tag, volume, loop);
 	}
 	private static AudioInstance Play(AudioClip clip, AudioTag tag, AudioClip clip2, bool loop2 = false, float volume = 1f) {
 		AudioInstance ai = Play(clip, Camera.main.transform, tag, volume);
@@ -59,7 +59,7 @@ public static class AudioManager {
 	/// </summary>
 	public static void PlayGameOver() {
 		if (aiGameOver == null)
-			aiGameOver = Play (AudioClips.instance.gameOver, AudioTag.Music);
+			aiGameOver = Play (AudioClips.instance.gameOver, AudioTag.Music, AudioClips.instance.gameOverVolume);
 		else
 			aiGameOver.Play();
 	}
@@ -69,28 +69,31 @@ public static class AudioManager {
 	/// </summary>
 	public static void PlayMusic() {
 		if (aiMusic == null)
-			aiMusic = Play (AudioClips.instance.music, AudioTag.Music, AudioClips.instance.musicLoop, true);
+			aiMusic = Play (AudioClips.instance.music, AudioTag.Music, AudioClips.instance.musicLoop, true, AudioClips.instance.musicVolume);
 		else
 			aiMusic.Play();
 	}
 	/// <summary>
 	/// Short loop of background music to be looped when the original background music stops, after 5:19min into the gameplay
 	/// </summary>
-	public static void PlayMusicLoop() {
+	/*public static void PlayMusicLoop() {
 		if (aiMusic == null)
-			aiMusic = Play (AudioClips.instance.musicLoop, AudioTag.Music);
+			aiMusic = Play (AudioClips.instance.musicLoop, AudioTag.Music, AudioClips.instance.musicVolume);
 		else
 			aiMusic.Play();
-	}
+	}*/
 	private static AudioInstance aiSplashMusic;
 	/// <summary>
 	/// Theme music for splash screen
 	/// </summary>
 	public static void PlaySplashMusic() {
 		if (aiSplashMusic == null)
-			aiSplashMusic = Play (AudioClips.instance.musicSplash, AudioTag.Music);
+			aiSplashMusic = Play (AudioClips.instance.musicSplash, AudioTag.Music, AudioClips.instance.musicSplashVolume, true);
 		else
 			aiSplashMusic.Play();
+	}
+	public static void StopSplashMusic(bool fade = true) {
+		aiSplashMusic.Stop(fade);
 	}
 
 
@@ -101,7 +104,7 @@ public static class AudioManager {
 	/// </summary>
 	public static void PlayButton() {
 		if (aiButton == null)
-			aiButton = Play (AudioClips.instance.button, AudioTag.Effect);
+			aiButton = Play (AudioClips.instance.button, AudioTag.Effect, AudioClips.instance.buttonVolume);
 		else
 			aiButton.Play();
 	}
@@ -111,7 +114,7 @@ public static class AudioManager {
 	/// </summary>
 	public static void PlayLoseLife() {
 		if (aiLoseLife == null)
-			aiLoseLife = Play (AudioClips.instance.loseLife, AudioTag.Effect);
+			aiLoseLife = Play (AudioClips.instance.loseLife, AudioTag.Effect, AudioClips.instance.loseLifeVolume);
 		else
 			aiLoseLife.Play();
 	}
@@ -121,7 +124,7 @@ public static class AudioManager {
 	/// </summary>
 	public static void PlayPointCount() {
 		if (aiPointCount == null)
-			aiPointCount = Play (AudioClips.instance.pointCount, AudioTag.Effect);
+			aiPointCount = Play (AudioClips.instance.pointCount, AudioTag.Effect, AudioClips.instance.pointCountVolume);
 		else
 			aiPointCount.Play();
 	}
@@ -134,7 +137,7 @@ public static class AudioManager {
 	/// </summary>
 	public static void PlayDestroyElektro() {
 		if (aiDestroyElektro == null)
-			aiDestroyElektro = Play (AudioClips.instance.destroyElektro, AudioTag.Effect);
+			aiDestroyElektro = Play (AudioClips.instance.destroyElektro, AudioTag.Effect, AudioClips.instance.destroyElektroVolume);
 		else
 			aiDestroyElektro.Play();
 	}
@@ -144,7 +147,7 @@ public static class AudioManager {
 	/// </summary>
 	public static void PlayDestroyExplosion() {
 		if (aiDestroyExplosion == null)
-			aiDestroyExplosion = Play (AudioClips.instance.destroyExplosion, AudioTag.Effect);
+			aiDestroyExplosion = Play (AudioClips.instance.destroyExplosion, AudioTag.Effect, AudioClips.instance.destroyExplosionVolume);
 		else
 			aiDestroyExplosion.Play();
 	}
@@ -154,7 +157,7 @@ public static class AudioManager {
 	/// </summary>
 	public static void PlayDestroyFreeze() {
 		if (aiDestroyFreeze == null)
-			aiDestroyFreeze = Play (AudioClips.instance.destroyFreeze, AudioTag.Effect);
+			aiDestroyFreeze = Play (AudioClips.instance.destroyFreeze, AudioTag.Effect, AudioClips.instance.destroyFreezeVolume);
 		else
 			aiDestroyFreeze.Play();
 	}
@@ -164,7 +167,7 @@ public static class AudioManager {
 	/// </summary>
 	public static void PlayHoldFreeze() {
 		if (aiFreeze == null)
-			aiFreeze = Play (AudioClips.instance.holdFreeze, AudioTag.Effect);
+			aiFreeze = Play (AudioClips.instance.holdFreeze, AudioTag.Effect, AudioClips.instance.holdFreezeVolume);
 		else
 			aiFreeze.Play();
 	}
@@ -180,7 +183,7 @@ public static class AudioManager {
 	/// </summary>
 	public static void PlayTapBigJelly() {
 		if (aiTapBigJelly == null)
-			aiTapBigJelly = Play (AudioClips.instance.tapBigJelly, AudioTag.Effect);
+			aiTapBigJelly = Play (AudioClips.instance.tapBigJelly, AudioTag.Effect, AudioClips.instance.tapBigJellyVolume);
 		else
 			aiTapBigJelly.Play();
 	}
@@ -190,7 +193,7 @@ public static class AudioManager {
 	/// </summary>
 	public static void PlayTapSmallJelly() {
 		if (aiTapSmallJelly == null)
-			aiTapSmallJelly = Play (AudioClips.instance.tapSmallJelly, AudioTag.Effect);
+			aiTapSmallJelly = Play (AudioClips.instance.tapSmallJelly, AudioTag.Effect, AudioClips.instance.tapSmallJellyVolume);
 		else
 			aiTapSmallJelly.Play();
 	}
@@ -200,7 +203,7 @@ public static class AudioManager {
 	/// </summary>
 	public static void PlayDestroyJelly() {
 		if (aiDestroyJelly == null)
-			aiDestroyJelly = Play (AudioClips.instance.destroyJelly, AudioTag.Effect);
+			aiDestroyJelly = Play (AudioClips.instance.destroyJelly, AudioTag.Effect, AudioClips.instance.destroyJellyVolume);
 		else
 			aiDestroyJelly.Play();
 	}
@@ -212,7 +215,7 @@ public static class AudioManager {
 	/// </summary>
 	public static void PlayTapGround() {
 		if (aiTapGround == null)
-			aiTapGround = Play (AudioClips.instance.tapGround, AudioTag.Effect);
+			aiTapGround = Play (AudioClips.instance.tapGround, AudioTag.Effect, AudioClips.instance.tapGroundVolume);
 		else
 			aiTapGround.Play();
 	}
@@ -224,7 +227,7 @@ public static class AudioManager {
 	/// </summary>
 	public static void PlayIceAppear() {
 		if (aiIceAppear == null)
-			aiIceAppear = Play (AudioClips.instance.iceAppear, AudioTag.Effect);
+			aiIceAppear = Play (AudioClips.instance.iceAppear, AudioTag.Effect, AudioClips.instance.iceAppearVolume);
 		else
 			aiIceAppear.Play();
 	}
@@ -236,7 +239,7 @@ public static class AudioManager {
 	public static void PlayTapIce() {
 		++iceTapCounter;
 		if (aiTapGround == null)
-			aiTapGround = Play (AudioClips.instance.tapIce1, AudioTag.Effect);
+			aiTapGround = Play (AudioClips.instance.tapIce1, AudioTag.Effect, AudioClips.instance.tapIceVolume);
 		else {
 			switch (iceTapCounter) {
 			case 1:
