@@ -27,6 +27,8 @@ public class guiScore : MonoBehaviour {
     }
 
 	void Start () {
+		ScoreManager.UnsetHighscore();
+
         menuSkin = Resources.Load("GUI/GUIMenu") as GUISkin;
         uploaded = false;
 
@@ -71,12 +73,12 @@ public class guiScore : MonoBehaviour {
             {
 
 
-                ScoreManager.LoadHighscore(); // load the HS
+                //ScoreManager.LoadHighscore(); // load the HS
                 sc = ScoreManager.IsHighscoreLoaded(); // did it get loaded?
                 if (sc)
                 {
                     hs = ScoreManager.GetHighscore(); //get the score
-                    if (ScoreManager.GetHighscore().Length > 0)
+					if (hs.Length > 0)
                         sc = false;
                     
                 }
@@ -128,6 +130,7 @@ public class guiScore : MonoBehaviour {
 
 		if (Player.Score > 0) {
 			if (!uploaded) {
+				//ScoreManager.UnsetHighscore();
 
 				// Show score
 				GUI.Label (new Rect (Screen.width / 2 - (Screen.height - size * 2) / 2 + 20f, size * 4.6f, Screen.height - size * 2, size * 2), Localization.instance.GetString (Localization.LocKey.Score) + ": " + Player.Score.ToString ());
@@ -135,9 +138,12 @@ public class guiScore : MonoBehaviour {
 				if (lhs.GetLength (0) > 0)
 					GUI.Label (new Rect (Screen.width / 2 - (Screen.height - size * 2) / 2 + 20f, size * 6.6f, Screen.height - size * 2, size * 2), Localization.instance.GetString (Localization.LocKey.Local) + " highscore: " + lhs [0].ToString ());
 
-
-				//if (flash)
-					GUI.Label (new Rect (Screen.width / 2 + 100, Screen.height / 10, 200, size * 2), Localization.instance.GetString (Localization.LocKey.NPB));
+				// Local best
+				if (flash) {
+					GUI.skin.label.alignment = TextAnchor.MiddleRight;
+					GUI.Label (new Rect (Screen.width / 2 - (Screen.height - size * 2) / 2 - 20f, size * 4.6f, Screen.height - size * 2, size * 2), Localization.instance.GetString (Localization.LocKey.NPB));
+				}
+				GUI.skin.label.alignment = TextAnchor.MiddleLeft;
 
 				// Player name
 				GUI.Label (new Rect (Screen.width / 2 - (Screen.height - size * 2) / 2f + 20f, size * 8.6f, (Screen.height - size * 2f) / 2f - 10f, size * 2), Localization.instance.GetString (Localization.LocKey.PlayerName) + ":");
@@ -153,7 +159,7 @@ public class guiScore : MonoBehaviour {
 						noName = true;
 				}
 				if (noNameflash)
-					GUI.Label (new Rect (Screen.width / 2 - 100, Screen.height / 10 + 50, 200, 30), Localization.instance.GetString (Localization.LocKey.PlayerName));
+					GUI.Label (new Rect (Screen.width / 2 - (Screen.height - size * 2) / 2f + 20f, size * 10.6f, (Screen.height - size * 2f) / 2f - 10f, size * 2), Localization.instance.GetString (Localization.LocKey.PlayerName));
 			}
 			else {
 
@@ -177,7 +183,7 @@ public class guiScore : MonoBehaviour {
 				else
 					GUI.Label (new Rect (Screen.width / 2 - 50, Screen.height / 2, 100, 50), "Fejl...");
 			}
-			sc2 = false; 
+			sc2 = false;
 		}
 		/*else {
 			GUI.skin.label.alignment = TextAnchor.MiddleCenter;

@@ -9,13 +9,14 @@ public class ScoreManager : MonoBehaviour {
 	protected readonly string highscoreURL = "http://chx.dk/connect/dadiu.php?highscore=1";
 	protected readonly string totalHighscoreURL = "http://chx.dk/connect/dadiu.php?total_highscore=1";
 	private static bool uploaded = false;
-	private static bool highscoreLoaded = false, highscoreDoneLoading = true;
+	private static bool highscoreLoaded = false;
+	private static bool highscoreDoneLoading = true;
 	private static string[] highscore = new string[0];
+	private static string[] total_highscore = new string[0];
 	private static int oldHighscoreScore = 0;
 	private static int numberBest = 3; // Best scores in highscore list
 	private static int numberBetter = 3; // Better scores than current in highscore list
 	private static int numberWorst = 3; // Worse scores than current in highscore list
-	private static int lastScore = 0; // Last saved score
 	private static int totalHighscore = 0; // Total highscore
 
 	// Singleton
@@ -56,7 +57,14 @@ public class ScoreManager : MonoBehaviour {
 			instance.StartCoroutine (instance.GetHighscoreData ());
 		}
 	}
-
+	
+	public static void UnsetHighscore() {
+		highscoreLoaded = false;
+		highscoreDoneLoading = false;
+		highscore = new string[0];
+		uploaded = false;
+	}
+	
 	/// <summary>
 	/// Returns the global highscore.
 	/// The length of the array is dynamic.
@@ -117,11 +125,11 @@ public class ScoreManager : MonoBehaviour {
 	/// <param name="name">Name</param>
 	/// <param name="score">Score</param>
 	public static void AddScore(string name, int score) {
+		highscoreLoaded = false;
 		if (score > totalHighscore)
 			totalHighscore = score;
 
 		instance.StartCoroutine(instance.UploadScore(name, score));
-		lastScore = score;
 	}
 
 
@@ -130,20 +138,20 @@ public class ScoreManager : MonoBehaviour {
 	}
 
 
-	private IEnumerator GetHighscoreData() {
+	private IEnumerator GetHighscoreData(int score = 0) {
 		WWWForm form;
 		WWW www = null;
-		
+
 		int index = 0;
 		while (www == null && index < 20) {
 			index++;
 			
 			form = new WWWForm();
-			if (lastScore > 0) {
+			if (score > 0) {
 				form.AddField("best", numberBest.ToString());
 				form.AddField("better", numberBetter.ToString());
 				form.AddField("worse", numberWorst.ToString());
-				form.AddField("score", lastScore.ToString());
+				form.AddField("score", score.ToString());
 			}
 			else
 				form.AddField("best", (numberBest + numberBetter + numberWorst + 1).ToString());
@@ -188,7 +196,9 @@ public class ScoreManager : MonoBehaviour {
 		
 		if (index < 20) {
 			uploaded = true;
-			Debug.Log ("uploaded:" + name  + " score:" + score);
+
+			highscoreLoaded = true;
+			instance.StartCoroutine(instance.GetHighscoreData(score));
 		}
 		else
 			Debug.Log ("not uploaded");
