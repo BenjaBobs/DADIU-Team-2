@@ -18,9 +18,9 @@ public class guiScore : MonoBehaviour {
     public GUISkin menuSkin;
     public string playerName = "";
     private bool uploaded;
-    private bool retard = false;
-    private bool retardflash = false;
-    private int retardcount = 0;
+    private bool noName = false;
+	private bool noNameflash = false;
+	private int noNameCount = 0;
 
     void Awake() {
         staticRef = this;
@@ -82,20 +82,20 @@ public class guiScore : MonoBehaviour {
                 }
             }
         }
-        if (retard)
+		if (noName)
         {
             
             if (flashtimer < Time.time)
             {
                 flashtimer = Time.time + 0.4f;
-                retardflash = !retardflash;
-                retardcount++;
+				noNameflash = !noNameflash;
+                noNameCount++;
 
-                if (retardcount > 10)
+                if (noNameCount > 10)
                 {
-                    retardcount = 0;
-                    retard = false;
-                    retardflash = false;
+                    noNameCount = 0;
+                    noName = false;
+                    noNameflash = false;
 
                 }
                 
@@ -124,16 +124,18 @@ public class guiScore : MonoBehaviour {
 		if (Player.Score > 0) {
 			if (!uploaded) {
 				GUI.Label (new Rect (Screen.width / 2 - 180, Screen.height / 10 + 25, 200, 30), Localization.instance.GetString (Localization.LocKey.PlayerName));
-				playerName = GUI.TextField (new Rect (Screen.width / 2 - 100, Screen.height / 10 + 20, 150, 30), playerName, 20);
 
-				if (GUI.Button (new Rect (Screen.width / 2 + 50, Screen.height / 10 + 20, 100, 30), "Upload score")) {
-						if (playerName.Length > 0) {
-								ScoreManager.AddScore (playerName, Player.Score); //Add score
-								uploaded = true;
-						} else
-								retard = true;
+				playerName = GUI.TextField (new Rect (Screen.width / 2 - (Screen.height - size * 2) / 2f + 10f, size * 3 + 10f, (Screen.height - size * 2f) / 2f - 10f, 30f), playerName, 20);
+
+				if (GUI.Button(new Rect(Screen.width / 2 - (Screen.height - size * 2) / 2 + (Screen.height - size * 2f) / 2f, size * 3, (Screen.height - size * 2f) / 2f, 50f), "Upload score")) {
+					if (playerName.Length > 0) {
+						ScoreManager.AddScore (playerName, Player.Score); //Add score
+						uploaded = true;
+					}
+					else
+						noName = true;
 				}
-				if (retardflash)
+				if (noNameflash)
 					GUI.Label (new Rect (Screen.width / 2 - 100, Screen.height / 10 + 50, 200, 30), Localization.instance.GetString (Localization.LocKey.PlayerName));
 			} else
 				GUI.Label (new Rect (Screen.width / 2 - 100, Screen.height / 10 + 25, 200, 30), "Uploaded");
@@ -152,21 +154,24 @@ public class guiScore : MonoBehaviour {
 			}
 			sc2 = false; 
 		}
-		else {
+		/*else {
 			GUI.skin.label.alignment = TextAnchor.MiddleCenter;
 			GUI.Label (new Rect (Screen.width / 2 - 50, Screen.height / 2, 100, 50), "Loader...");
+		}*/
+
+		if (GUI.Button(new Rect(Screen.width / 2 - (Screen.height - size * 2) / 2 + (Screen.height - size * 2f) / 2f, Screen.height - size * 4, (Screen.height - size * 2f) / 2f, 50f), "Retry")) {
+			AudioManager.StopSplashMusic();
+			AudioManager.PlayButton();
+			Settings.instance.SetPause(false);
+			AudioManager.PlayMusic();
+			this.enabled = false;
 		}
 
-		if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 10 + 400, 100, 100), "Retry")) {
-		    //close gui and start game
-		    Destroy(this);
-		}
-
-		if (GUI.Button(new Rect(Screen.width / 2 - (Screen.height - size * 2) / 2, Screen.height - size * 4, (Screen.height - size * 2f) / 2f, size), "Return to menu")) { //localization
+		if (GUI.Button(new Rect(Screen.width / 2 - (Screen.height - size * 2) / 2, Screen.height - size * 4, (Screen.height - size * 2f) / 2f, 50f), "Return to menu")) {
 			Player.Reset();
 			Application.LoadLevel(Application.loadedLevel);
-		//gameObject.AddComponent("guiStart");
-		//Destroy(this);
+			//gameObject.AddComponent("guiStart");
+			//Destroy(this);
 		}
 	}
 }
