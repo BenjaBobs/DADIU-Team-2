@@ -7,6 +7,7 @@ public class ScoreManager : MonoBehaviour {
 	// Database connection
 	protected readonly string baseURL = "http://chx.dk/connect/dadiu.php";
 	protected readonly string highscoreURL = "http://chx.dk/connect/dadiu.php?highscore=1";
+	protected readonly string totalHighscoreURL = "http://chx.dk/connect/dadiu.php?total_highscore=1";
 	private static bool uploaded = false;
 	private static bool highscoreLoaded = false, highscoreDoneLoading = true;
 	private static string[] highscore = new string[0];
@@ -15,12 +16,12 @@ public class ScoreManager : MonoBehaviour {
 	private static int numberBetter = 3; // Better scores than current in highscore list
 	private static int numberWorst = 3; // Worse scores than current in highscore list
 	private static int lastScore = 0; // Last saved score
+	private static int totalHighscore = 0; // Total highscore
 
 	// Singleton
 	public static ScoreManager instance;
 
 	private void Awake() {
-
 		if (instance == null)
 			instance = this;
 	}
@@ -99,6 +100,9 @@ public class ScoreManager : MonoBehaviour {
 	/// <param name="name">Name</param>
 	/// <param name="score">Score</param>
 	public static void AddScore(string name, int score) {
+		if (score > totalHighscore)
+			totalHighscore = score;
+
 		instance.StartCoroutine(instance.UploadScore(name, score));
 		lastScore = score;
 
@@ -171,7 +175,7 @@ public class ScoreManager : MonoBehaviour {
 			
 			yield return www;
 		}
-
+		
 		if (index < 20) {
 			uploaded = true;
 			Debug.Log ("uploaded:" + name  + " score:" + score);
@@ -181,6 +185,33 @@ public class ScoreManager : MonoBehaviour {
 	}
 
 
+	public static int GetTotalHighscore() {
+		return totalHighscore;
+	}
+	
+	public static void LoadTotalHighscore() {
+		instance.StartCoroutine(instance.LoadTotalHighscoreDB());
+	}
+	
+	private IEnumerator LoadTotalHighscoreDB() {
+		WWW www = null;
+		
+		int index = 0;
+		while (www == null && index < 50) {
+			index++;
+			
+			www = new WWW(totalHighscoreURL);
+			
+			yield return www;
+		}
+		
+		if (index < 50)
+			totalHighscore = int.Parse(www.text);
+		else
+			totalHighscore = !PlayerPrefs.HasKey ("highscore_score") ? 0 : PlayerPrefs.GetInt ("highscore_score");
+	}
+	
+	
 	private byte[] GetBytes(string str) {
 		byte[] bytes = new byte[str.Length * sizeof(char)];
 		System.Buffer.BlockCopy(str.ToCharArray(), 0, bytes, 0, bytes.Length);
