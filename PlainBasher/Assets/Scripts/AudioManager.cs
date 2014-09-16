@@ -4,7 +4,10 @@ using System.Collections;
 public static class AudioManager {
 	public delegate void ChangeVolumeEvent(string tag, float volume);
 	public static event ChangeVolumeEvent ChangeVolume;
-
+	
+	public delegate void OnIceEvent(bool on);
+	public static event OnIceEvent IceEvent;
+	
 	public static float effectVolume = 1f;
 	public static float musicVolume = 1f;
 
@@ -277,5 +280,11 @@ public static class AudioManager {
 	public static void ToggleMusic() {
 		musicVolume = musicVolume == 1f ? 0f : 1f;
 		ChangeVolume(GetTag(AudioTag.Music), musicVolume);
+	}
+
+
+	public static void LowPassFilter(bool on) {
+
+		IceEvent(on);
 	}
 }

@@ -130,10 +130,14 @@ public class ScoreManager : MonoBehaviour {
 			index++;
 			
 			form = new WWWForm();
-			form.AddField("best", numberBest.ToString());
-			form.AddField("better", numberBetter.ToString());
-			form.AddField("worse", numberWorst.ToString());
-			form.AddField("score", lastScore.ToString());
+			if (lastScore > 0) {
+				form.AddField("best", numberBest.ToString());
+				form.AddField("better", numberBetter.ToString());
+				form.AddField("worse", numberWorst.ToString());
+				form.AddField("score", lastScore.ToString());
+			}
+			else
+				form.AddField("best", (numberBest + numberBetter + numberWorst + 1).ToString());
 
 			www = new WWW(highscoreURL, form);
 			
