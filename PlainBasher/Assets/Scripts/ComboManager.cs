@@ -14,7 +14,6 @@ public class ComboManager : MonoBehaviour
     }
     #endregion
 
-    static int scoreMultiplier = 0;
     static List<PointText> comboObjects = new List<PointText>();
     static float comboTime = 0.1f;
     static bool isComboing = false;
@@ -31,12 +30,11 @@ public class ComboManager : MonoBehaviour
 
     public static void AddChain(PointText chainer)
     {
-        scoreMultiplier++;
         comboObjects.Add(chainer);
 
         foreach (PointText pointText in comboObjects)
         {
-            pointText.scoreMultiplier = scoreMultiplier;
+            pointText.scoreMultiplier = comboObjects.Count;
         }
     }
 
@@ -57,11 +55,11 @@ public class ComboManager : MonoBehaviour
             totalScore += pointText.scoreValue;
         }
 
-        totalScore *= scoreMultiplier;
+        totalScore *= comboObjects.Count;
+        comboObjects.Clear();
 
         Player.Score += totalScore;
 
-        scoreMultiplier = 1;
     }
 
 }
