@@ -43,6 +43,14 @@ public class guiStart : MonoBehaviour {
             {
                 guiPlayer.staticref.enabled = true;
             }
+
+            if (ManualSpawner.staticRef)
+            {
+                ManualSpawner.staticRef.ManuallyPlaceBlobs();
+            }
+
+
+
             this.enabled = false;
         }
         if (GUI.Button(new Rect(Screen.width / 2 - (butonWidth / 2), Screen.height / 4 + 130, butonWidth, 50), Localization.instance.GetString(Localization.LocKey.Scoreboard).ToUpper()))
