@@ -298,6 +298,31 @@ public static class AudioManager {
 	}
 
 
+	// Cows
+	private static AudioInstance aiTapCow;
+	/// <summary>
+	/// Play when Elektro destroys
+	/// </summary>
+	public static void PlayCow1() {
+		if (aiTapCow == null)
+			aiTapCow = Play(AudioClips.instance.tapCow1, AudioTag.Effect, AudioClips.instance.tapCowVolume);
+		else
+			aiTapCow.Play();
+	}
+	public static void PlayCow2() {
+		if (aiTapCow == null)
+			aiTapCow = Play(AudioClips.instance.tapCow2, AudioTag.Effect, AudioClips.instance.tapCowVolume);
+		else
+			aiTapCow.Play();
+	}
+	public static void PlayCow3() {
+		if (aiTapCow == null)
+			aiTapCow = Play(AudioClips.instance.tapCow3, AudioTag.Effect, AudioClips.instance.tapCowVolume);
+		else
+			aiTapCow.Play();
+	}
+
+
 	/// <summary>
 	/// Toggle effect sounds
 	/// </summary>

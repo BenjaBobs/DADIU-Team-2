@@ -18,9 +18,9 @@ public class guiScore : MonoBehaviour {
     public GUISkin menuSkin;
     public string playerName = "";
     private bool uploaded;
-    private bool retard = false;
-    private bool retardflash = false;
-    private int retardcount = 0;
+    private bool noName = false;
+	private bool noNameflash = false;
+	private int noNameCount = 0;
 
     void Awake() {
         staticRef = this;
@@ -82,20 +82,20 @@ public class guiScore : MonoBehaviour {
                 }
             }
         }
-        if (retard)
+		if (noName)
         {
             
             if (flashtimer < Time.time)
             {
                 flashtimer = Time.time + 0.4f;
-                retardflash = !retardflash;
-                retardcount++;
+				noNameflash = !noNameflash;
+                noNameCount++;
 
-                if (retardcount > 10)
+                if (noNameCount > 10)
                 {
-                    retardcount = 0;
-                    retard = false;
-                    retardflash = false;
+                    noNameCount = 0;
+                    noName = false;
+                    noNameflash = false;
 
                 }
                 
@@ -104,64 +104,99 @@ public class guiScore : MonoBehaviour {
     }
 
 	void OnGUI() {
-		GUI.Box(new Rect(Screen.width/2 - 250, Screen.height/20, 500, 500), ""); //No need for translation
-		//add highscore content to box - get from highscore module
-		GUI.Label(new Rect(Screen.width / 2 - 250, Screen.height/10, 100, 25), Localization.instance.GetString(Localization.LocKey.Score) + ": " + Player.Score.ToString());
+		float size = Screen.height / 20;
+		GUI.skin = menuSkin;
+		GUI.skin.label.fontSize = (int)size;
+		GUI.color = new Color (1.0f, 1.0f, 1.0f, 0.9f);
 
-		if (lhs.GetLength(0) > 0)
-			GUI.Label(new Rect(Screen.width / 2 -100 , Screen.height / 10, 200, 50), Localization.instance.GetString(Localization.LocKey.Local) + " highscore: " + lhs[0].ToString());
-		else
-			GUI.Label(new Rect(Screen.width / 2 -100 , Screen.height / 10, 200, 50), "Loader...");
+		// Background
+		GUI.Box (new Rect (Screen.width / 2 - (Screen.height - size * 2) / 2, size, Screen.height - size * 2, Screen.height - size * 2), "");
+
+		// Overskrift: Highscore
+		GUI.skin.label.fontSize = (int)size * 3;
+		GUI.skin.label.alignment = TextAnchor.MiddleCenter;
+		GUI.Label (new Rect (Screen.width / 2 - (Screen.height - size * 2) / 2, size, Screen.height - size * 2, size * 4), "Highscore");
+		GUI.skin.label.fontSize = (int)size;
+		GUI.skin.label.alignment = TextAnchor.MiddleLeft;
 
 
 
-		if (flash)
-			GUI.Label(new Rect(Screen.width / 2 + 100, Screen.height / 10, 200, 50), Localization.instance.GetString(Localization.LocKey.NPB));
+
+
+
+
 
 		if (Player.Score > 0) {
 			if (!uploaded) {
-				GUI.Label(new Rect(Screen.width / 2 - 180, Screen.height / 10 + 25, 200, 30), Localization.instance.GetString(Localization.LocKey.PlayerName));
-				playerName = GUI.TextField(new Rect(Screen.width / 2 - 100, Screen.height / 10 + 20, 150, 30), playerName, 20);
 
-				if (GUI.Button(new Rect(Screen.width / 2 + 50, Screen.height / 10 + 20, 100, 30), "Upload score")) {
+				// Show score
+				GUI.Label (new Rect (Screen.width / 2 - (Screen.height - size * 2) / 2 + 20f, size * 4.6f, Screen.height - size * 2, size * 2), Localization.instance.GetString (Localization.LocKey.Score) + ": " + Player.Score.ToString ());
+				
+				if (lhs.GetLength (0) > 0)
+					GUI.Label (new Rect (Screen.width / 2 - (Screen.height - size * 2) / 2 + 20f, size * 6.6f, Screen.height - size * 2, size * 2), Localization.instance.GetString (Localization.LocKey.Local) + " highscore: " + lhs [0].ToString ());
+
+
+				//if (flash)
+					GUI.Label (new Rect (Screen.width / 2 + 100, Screen.height / 10, 200, size * 2), Localization.instance.GetString (Localization.LocKey.NPB));
+
+				// Player name
+				GUI.Label (new Rect (Screen.width / 2 - (Screen.height - size * 2) / 2f + 20f, size * 8.6f, (Screen.height - size * 2f) / 2f - 10f, size * 2), Localization.instance.GetString (Localization.LocKey.PlayerName) + ":");
+
+				playerName = GUI.TextField (new Rect (Screen.width / 2 - (Screen.height - size * 2) / 2f + 10f, size * 10 + 10f, (Screen.height - size * 2f) / 2f - 10f, 30f), playerName, 20);
+
+				if (GUI.Button(new Rect(Screen.width / 2 + size * 1f, size * 10, (Screen.height - size * 8f) / 2f, 50f), "Upload score".ToUpper())) {
 					if (playerName.Length > 0) {
-						ScoreManager.AddScore(playerName, Player.Score); //Add score
+						ScoreManager.AddScore (playerName, Player.Score); //Add score
 						uploaded = true;
 					}
 					else
-						retard = true;
+						noName = true;
 				}
-				if (retardflash)
-					GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height / 10 + 50, 200, 30), Localization.instance.GetString(Localization.LocKey.PlayerName));
+				if (noNameflash)
+					GUI.Label (new Rect (Screen.width / 2 - 100, Screen.height / 10 + 50, 200, 30), Localization.instance.GetString (Localization.LocKey.PlayerName));
 			}
-			else
-				GUI.Label(new Rect(Screen.width / 2 - 100 , Screen.height / 10 + 25, 200, 30), "Uploaded");
+			else {
+
+
+
+
+
+				//GUI.Label (new Rect (Screen.width / 2 - 100, Screen.height / 10 + 25, 200, 30), "Uploaded");
+			}
 		}
-		else
-			GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height / 10 + 20, 200, 30), Localization.instance.GetString(Localization.LocKey.noUpload));
+		//else
+			//GUI.Label (new Rect (Screen.width / 2 - 100, Screen.height / 10 + 20, 200, 30), Localization.instance.GetString (Localization.LocKey.noUpload));
 
 		int i = 0;
 
 		if (hs.GetLength(0) > 0) {
+			GUI.skin.label.alignment = TextAnchor.UpperLeft;
 			foreach (string item in hs) {
-				if (item != null && item.Length > 0) {
-					GUI.Label(new Rect(Screen.width / 2 - 225, Screen.height / 10 + 100 + (25 * i), 450, 25), item.ToString());
-					i++;
-				}
+				if (item != null && item.Length > 0)
+					GUI.Label(new Rect (Screen.width / 2 - (Screen.height - size * 4) / 2, size * 5.5f + (size * 1.1f * i++) - 10, Screen.height - size * 4, size * 2), item.ToString()); //No need for translation
+				else
+					GUI.Label (new Rect (Screen.width / 2 - 50, Screen.height / 2, 100, 50), "Fejl...");
 			}
 			sc2 = false; 
 		}
+		/*else {
+			GUI.skin.label.alignment = TextAnchor.MiddleCenter;
+			GUI.Label (new Rect (Screen.width / 2 - 50, Screen.height / 2, 100, 50), "Loader...");
+		}*/
 
-		//if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 10 + 400, 100, 100), "Retry")) {
-		//    //close gui and start game
-		//    Destroy(this);
-		//}
+		if (GUI.Button(new Rect(Screen.width / 2 + size * 1f, Screen.height - size * 1.5f - 50f, (Screen.height - size * 8f) / 2f, 50f), "Retry".ToUpper())) {
+			AudioManager.StopSplashMusic();
+			AudioManager.PlayButton();
+			Settings.instance.SetPause(false);
+			AudioManager.PlayMusic();
+			this.enabled = false;
+		}
 
-		if (GUI.Button(new Rect(Screen.width/2 - 75, Screen.height/10 + 400, 150, 50), "Return to menu")) { //localization
+		if (GUI.Button(new Rect(Screen.width / 2 - (Screen.height - size * 6f) / 2, Screen.height - size * 1.5f - 50f, (Screen.height - size * 8f) / 2f, 50f), "Return to menu".ToUpper())) {
 			Player.Reset();
 			Application.LoadLevel(Application.loadedLevel);
-		//gameObject.AddComponent("guiStart");
-		//Destroy(this);
+			//gameObject.AddComponent("guiStart");
+			//Destroy(this);
 		}
 	}
 }

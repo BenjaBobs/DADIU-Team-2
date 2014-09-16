@@ -37,13 +37,25 @@ public class ManualSpawner : MonoBehaviour {
     }
 
 	void Start () {
+
+
+        
+	}
+
+
+	void Update () {
+
+	}
+
+    void FindSpawners()
+    {
         //place all spawner scripts in list
-        for(int x = 0; x < Grid.GetMaxX(); x++)
+        for (int x = 1; x <= Grid.GetMaxX(); x++)
         {
-            for (int y = 0; y < Grid.GetMaxY(); y++)
+            for (int y = 1; y <= Grid.GetMaxY(); y++)
             {
                 Spawner s = Grid.GetSpawner(x, y);
-                allSpawners.Add(s);
+                if(s) allSpawners.Add(s);
             }
         }
 
@@ -53,12 +65,7 @@ public class ManualSpawner : MonoBehaviour {
             timeToNextEvent = eventTimers[0];
         else
             return;
-	}
-
-
-	void Update () {
-
-	}
+    }
 
     void SetBlobType()
     {
@@ -92,10 +99,10 @@ public class ManualSpawner : MonoBehaviour {
 
 
     //Methods for manual blob placement
-    public void ManuallyPlaceBlobs()
+    public void ManuallyPlaceBlobs(bool isForGameOverScreen)
     {
         //Call this from other script
-        StartCoroutine(BlobPlacement());
+        StartCoroutine(BlobPlacement(isForGameOverScreen));
     }
 
 
@@ -121,8 +128,10 @@ public class ManualSpawner : MonoBehaviour {
 
 
     //Placement of event blobs. Stops all other spawning while event is running
-    IEnumerator BlobPlacement()
+    IEnumerator BlobPlacement(bool forGameOverScreen)
     {
+
+        FindSpawners();
 
 
         bool anyMoreEvents = true;
@@ -179,6 +188,15 @@ public class ManualSpawner : MonoBehaviour {
 
                 Spawner theSpawner = Grid.GetSpawner(manualBlobs[i].positionX, manualBlobs[i].positionY);
                 theSpawner.PlaceMole(manualBlobs[i].blobType);
+
+                if(forGameOverScreen)
+                {
+                    Jelly blob = theSpawner.gameObject.transform.GetChild(0).GetComponent<Jelly>();
+                    blob.timeUp = 1000;
+                }
+                
+
+                
             }
 
 
@@ -205,6 +223,9 @@ public class ManualSpawner : MonoBehaviour {
 
             //wipes board, just in case
             Grid.WipeBoard();
+
+            //start spawning again
+            StartSpawning();
 
 
             //if no more events, make the loop exit

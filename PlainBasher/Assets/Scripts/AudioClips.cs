@@ -44,7 +44,12 @@ public class AudioClips : MonoBehaviour {
 
 	public AudioClip tapGround;
 	public float tapGroundVolume = 1f;
-
+	
+	public AudioClip tapCow1;
+	public AudioClip tapCow2;
+	public AudioClip tapCow3;
+	public float tapCowVolume = 1f;
+	
 	public AudioClip iceAppear;
 	public float iceAppearVolume = 1f;
 	public AudioClip tapIce1;

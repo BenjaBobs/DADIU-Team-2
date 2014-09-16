@@ -25,7 +25,7 @@ public class guiOptions : MonoBehaviour {
 
 	void Start () {
 
-        background = Resources.Load("GUI/IntroScene") as Texture;
+        background = Resources.Load("GUI/StartScreenV3") as Texture;
         flagUKnot = Resources.Load("GUI/flagUK") as Texture;
         flagDKnot = Resources.Load("GUI/flagDK") as Texture;
         flagUKSelected = Resources.Load("GUI/flagUKselected") as Texture;
@@ -94,6 +94,7 @@ public class guiOptions : MonoBehaviour {
 
         GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), background, ScaleMode.StretchToFill);
         GUI.skin = skinMenu;
+        //GUI.Box(new Rect(Screen.width / 2 - 300, Screen.height / 4 - 150, 600, 1000), ""); // fix when asset is added to guimain skin
         GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height / 4 -100, 200, 30), "Toggle "+ Localization.instance.GetString(Localization.LocKey.Music));
         music = GUI.Toggle(new Rect(Screen.width / 2 + 100 , Screen.height / 4 -100, 40, 40), music, "");
 
