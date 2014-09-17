@@ -37,6 +37,7 @@ public class Localization {
         LocalBest,
         OnlineBest,
         ToMenu,
+        Toggle,
         // ADD ABOVE
 		Count,
         
@@ -112,7 +113,8 @@ public class Localization {
         translations[LocKey.ToMenu][LocLanguage.English] = "Return to menu";
         translations[LocKey.ToMenu][LocLanguage.Danish] = "Tilbage til menuen";
 
-
+        translations[LocKey.Toggle][LocLanguage.English] = "Toggle";
+        translations[LocKey.Toggle][LocLanguage.Danish] = "Skift";
 
 	}
 	

@@ -5,6 +5,12 @@ public class Freeez : Mole {
 
     static GameObject iceLayerPrefab;
     static bool hasLoaded = false;
+    public GameObject iceChargingPrefab;
+    public float iceChargingOffset = 0.5f;
+    public GameObject iceSteamPrefab;
+    public float iceSteamOffset = 0.0f;
+    GameObject iceCharging;
+    GameObject iceSteam;
 
     void Start()
     {
@@ -36,10 +42,15 @@ public class Freeez : Mole {
 	protected override void OnTap()
 	{
 		AudioManager.PlayHoldFreeze();
+        Vector3 iceChargingPosition = transform.position;
+        iceChargingPosition.y += iceChargingOffset;
+        iceCharging = (GameObject)Instantiate(iceChargingPrefab, iceChargingPosition, transform.rotation);
+        iceCharging.transform.parent = transform;
 	}
 
 	protected override void OnRelease() {
 		AudioManager.StopHoldFreeze();
+        Destroy(iceCharging);
 	}
 	
 	protected override void PlayDeathSound()

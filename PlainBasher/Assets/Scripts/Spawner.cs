@@ -99,7 +99,6 @@ public class Spawner : MonoBehaviour {
 			{
 				occurenceFactor = (int)(occurenceFactor * Settings.instance.GetDifficultyFreezeMultiplier());
 				int CurrentFreeezNum = GameObject.FindGameObjectsWithTag("Enemy_Freeez").Length;
-				//int CurrentFreeezNum = 0;
 				if (CurrentFreeezNum >= Settings.instance.MaxFreeezAtOnce)
 					occurenceFactor = 0;
 			}
