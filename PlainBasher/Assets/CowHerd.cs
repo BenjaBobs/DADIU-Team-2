@@ -15,6 +15,10 @@ public class CowHerd : MonoBehaviour {
 	void Awake()
 	{
 		instance = this;
+
+		cow1.AddComponent<TapCow>().cownum = 1;
+		cow2.AddComponent<TapCow>().cownum = 2;
+		cow3.AddComponent<TapCow>().cownum = 3;
 	}
 
 	void Update()
@@ -54,6 +58,8 @@ public class CowHerd : MonoBehaviour {
             JLY.GetComponentInChildren<Animator>().SetTrigger("MunchMunch");
             cow1.GetComponentInChildren<Animator>().SetTrigger("Taken");
 			//cow1.SetActive(false);
+			cow1.GetComponent<BoxCollider>().enabled = false;
+			AudioManager.PlayLoseLife();
 		}
 		if (cow == 2)
 		{
@@ -65,6 +71,8 @@ public class CowHerd : MonoBehaviour {
             JLY.GetComponentInChildren<Animator>().SetTrigger("MunchMunch");
             cow2.GetComponentInChildren<Animator>().SetTrigger("Taken");
 			//cow2.SetActive(false);
+			cow2.GetComponent<BoxCollider>().enabled = false;
+			AudioManager.PlayLoseLife();
 		}
 		if (cow == 3)
 		{
@@ -76,6 +84,8 @@ public class CowHerd : MonoBehaviour {
             JLY.GetComponentInChildren<Animator>().SetTrigger("MunchMunch");
             cow3.GetComponentInChildren<Animator>().SetTrigger("Taken");
 			//cow3.SetActive(false);
+			cow3.GetComponent<BoxCollider>().enabled = false;
+			AudioManager.PlayLoseLife();
 		}
 
 		//Destroy(animation);
