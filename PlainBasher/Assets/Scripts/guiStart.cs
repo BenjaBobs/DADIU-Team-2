@@ -6,7 +6,6 @@ public class guiStart : MonoBehaviour {
     private Texture background;
     private GUISkin skinMenu;
     private int butonWidth = 200;
-    private GUIStyle textStyle;
     void Awake()
     {
         staticref = this;
@@ -18,7 +17,6 @@ public class guiStart : MonoBehaviour {
         Settings.instance.SetPause(true);
         background = Resources.Load("GUI/StartScreenV3") as Texture;
         skinMenu = Resources.Load("GUI/GUIMenu") as GUISkin;
-        textStyle.normal.textColor = new Color((216f/256f), (81f/256f), (205f/256f),1f);
 	}
 	
 	// Update is called once per frame
