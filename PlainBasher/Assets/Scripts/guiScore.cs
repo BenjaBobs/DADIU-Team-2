@@ -117,7 +117,7 @@ public class guiScore : MonoBehaviour {
 		// Overskrift: Highscore
 		GUI.skin.label.fontSize = (int)size * 3;
 		GUI.skin.label.alignment = TextAnchor.MiddleCenter;
-		GUI.Label (new Rect (Screen.width / 2 - (Screen.height - size * 2) / 2, size, Screen.height - size * 2, size * 4), "Highscore");
+		GUI.Label (new Rect (Screen.width / 2 - (Screen.height - size * 2) / 2, size, Screen.height - size * 2, size * 4), Localization.instance.GetString(Localization.LocKey.Scoreboard));
 		GUI.skin.label.fontSize = (int)size;
 		GUI.skin.label.alignment = TextAnchor.MiddleLeft;
 
@@ -205,7 +205,7 @@ public class guiScore : MonoBehaviour {
 			//Destroy(this);
 		}*/
 
-		if (GUI.Button(new Rect(Screen.width / 2 - (Screen.height - size * 8f) / 4f, Screen.height - size * 1.5f - 50f, (Screen.height - size * 8f) / 2f, 50f), "Return to menu".ToUpper())) {
+		if (GUI.Button(new Rect(Screen.width / 2 - (Screen.height - size * 8f) / 4f, Screen.height - size * 1.5f - 50f, (Screen.height - size * 8f) / 2f, 50f), Localization.instance.GetString (Localization.LocKey.ToMenu).ToUpper())) {
 			Player.Reset();
 			Application.LoadLevel(Application.loadedLevel);
 			//gameObject.AddComponent("guiStart");
