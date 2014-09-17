@@ -72,7 +72,6 @@ public static class AudioManager {
 			aiGameOver = Play (AudioClips.instance.gameOver, AudioTag.Music, AudioClips.instance.gameOverVolume);
 		else
 			aiGameOver.Play();
-		StopMusic ();
 	}
 	private static AudioInstance aiMusic;
 	/// <summary>
@@ -86,7 +85,7 @@ public static class AudioManager {
 	}
 	public static void StopMusic() {
 		if (aiMusic != null)
-			aiMusic.Stop(false);
+			aiMusic.Stop(false, true);
 		aiMusic = null;
 	}
 	/// <summary>

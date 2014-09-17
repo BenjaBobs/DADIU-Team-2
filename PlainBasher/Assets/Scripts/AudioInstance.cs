@@ -40,8 +40,10 @@ public class AudioInstance : MonoBehaviour {
 			source.Stop();
 		source.Play();
 	}
-	public void Stop(bool fade = true) {
-		if (!fade)
+	public void Stop(bool fade = true, bool kill = false) {
+		if (kill)
+			DestroyImmediate(gameObject);
+		else if (!fade)
 			source.Stop();
 		else
 			StartCoroutine(FadeOut());
