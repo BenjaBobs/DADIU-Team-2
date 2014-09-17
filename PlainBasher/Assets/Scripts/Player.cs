@@ -48,17 +48,20 @@ public static class Player {
 		}
 	}
 
-	private static void OnGameOver()
-	{
-		AudioManager.StopMusic ();
-		AudioManager.PlayGameOver ();
-		Settings.instance.SetPause(true);
-		//TODO: Initialize game end
+    private static void OnGameOver()
+    {
+        AudioManager.StopMusic();
+        AudioManager.PlayGameOver();
+        Settings.instance.SetPause(true);
+
+        ManualSpawner.staticRef.PlaceJellyKOAtGameOver();
+
+        //TODO: Initialize game end
         guiPlayer.staticref.enabled = false;
 
         guiScore.staticRef.enabled = true;
-        
-	}
+
+    }
 
 	private static void OnTakeDamage(int dmg)
 	{
