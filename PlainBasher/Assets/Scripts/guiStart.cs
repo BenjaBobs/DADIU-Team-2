@@ -64,11 +64,22 @@ public class guiStart : MonoBehaviour {
             this.enabled = false;
         }
 
-        if (GUI.Button(new Rect(Screen.width / 2 - (butonWidth / 2), Screen.height / 4 + 290, butonWidth, 50), Localization.instance.GetString(Localization.LocKey.Quit).ToUpper()))
+        if (GUI.Button(new Rect(Screen.width / 2 - (butonWidth / 2), Screen.height / 4 + 370, butonWidth, 50), Localization.instance.GetString(Localization.LocKey.Quit).ToUpper()))
         {
 			AudioManager.PlayButton();
             Application.Quit();
         }
+
+        if (GUI.Button(new Rect(Screen.width / 2 - (butonWidth / 2), Screen.height / 4 + 290, butonWidth, 50), "CREDITS"))
+        {
+            AudioManager.PlayButton();
+            if (guiCredits.staticref)
+            {
+                guiCredits.staticref.enabled = true;
+                this.enabled = false;
+            }
+        }
+
         GUI.skin.label.fontSize = 30;
         //GUI.skin.label.normal.textColor = new Color((216f/256f), (81f/256f), (205f/256f));
         GUI.skin.label.normal.textColor = new Color((137f/256f), (59f/256f), (115f/256f));
