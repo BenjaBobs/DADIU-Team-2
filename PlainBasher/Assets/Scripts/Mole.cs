@@ -128,9 +128,10 @@ public class Mole : MonoBehaviour {
 
 			pointText.transform.localPosition = textLocation;
 
-            if (isChained || ! (this is Jelly))
+            if (isChained || !(this is Jelly))
                 ComboManager.AddChain(pText);
-
+            else
+                Player.Score += scoreValue;
             
 		}
         Destroy(gameObject);
@@ -181,7 +182,7 @@ public class Mole : MonoBehaviour {
         }
     }
 
-    void MoleMovement()
+    protected void MoleMovement()
     {
         currentTimeUp += Settings.instance.GetDeltaTime() * Settings.instance.GetDifficultyStayTime();
 		float OutroAnimationDuration = 0.5f;
