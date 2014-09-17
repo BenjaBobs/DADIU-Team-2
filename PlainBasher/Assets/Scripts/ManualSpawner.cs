@@ -26,20 +26,30 @@ public class ManualSpawner : MonoBehaviour {
     private int timeToNextEvent;
 
 
-    public static ManualSpawner staticRef;
+    private static ManualSpawner _staticRef;
 
     List<Spawner> allSpawners = new List<Spawner>();
 
 
-    void Awake()
+    public static ManualSpawner staticRef
     {
-        staticRef = this;
+        get
+        {
+            if (!_staticRef)
+            {
+                ManualSpawner[] scripts = FindObjectsOfType(typeof(ManualSpawner)) as ManualSpawner[];
+                foreach (ManualSpawner ms in scripts)
+                {
+                    _staticRef = ms;
+                    break;
+                }
+            }
+            return _staticRef;
+        }
     }
 
 	void Start () {
-
-
-        
+ 
 	}
 
 
@@ -146,7 +156,7 @@ public class ManualSpawner : MonoBehaviour {
             while(seconds < timeToNextEvent)
             {
                 //TODO: tjek, om spillet er paused
-                while(Settings.instance.GetPaused() == true)
+                while (Settings.instance.GetPaused() && !forGameOverScreen)
                 {
                     yield return null;
                 }
@@ -168,7 +178,7 @@ public class ManualSpawner : MonoBehaviour {
 
             for (int i = 0; i < manualBlobs.Count; i++)
             {
-                while (Settings.instance.GetPaused() == true)
+                while (Settings.instance.GetPaused() && !forGameOverScreen)
                 {
                     yield return null;
                 }
@@ -186,12 +196,14 @@ public class ManualSpawner : MonoBehaviour {
                 yield return new WaitForSeconds(wait);
                 //TODO: pause her
 
+                //spawn blob
+                Debug.Log("Placing blob number " + i);
                 Spawner theSpawner = Grid.GetSpawner(manualBlobs[i].positionX, manualBlobs[i].positionY);
                 theSpawner.PlaceMole(manualBlobs[i].blobType);
 
                 if(forGameOverScreen)
                 {
-                    Jelly blob = theSpawner.gameObject.transform.GetChild(0).GetComponent<Jelly>();
+                    Jelly blob = theSpawner.gameObject.transform.GetChild(theSpawner.gameObject.transform.childCount-1).GetComponent<Jelly>();
                     blob.timeUp = 1000;
                 }
                 
@@ -205,7 +217,7 @@ public class ManualSpawner : MonoBehaviour {
 
             while(anyMolesLeft == true)
             {
-                while (Settings.instance.GetPaused() == true)
+                while (Settings.instance.GetPaused() && !forGameOverScreen)
                 {
                     yield return null;
                 }
