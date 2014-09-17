@@ -9,20 +9,16 @@ public class Mole : MonoBehaviour {
     public int posY;
     public int occurenceFactor = 1;
     public int scoreValue = 10;
-    public float popDistance = 5.0f;
-    public float popSpeed = 0.5f;
 
     [HideInInspector]
-    public float currentDistance = 0.0f;
     public float timeUp = 6.0f;
-    public float lerpSpeed = 10.0f;
+	float currentTimeUp = 0.0f;
 
     bool holding = false;
     float startHoldTime;
     
     public float holdTime = 0.5f;
 
-    float currentTimeUp = 0.0f;
     bool movingDown = false;
 	protected bool isDead = false;
     protected bool isFleeing = false;
@@ -135,9 +131,9 @@ public class Mole : MonoBehaviour {
             if (isChained || ! (this is Jelly))
                 ComboManager.AddChain(pText);
 
-            Destroy(gameObject);
+            
 		}
-
+        Destroy(gameObject);
         //TODO: Add score to score manager
 	}
 
@@ -188,58 +184,19 @@ public class Mole : MonoBehaviour {
     void MoleMovement()
     {
         currentTimeUp += Settings.instance.GetDeltaTime() * Settings.instance.GetDifficultyStayTime();
-        if (currentTimeUp > timeUp && !isFleeing)
+		float OutroAnimationDuration = 0.5f;
+		if (currentTimeUp >= timeUp - OutroAnimationDuration && !isFleeing)
         {
+			isFleeing = true;
             OnFlee();
         }
-        if (currentTimeUp > timeUp + 1)
+        if (currentTimeUp >= timeUp)
         {
             isDead = true;
             if (damageToPlayer > 0)
                 Player.Lives -= damageToPlayer;
             Destroy(gameObject);
         }
-        
-
-
-        //float currentpopspeed = (currentdistance / popdistance);
-        //if (!movingdown)
-        //    currentpopspeed = 1 - currentpopspeed;
-        //float distance = (currentpopspeed * lerpspeed + popspeed) * settings.instance.getdeltatime();
-        //if (!movingdown)
-        //{
-        //    distance = mathf.min(distance + currentdistance, popdistance) - currentdistance;
-        //}
-        //Vector3 currentPosition = transform.position;
-
-        //if (movingDown && currentTimeUp < timeUp)
-        //{
-        //distance = 0;
-        //currentTimeUp += Settings.instance.GetDeltaTime() * Settings.instance.GetDifficultyStayTime();
-        //if (currentTimeUp >= timeUp)
-        //    OnFlee();
-        //}
-
-        //if (movingDown)
-        //{
-        //    distance *= -1;
-        //}
-        //currentPosition.y += distance;
-        //transform.position = currentPosition;
-
-        //currentDistance += distance;
-
-        //if (currentDistance >= popDistance)
-        //{
-        //    movingDown = true;
-        //}
-        //else if (currentDistance <= 0)
-        //{
-        //    isDead = true;
-        //    if (damageToPlayer > 0)
-        //        Player.Lives -= damageToPlayer;
-        //    Destroy(gameObject);
-        //}
     }
 
 	protected virtual void OnFlee()

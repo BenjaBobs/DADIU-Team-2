@@ -1,0 +1,195 @@
+fileFormatVersion: 2
+guid: ef7182d5c87a01d46aefc7360823cb53
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: cowRig_bottom_ctrl
+    100004: cowRig_bottom_ctrl_zero
+    100006: cowRig_cow_geo
+    100008: cowRig_enemyBasic_rig
+    100010: cowRig_middle_ctrl
+    100012: cowRig_middle_ctrl_zero
+    100014: cowRig_middle_end
+    100016: cowRig_root_ctrl
+    100018: cowRig_root_ctrl_zero
+    100020: cowRig_tail_ctrl
+    100022: cowRig_tail_ctrl_zero
+    100024: cowRig_tail_end
+    400000: //RootNode
+    400002: cowRig_bottom_ctrl
+    400004: cowRig_bottom_ctrl_zero
+    400006: cowRig_cow_geo
+    400008: cowRig_enemyBasic_rig
+    400010: cowRig_middle_ctrl
+    400012: cowRig_middle_ctrl_zero
+    400014: cowRig_middle_end
+    400016: cowRig_root_ctrl
+    400018: cowRig_root_ctrl_zero
+    400020: cowRig_tail_ctrl
+    400022: cowRig_tail_ctrl_zero
+    400024: cowRig_tail_end
+    4300000: cowRig_cow_geo
+    7400000: idle
+    7400002: Take 0010
+    7400004: pullDown
+    9500000: //RootNode
+    13700000: cowRig_cow_geo
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: idle
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 99
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: cowRig_cow_geo
+        weight: 1
+      - path: cowRig_enemyBasic_rig
+        weight: 1
+      - path: cowRig_enemyBasic_rig/cowRig_root_ctrl_zero
+        weight: 1
+      - path: cowRig_enemyBasic_rig/cowRig_root_ctrl_zero/cowRig_root_ctrl
+        weight: 1
+      - path: cowRig_enemyBasic_rig/cowRig_root_ctrl_zero/cowRig_root_ctrl/cowRig_bottom_ctrl_zero
+        weight: 1
+      - path: cowRig_enemyBasic_rig/cowRig_root_ctrl_zero/cowRig_root_ctrl/cowRig_bottom_ctrl_zero/cowRig_bottom_ctrl
+        weight: 1
+      - path: cowRig_enemyBasic_rig/cowRig_root_ctrl_zero/cowRig_root_ctrl/cowRig_bottom_ctrl_zero/cowRig_bottom_ctrl/cowRig_middle_ctrl_zero
+        weight: 1
+      - path: cowRig_enemyBasic_rig/cowRig_root_ctrl_zero/cowRig_root_ctrl/cowRig_bottom_ctrl_zero/cowRig_bottom_ctrl/cowRig_middle_ctrl_zero/cowRig_middle_ctrl
+        weight: 1
+      - path: cowRig_enemyBasic_rig/cowRig_root_ctrl_zero/cowRig_root_ctrl/cowRig_bottom_ctrl_zero/cowRig_bottom_ctrl/cowRig_middle_ctrl_zero/cowRig_middle_ctrl/cowRig_middle_end
+        weight: 1
+      - path: cowRig_enemyBasic_rig/cowRig_root_ctrl_zero/cowRig_root_ctrl/cowRig_tail_ctrl_zero
+        weight: 1
+      - path: cowRig_enemyBasic_rig/cowRig_root_ctrl_zero/cowRig_root_ctrl/cowRig_tail_ctrl_zero/cowRig_tail_ctrl
+        weight: 1
+      - path: cowRig_enemyBasic_rig/cowRig_root_ctrl_zero/cowRig_root_ctrl/cowRig_tail_ctrl_zero/cowRig_tail_ctrl/cowRig_tail_end
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: pullDown
+      takeName: Take 001
+      firstFrame: 106
+      lastFrame: 159
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: cowRig_cow_geo
+        weight: 1
+      - path: cowRig_enemyBasic_rig
+        weight: 1
+      - path: cowRig_enemyBasic_rig/cowRig_root_ctrl_zero
+        weight: 1
+      - path: cowRig_enemyBasic_rig/cowRig_root_ctrl_zero/cowRig_root_ctrl
+        weight: 1
+      - path: cowRig_enemyBasic_rig/cowRig_root_ctrl_zero/cowRig_root_ctrl/cowRig_bottom_ctrl_zero
+        weight: 1
+      - path: cowRig_enemyBasic_rig/cowRig_root_ctrl_zero/cowRig_root_ctrl/cowRig_bottom_ctrl_zero/cowRig_bottom_ctrl
+        weight: 1
+      - path: cowRig_enemyBasic_rig/cowRig_root_ctrl_zero/cowRig_root_ctrl/cowRig_bottom_ctrl_zero/cowRig_bottom_ctrl/cowRig_middle_ctrl_zero
+        weight: 1
+      - path: cowRig_enemyBasic_rig/cowRig_root_ctrl_zero/cowRig_root_ctrl/cowRig_bottom_ctrl_zero/cowRig_bottom_ctrl/cowRig_middle_ctrl_zero/cowRig_middle_ctrl
+        weight: 1
+      - path: cowRig_enemyBasic_rig/cowRig_root_ctrl_zero/cowRig_root_ctrl/cowRig_bottom_ctrl_zero/cowRig_bottom_ctrl/cowRig_middle_ctrl_zero/cowRig_middle_ctrl/cowRig_middle_end
+        weight: 1
+      - path: cowRig_enemyBasic_rig/cowRig_root_ctrl_zero/cowRig_root_ctrl/cowRig_tail_ctrl_zero
+        weight: 1
+      - path: cowRig_enemyBasic_rig/cowRig_root_ctrl_zero/cowRig_root_ctrl/cowRig_tail_ctrl_zero/cowRig_tail_ctrl
+        weight: 1
+      - path: cowRig_enemyBasic_rig/cowRig_root_ctrl_zero/cowRig_root_ctrl/cowRig_tail_ctrl_zero/cowRig_tail_ctrl/cowRig_tail_end
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
