@@ -117,7 +117,7 @@ public class guiScore : MonoBehaviour {
 		// Overskrift: Highscore
 		GUI.skin.label.fontSize = (int)size * 3;
 		GUI.skin.label.alignment = TextAnchor.MiddleCenter;
-		GUI.Label (new Rect (Screen.width / 2 - (Screen.height - size * 2) / 2, size, Screen.height - size * 2, size * 4), "Highscore");
+		GUI.Label (new Rect (Screen.width / 2 - (Screen.height - size * 2) / 2, size, Screen.height - size * 2, size * 4), Localization.instance.GetString(Localization.LocKey.Scoreboard));
 		GUI.skin.label.fontSize = (int)size;
 		GUI.skin.label.alignment = TextAnchor.MiddleLeft;
 
