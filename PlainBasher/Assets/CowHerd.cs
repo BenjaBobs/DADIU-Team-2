@@ -15,6 +15,10 @@ public class CowHerd : MonoBehaviour {
 	void Awake()
 	{
 		instance = this;
+
+		cow1.AddComponent<TapCow>().cownum = 1;
+		cow2.AddComponent<TapCow>().cownum = 2;
+		cow3.AddComponent<TapCow>().cownum = 3;
 	}
 
 	void Update()
