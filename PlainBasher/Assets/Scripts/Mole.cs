@@ -128,9 +128,10 @@ public class Mole : MonoBehaviour {
 
 			pointText.transform.localPosition = textLocation;
 
-            if (isChained || ! (this is Jelly))
+            if (isChained || !(this is Jelly))
                 ComboManager.AddChain(pText);
-
+            else
+                Player.Score += scoreValue;
             
 		}
         Destroy(gameObject);
