@@ -161,7 +161,7 @@ public class ScoreManager : MonoBehaviour {
 			yield return www;
 		}
 
-		if (www.text != null) {
+		if (www.error == null && www.text != null) {
 			highscore = new string[numberBest+numberBetter+numberWorst+1];
 			index = 0;
 			using (StringReader reader = new StringReader(www.text)) {
@@ -181,7 +181,7 @@ public class ScoreManager : MonoBehaviour {
 		WWW www = null;
 		
 		int index = 0;
-		while ((www == null || www.text != "Success") && index < 20 && !uploaded) {
+		while ((www == null || (www.error == null && www.text != "Success")) && index < 20 && !uploaded) {
 			index++;
 			
 			form = new WWWForm();
@@ -194,7 +194,7 @@ public class ScoreManager : MonoBehaviour {
 			yield return www;
 		}
 		
-		if (index < 20) {
+		if (index < 20 && www.error == null) {
 			uploaded = true;
 
 			highscoreLoaded = true;
@@ -224,8 +224,8 @@ public class ScoreManager : MonoBehaviour {
 			
 			yield return www;
 		}
-		
-		if (index < 50)
+
+		if (index < 50 && www.error == null)
 			totalHighscore = int.Parse(www.text);
 		else
 			totalHighscore = !PlayerPrefs.HasKey ("highscore_score") ? 0 : PlayerPrefs.GetInt ("highscore_score");
