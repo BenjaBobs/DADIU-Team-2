@@ -6,6 +6,7 @@ public class guiStart : MonoBehaviour {
     private Texture background;
     private GUISkin skinMenu;
     private int butonWidth = 200;
+    private GUIStyle textStyle;
     void Awake()
     {
         staticref = this;
@@ -17,6 +18,7 @@ public class guiStart : MonoBehaviour {
         Settings.instance.SetPause(true);
         background = Resources.Load("GUI/StartScreenV3") as Texture;
         skinMenu = Resources.Load("GUI/GUIMenu") as GUISkin;
+        textStyle.normal.textColor = new Color((216f/256f), (81f/256f), (205f/256f),1f);
 	}
 	
 	// Update is called once per frame
@@ -69,5 +71,11 @@ public class guiStart : MonoBehaviour {
 			AudioManager.PlayButton();
             Application.Quit();
         }
+        GUI.skin.label.fontSize = 30;
+        //GUI.skin.label.normal.textColor = new Color((216f/256f), (81f/256f), (205f/256f));
+        GUI.skin.label.normal.textColor = new Color((137f/256f), (59f/256f), (115f/256f));
+        //GUI.skin.label.onNormal.textColor = new Color(216f, 81f, 205f);
+        //GUI.color = new Color(1.0f, 1.0f, 1.0f, 0.9f);
+        GUI.Label(new Rect(Screen.width - butonWidth - 400, Screen.height - 50, butonWidth + 400, 60), Localization.instance.GetString(Localization.LocKey.Madeby));
     }
 }

@@ -38,6 +38,7 @@ public class Localization {
         OnlineBest,
         ToMenu,
         Toggle,
+        Madeby,
         // ADD ABOVE
 		Count,
         
@@ -115,6 +116,9 @@ public class Localization {
 
         translations[LocKey.Toggle][LocLanguage.English] = "Toggle";
         translations[LocKey.Toggle][LocLanguage.Danish] = "Skift";
+
+        translations[LocKey.Madeby][LocLanguage.English] = "Made by DADIU Team 2 @ 2014";
+        translations[LocKey.Madeby][LocLanguage.Danish] = "Udviklet af DADIU Team2 @ 2014";
 
 	}
 	
