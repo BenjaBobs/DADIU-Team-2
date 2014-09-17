@@ -13,7 +13,7 @@ public class guiOptions : MonoBehaviour {
     private Texture flagDKnot;
     private Texture flagUKSelected;
     private Texture flagDKSelected;
-    private GUISkin skinMenu;
+    private GUISkin menuSkin;
     private bool oldsound= true;
     private bool oldmusic = true;
 	// Use this for initialization
@@ -43,7 +43,7 @@ public class guiOptions : MonoBehaviour {
             flagUK = flagUKnot;
             flagDK = flagDKSelected;
         }
-        skinMenu = Resources.Load("GUI/GUIMenu") as GUISkin;
+        menuSkin = Resources.Load("GUI/GUIMenu") as GUISkin;
 
 	
 	}
@@ -91,17 +91,30 @@ public class guiOptions : MonoBehaviour {
     void OnGUI()
     {
 
+        float size = Screen.height / 20;
+        GUI.skin = menuSkin;
+        GUI.skin.label.fontSize = (int)size;
+        GUI.color = new Color(1.0f, 1.0f, 1.0f, 0.9f);
 
+        // Background
         GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), background, ScaleMode.StretchToFill);
-        GUI.skin = skinMenu;
-        //GUI.Box(new Rect(Screen.width / 2 - 300, Screen.height / 4 - 150, 600, 1000), ""); // fix when asset is added to guimain skin
-        GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height / 4 -100, 200, 30), "Toggle "+ Localization.instance.GetString(Localization.LocKey.Music));
-        music = GUI.Toggle(new Rect(Screen.width / 2 + 100 , Screen.height / 4 -100, 40, 40), music, "");
+        GUI.Box(new Rect(Screen.width / 2 - (Screen.height - size * 2) / 2, size, Screen.height - size * 2, Screen.height - size * 2), "");
 
-        GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height / 4 - 25, 200, 30), "Toggle " + Localization.instance.GetString(Localization.LocKey.Soundfx));
-        sound = GUI.Toggle(new Rect(Screen.width / 2 + 100, Screen.height / 4 -25  , 40, 40), sound, "");
+        // Overskrift: Highscore
+        GUI.skin.label.fontSize = (int)size * 2;
+        GUI.skin.label.alignment = TextAnchor.MiddleCenter;
+        GUI.Label(new Rect(Screen.width / 2 - (Screen.height - size * 2) / 2, size, Screen.height - size * 2, size * 4), Localization.instance.GetString(Localization.LocKey.Options));
+        GUI.skin.label.fontSize = (int)size;
+        GUI.skin.label.alignment = TextAnchor.MiddleLeft;
 
-        if (GUI.Button(new Rect(Screen.width/2 - 100, Screen.height/4 + 50,100,80),flagUK))
+        GUI.Label(new Rect(Screen.width / 2 - (Screen.height - size * 2) / 2 + 20f, size * 4.6f, Screen.height - size * 2, size * 2), Localization.instance.GetString(Localization.LocKey.Toggle) + " " + Localization.instance.GetString(Localization.LocKey.Music));
+
+        music = GUI.Toggle(new Rect(Screen.width - (Screen.height - size * 2) + 20f + size * 4, size * 4.6f, Screen.height - size * 18, size * 2), music, "");
+
+        GUI.Label(new Rect(Screen.width / 2 - (Screen.height - size * 2) / 2 + 20f, size * 6.6f, Screen.height - size * 2, size * 2), Localization.instance.GetString(Localization.LocKey.Toggle) + " " + Localization.instance.GetString(Localization.LocKey.Soundfx));
+        sound = GUI.Toggle(new Rect(Screen.width - (Screen.height - size * 2) + 20f + size * 4, size * 6.6f, Screen.height - size * 18, size * 2), sound, "");
+
+        if (GUI.Button(new Rect(Screen.width / 2 - (Screen.height - size * 2) / 2 + 20f + size * 6, size * 10.6f, 100, 80), flagUK))
         {
             bflag = true;
 
@@ -111,7 +124,7 @@ public class guiOptions : MonoBehaviour {
                 AudioManager.PlayButton();
         }
 
-        if (GUI.Button(new Rect(Screen.width / 2 +50, Screen.height / 4 + 50, 100, 80), flagDK))
+        if (GUI.Button(new Rect(Screen.width - (Screen.height - size * 2) + 20f + size * 3, size * 10.6f, 100, 80), flagDK))
         {
             bflag = false;
 
@@ -121,7 +134,7 @@ public class guiOptions : MonoBehaviour {
                 AudioManager.PlayButton();
         }
 
-        if (GUI.Button(new Rect(Screen.width / 2 - 100, Screen.height / 4 + 250, 200, 100), Localization.instance.GetString(Localization.LocKey.ToMenu))) // localization
+        if (GUI.Button(new Rect(Screen.width / 2 - (Screen.height - size * 8f) / 4f, Screen.height - size * 1.5f - 50f, (Screen.height - size * 8f) / 2f, 50f), Localization.instance.GetString(Localization.LocKey.ToMenu))) // localization
         {
             //gameObject.AddComponent("guiStart");
             //Destroy(this);

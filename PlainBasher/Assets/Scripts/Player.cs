@@ -26,6 +26,7 @@ public static class Player {
                 }
 			    else if (lives > value && value > 0)
 				    Grid.WipeBoard();
+                CowHerd.instance.KillCow(lives);
 			    lives = value;
             }
         }
