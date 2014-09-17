@@ -76,12 +76,6 @@ public class Spawner : MonoBehaviour {
 		CalculateFrequency ();
 		timeSinceSpawn = Random.Range (0, currentFrequency);
 
-        if (!isLoaded)
-        {
-		    prefabs = new List<GameObject>(Resources.LoadAll<GameObject>("Moles"));
-            isLoaded = true;
-        }
-
 		CalculateChildren ();
         
 	}
@@ -89,7 +83,11 @@ public class Spawner : MonoBehaviour {
 	void CalculateChildren()
 	{
 		childs = new List<GameObject> ();
-		foreach (GameObject prefab in prefabs) {
+		if (prefabs == null)
+			prefabs = new List<GameObject>(Resources.LoadAll<GameObject>("Moles"));
+
+		foreach (GameObject prefab in prefabs)
+		{
 			Mole m = prefab.GetComponent<Mole>();
 			if (!m) continue;
 			int occurenceFactor = m.occurenceFactor;
@@ -101,7 +99,6 @@ public class Spawner : MonoBehaviour {
 			{
 				occurenceFactor = (int)(occurenceFactor * Settings.instance.GetDifficultyFreezeMultiplier());
 				int CurrentFreeezNum = GameObject.FindGameObjectsWithTag("Enemy_Freeez").Length;
-				//int CurrentFreeezNum = 0;
 				if (CurrentFreeezNum >= Settings.instance.MaxFreeezAtOnce)
 					occurenceFactor = 0;
 			}
@@ -143,6 +140,23 @@ public class Spawner : MonoBehaviour {
 	{
 		CalculateChildren();
 		PlaceMole(childs[Random.Range(0, childs.Count)]);
+	}
+
+	public void PlaceJelly()
+	{
+		CalculateChildren();
+		GameObject jellyPrefab = null;
+		for (int i = 0; i < childs.Count; i++)
+		{
+			if (!childs[i].GetComponent<Jelly>())
+				continue;
+			jellyPrefab = childs[i];
+			break;
+		}
+		if (jellyPrefab)
+			PlaceMole (jellyPrefab);
+		else
+			PlaceMole ();
 	}
 
 	public void PlaceMole(GameObject type)
@@ -241,7 +255,7 @@ public class Spawner : MonoBehaviour {
 			Spawner s = GetRandomWithinElectro();
 			if (s)
 			{
-				s.PlaceMole();
+				s.PlaceJelly();
 			}
 		}
 		if (mole.GetComponent<Explosion> ())
@@ -249,7 +263,7 @@ public class Spawner : MonoBehaviour {
 			Spawner s = GetRandomWithinExplosion();
 			if (s)
 			{
-				s.PlaceMole();
+				s.PlaceJelly();
 			}
 		}
 

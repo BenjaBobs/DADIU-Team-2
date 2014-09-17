@@ -6,27 +6,40 @@ public class guiPlayer : MonoBehaviour {
 	private bool sc = false;
 	private int[] lhs;
 	private float flashtimer;
-	//public GUIText guiScores;
 	public string lives = "Lives";
 	public string score = "Score";
 	public string highScore = "Your Best";
 	public string highScoreOnline = "Best Ever";
 	public static guiPlayer staticref;
+	public GUISkin menuSkin;
+	private int[] localHighcore;
+	private int onlineHighscore;
 
-	void Awake()
-	{
+	void Awake() {
 		staticref = this;
+		localHighcore = ScoreManager.GetLocalHighscore();
+		onlineHighscore = ScoreManager.GetTotalHighscore();
 	}
 
-	void OnGUI () 
-	{
-		lhs = ScoreManager.GetLocalHighscore();
+	void OnGUI () {
+		GUI.skin = menuSkin;
+		GUI.color = new Color (184f/255f, 82f/255f, 156f/255f);
+		GUI.skin.label.fontSize = 40;
 
+		int y = 5;
 
-		GUI.Label(new Rect(10, 40, 100, 20), Localization.instance.GetString(Localization.LocKey.Cows) + ": " + Player.Lives);
-        GUI.Label(new Rect(10, 60, 100, 20), Localization.instance.GetString(Localization.LocKey.Score) + ": " + Player.Score);
-        GUI.Label(new Rect(10, 80, 200, 20), Localization.instance.GetString(Localization.LocKey.LocalBest) + ": " + lhs[0]);
-        GUI.Label(new Rect(10, 100, 200, 20), Localization.instance.GetString(Localization.LocKey.OnlineBest) + ": " + ScoreManager.GetTotalHighscore());
+		if (onlineHighscore > 0) {
+			GUI.Label(new Rect(15, y, 500, 50), Localization.instance.GetString(Localization.LocKey.OnlineBest) + ": " + onlineHighscore);
+			y += 40;
+		}
+		else
+			onlineHighscore = ScoreManager.GetTotalHighscore();
+
+		GUI.Label(new Rect(15, y, 500, 50), Localization.instance.GetString(Localization.LocKey.LocalBest) + ": " + localHighcore[0]);
+		y += 40;
+		GUI.Label(new Rect(15, y, 500, 50), Localization.instance.GetString(Localization.LocKey.Score) + ": " + Player.Score);
+		//y += 30;
+		//GUI.Label(new Rect(10, y, 500, 50), Localization.instance.GetString(Localization.LocKey.Cows) + ": " + Player.Lives);
 
 		/*
 		guiScores.text = lives + Player.Lives + "\n"
