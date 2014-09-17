@@ -205,7 +205,7 @@ public class guiScore : MonoBehaviour {
 			//Destroy(this);
 		}*/
 
-		if (GUI.Button(new Rect(Screen.width / 2 - (Screen.height - size * 8f) / 4f, Screen.height - size * 1.5f - 50f, (Screen.height - size * 8f) / 2f, 50f), "Return to menu".ToUpper())) {
+		if (GUI.Button(new Rect(Screen.width / 2 - (Screen.height - size * 8f) / 4f, Screen.height - size * 1.5f - 50f, (Screen.height - size * 8f) / 2f, 50f), Localization.instance.GetString (Localization.LocKey.ToMenu).ToUpper())) {
 			Player.Reset();
 			Application.LoadLevel(Application.loadedLevel);
 			//gameObject.AddComponent("guiStart");
