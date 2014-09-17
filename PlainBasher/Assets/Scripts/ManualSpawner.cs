@@ -294,7 +294,6 @@ public class ManualSpawner : MonoBehaviour {
                 //TODO: pause her
 
                 //spawn blob
-                Debug.Log("Placing blob number " + i);
                 Spawner theSpawner = Grid.GetSpawner(manualBlobs[i].positionX, manualBlobs[i].positionY);
                 theSpawner.PlaceMole(manualBlobs[i].blobType);
 
