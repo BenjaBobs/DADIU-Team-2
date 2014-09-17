@@ -22,6 +22,7 @@ public class Mole : MonoBehaviour {
     bool movingDown = false;
 	protected bool isDead = false;
     protected bool isFleeing = false;
+    protected bool isTurningTowardsCows = false;
 	public int damageToPlayer = 1;
 
     //Scrolling point stuff
@@ -190,6 +191,13 @@ public class Mole : MonoBehaviour {
 			isFleeing = true;
             OnFlee();
         }
+
+		// rotate towards cows
+		float TurnTowardsCowsDuration = 1.0f;
+		if (currentTimeUp >= timeUp - TurnTowardsCowsDuration)
+		{
+			transform.Rotate(new Vector3(0,1,0),Settings.instance.GetDeltaTime()*230 / TurnTowardsCowsDuration);
+		}
         if (currentTimeUp >= timeUp)
         {
             isDead = true;
