@@ -313,20 +313,26 @@ public static class AudioManager {
 	public static void PlayCow1() {
 		if (aiTapCow == null)
 			aiTapCow = Play(AudioClips.instance.tapCow1, AudioTag.Effect, AudioClips.instance.tapCowVolume);
-		else
+		else {
+			aiTapCow.SetClip(AudioClips.instance.tapCow1);
 			aiTapCow.Play();
+		}
 	}
 	public static void PlayCow2() {
 		if (aiTapCow == null)
 			aiTapCow = Play(AudioClips.instance.tapCow2, AudioTag.Effect, AudioClips.instance.tapCowVolume);
-		else
+		else {
+			aiTapCow.SetClip(AudioClips.instance.tapCow2);
 			aiTapCow.Play();
+		}
 	}
 	public static void PlayCow3() {
 		if (aiTapCow == null)
 			aiTapCow = Play(AudioClips.instance.tapCow3, AudioTag.Effect, AudioClips.instance.tapCowVolume);
-		else
+		else {
+			aiTapCow.SetClip(AudioClips.instance.tapCow3);
 			aiTapCow.Play();
+		}
 	}
 
 
