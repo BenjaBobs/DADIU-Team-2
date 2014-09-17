@@ -24,7 +24,7 @@ public class guiPlayer : MonoBehaviour {
 	void OnGUI () {
 		GUI.skin = menuSkin;
 		GUI.color = new Color (184f/255f, 82f/255f, 156f/255f);
-		GUI.skin.label.fontSize = 40;
+		GUI.skin.label.fontSize = 35;
 
 		int y = 5;
 
