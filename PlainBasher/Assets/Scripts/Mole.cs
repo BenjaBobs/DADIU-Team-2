@@ -135,9 +135,9 @@ public class Mole : MonoBehaviour {
             if (isChained || ! (this is Jelly))
                 ComboManager.AddChain(pText);
 
-            Destroy(gameObject);
+            
 		}
-
+        Destroy(gameObject);
         //TODO: Add score to score manager
 	}
 
