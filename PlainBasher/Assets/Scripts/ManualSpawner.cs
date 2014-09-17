@@ -12,7 +12,7 @@ public class ManualSpawner : MonoBehaviour {
     {
         public int positionX;
         public int positionY;
-        public float waitTime;
+        public float waitTime = 0;
         //public int hitNumber;
         public enum BlobTypes { Jelly1, Jelly2, Jelly3, Elektro, Explosion, Freeez };
         public BlobTypes type = BlobTypes.Jelly1;
@@ -59,6 +59,7 @@ public class ManualSpawner : MonoBehaviour {
 
     void FindSpawners()
     {
+        allSpawners.Clear();
         //place all spawner scripts in list
         for (int x = 1; x <= Grid.GetMaxX(); x++)
         {
@@ -109,6 +110,102 @@ public class ManualSpawner : MonoBehaviour {
 
 
     //Methods for manual blob placement
+
+    public void PlaceJellyKOAtGameOver()
+    {
+        Grid.WipeBoard();
+
+        FindSpawners();
+
+        DestroyHoles();
+
+
+        manualBlobs.Clear();
+
+        Debug.Log(Grid.GetMaxX() + "   " + Grid.GetMaxY());
+
+        //for (int x = 0; x < Grid.GetMaxX(); x++)
+        //{
+        //    for (int y = 0; y < Grid.GetMaxY(); y++)
+        //    {
+        //        manualBlobs.Add(new SingleBlobPlacementProperties());
+        //        manualBlobs[x * Grid.GetMaxY() + y].positionX = x + 1;
+        //        manualBlobs[x * Grid.GetMaxY() + y].positionY = y + 1;
+        //        //Debug.Log(((x - 1) * Grid.GetMaxX() + (y - 1)) + "has position X: " + manualBlobs[(x - 1) * Grid.GetMaxX() + (y - 1)].positionX + " Y: " + manualBlobs[(x-1) * Grid.GetMaxX() + (y-1)].positionY);
+
+        //    }
+        //}
+
+        for (int x = 0; x < Grid.GetMaxX(); x++)
+        {
+            if (x == 0)
+            {
+                for(int y = 0; y < Grid.GetMaxY(); y++)
+                {
+                    manualBlobs.Add(new SingleBlobPlacementProperties());
+                    manualBlobs[y].positionX = x + 1;
+                    manualBlobs[y].positionY = y + 1;
+                }
+            }
+            if (x == 1)
+            {
+                manualBlobs.Add(new SingleBlobPlacementProperties());
+                manualBlobs[5].positionX = x+1;
+                manualBlobs[5].positionY = 3;
+            }
+            if (x == 2)
+            {
+                manualBlobs.Add(new SingleBlobPlacementProperties());
+                manualBlobs[6].positionX = x+1;
+                manualBlobs[6].positionY = 2;
+                manualBlobs.Add(new SingleBlobPlacementProperties());
+                manualBlobs[7].positionX = x+1;
+                manualBlobs[7].positionY = 4;
+            }
+            if (x == 3)
+            {
+                manualBlobs.Add(new SingleBlobPlacementProperties());
+                manualBlobs[8].positionX = x + 1;
+                manualBlobs[8].positionY = 1;
+                manualBlobs.Add(new SingleBlobPlacementProperties());
+                manualBlobs[9].positionX = x + 1;
+                manualBlobs[9].positionY = 5;
+            }
+            if (x == 5)
+            {
+                for (int y = 0; y < Grid.GetMaxY(); y++)
+                {
+                    manualBlobs.Add(new SingleBlobPlacementProperties());
+                    manualBlobs[10 + y].positionX = x + 1;
+                    manualBlobs[10 + y].positionY = y + 1;
+                }
+            }
+            if (x == 6)
+            {
+                manualBlobs.Add(new SingleBlobPlacementProperties());
+                manualBlobs[15].positionX = x + 1;
+                manualBlobs[15].positionY = 1;
+                manualBlobs.Add(new SingleBlobPlacementProperties());
+                manualBlobs[16].positionX = x + 1;
+                manualBlobs[16].positionY = 5;
+            }
+            if (x == 7)
+            {
+                for (int y = 0; y < Grid.GetMaxY(); y++)
+                {
+                    manualBlobs.Add(new SingleBlobPlacementProperties());
+                    manualBlobs[17 + y].positionX = x + 1;
+                    manualBlobs[17 + y].positionY = y + 1;
+                }
+            }
+
+        }
+
+
+
+        ManuallyPlaceBlobs(true);
+    }
+
     public void ManuallyPlaceBlobs(bool isForGameOverScreen)
     {
         //Call this from other script
@@ -243,12 +340,26 @@ public class ManualSpawner : MonoBehaviour {
             //if no more events, make the loop exit
             listProgress++;
 
-            if (listProgress == eventTimers.Count)
+            if (listProgress == eventTimers.Count || forGameOverScreen)
                 anyMoreEvents = false;
             else
                 timeToNextEvent = eventTimers[listProgress] - eventTimers[listProgress-1];
         }
 
 
+    }
+
+    void DestroyHoles()
+    {
+        foreach(Spawner spawner in allSpawners)
+        {
+            Debug.Log("Looking at spawner");
+
+            if(spawner.gameObject.transform.childCount > 0)
+            {
+                Debug.Log("There is a child");
+                Destroy(spawner.gameObject.transform.GetChild(0).gameObject);
+            }
+        }
     }
 }
