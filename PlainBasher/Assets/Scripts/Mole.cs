@@ -181,7 +181,7 @@ public class Mole : MonoBehaviour {
         }
     }
 
-    void MoleMovement()
+    protected void MoleMovement()
     {
         currentTimeUp += Settings.instance.GetDeltaTime() * Settings.instance.GetDifficultyStayTime();
 		float OutroAnimationDuration = 0.5f;
