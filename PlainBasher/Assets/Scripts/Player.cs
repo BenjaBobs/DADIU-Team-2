@@ -14,7 +14,7 @@ public static class Player {
         }
         set
         {
-            if (!QADebugging.staticRef.godmode)
+			if (QADebugging.staticRef && !QADebugging.staticRef.godmode)
             {
 			    int dmg = value - lives;            
 			    if (dmg < 0) OnTakeDamage(dmg);
@@ -26,7 +26,9 @@ public static class Player {
                 }
 			    else if (lives > value && value > 0)
 				    Grid.WipeBoard();
-                CowHerd.instance.KillCow(lives);
+
+				if (CowHerd.instance)
+               		CowHerd.instance.KillCow(lives);
 			    lives = value;
             }
         }
