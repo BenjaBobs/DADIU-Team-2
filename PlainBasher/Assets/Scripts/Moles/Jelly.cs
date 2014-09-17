@@ -83,10 +83,10 @@ public class Jelly : Mole {
 		// bouncing animation when clicked - Jonas
 		if (BounceAnimation > 0.0f)
 		{
-			float scale = 1.5f * BounceAnimation;
-			NewScale.x *= 1 - Mathf.Cos ((BounceAnimation) * Mathf.PI * 2 * 2) * scale;
+			float scale = 0.4f * BounceAnimation;
+			NewScale.x *= 1 - Mathf.Cos ((BounceAnimation) * Mathf.PI * 2 * 3) * scale;
 			NewScale.z = NewScale.x;
-			NewScale.y = 1 + Mathf.Cos ((BounceAnimation) * Mathf.PI * 2 * 2) * scale*0.6f;
+			NewScale.y = 1 + Mathf.Cos ((BounceAnimation) * Mathf.PI * 2 * 3) * scale*0.7f;
 		}
 
 		transform.localScale = NewScale;
