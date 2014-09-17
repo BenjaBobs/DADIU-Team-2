@@ -3,7 +3,6 @@ using System.Collections;
 
 public class CowHerd : MonoBehaviour {
 
-	public GameObject deathAnimation;
 	public GameObject cow1;
 	public GameObject cow2;
 	public GameObject cow3;
@@ -42,23 +41,22 @@ public class CowHerd : MonoBehaviour {
 
 	void OnDeath(int cow)
 	{
-		GameObject animation;
 		Quaternion rot = Quaternion.identity;
 
 		if (cow == 1)
 		{
-			cow1.SetActive(false);
-			//animation = Instantiate (deathAnimation, cow1.transform.position, rot) as GameObject;
+            cow1.GetComponentInChildren<Animator>().SetTrigger("Taken");
+			//cow1.SetActive(false);
 		}
 		if (cow == 2)
 		{
-			cow2.SetActive(false);
-			//animation = Instantiate (deathAnimation, cow2.transform.position, rot) as GameObject;
+            cow2.GetComponentInChildren<Animator>().SetTrigger("Taken");
+			//cow2.SetActive(false);
 		}
 		if (cow == 3)
 		{
-			cow3.SetActive(false);
-			//animation = Instantiate (deathAnimation, cow3.transform.position, rot) as GameObject;
+            cow3.GetComponentInChildren<Animator>().SetTrigger("Taken");
+			//cow3.SetActive(false);
 		}
 
 		//Destroy(animation);
