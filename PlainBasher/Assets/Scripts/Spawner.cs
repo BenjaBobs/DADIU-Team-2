@@ -7,9 +7,9 @@ public class Spawner : MonoBehaviour {
 	public float minFrequency = 5.0f;
 	float currentFrequency = 0.0f;
 	float timeSinceSpawn = 0.0f;
-    [HideInInspector]
+    
 	public int posX;
-    [HideInInspector]
+    
 	public int posY;
 	public float nearbySpecialMultiplier = 20.0f;
 	public int minNearbyActivate = 1;
@@ -27,43 +27,59 @@ public class Spawner : MonoBehaviour {
     [HideInInspector]
     public float moleOffset = 0.0f;
 
+    [SerializeField]
+    private AoEIndicator aoeIndicator;
 
+    [SerializeField]
+    private int nearbyExplosions = 0;
+    [SerializeField]
+    private int nearbyElektros = 0;
+
+    public int NearbyElektros
+    {
+        get { return nearbyElektros; }
+        set 
+        { 
+            if (value <= 0)
+            {
+                aoeIndicator.RemoveElektro();
+                value = 0;
+            }
+            else
+            {
+                aoeIndicator.IndicateElektro();
+            }
+
+            nearbyElektros = value;
+        }
+    }
+
+    public int NearbyExplosions
+    {
+        get { return nearbyExplosions; }
+        set 
+        { 
+            if (value <= 0)
+            {
+                aoeIndicator.RemoveExplosion();
+                value = 0;
+            }
+            else
+            {
+                aoeIndicator.IndicateExplosion();
+            }
+            nearbyExplosions = value;
+        }
+    }
 
     #region Debugging
     [HideInInspector]
     public static Spawner DBGstaticRef;
     [HideInInspector]
-    public float DBGjellyChance = 0;
-    [HideInInspector]
-    public float DBGfreeezChance = 0;
-    [HideInInspector]
-    public float DBGelektroChance = 0;
-    [HideInInspector]
-    public float DBGexplosionChance = 0;
-
-    int DBGjellyCount = 0;
-    int DBGfreeezCount = 0;
-    int DBGelektroCount = 0;
-    int DBGexplosionCount = 0;
-
 	public GameObject mole;
 
     [HideInInspector]
     public bool Debugging = false;
-
-    public void Debug()
-    {
-        Debugging = true;
-        CalculateChildren();
-        Debugging = false;
-
-        int total = DBGjellyCount + DBGfreeezCount + DBGelektroCount + DBGexplosionCount;
-
-        DBGjellyChance = DBGjellyCount / (float)total;
-        DBGfreeezChance = DBGfreeezCount / (float)total;
-        DBGelektroChance = DBGelektroCount / (float)total;
-        DBGexplosionChance = DBGexplosionCount / (float)total;
-    }
 
     void Awake()
     {
@@ -72,7 +88,8 @@ public class Spawner : MonoBehaviour {
     #endregion
 
 	// Use this for initialization
-	void Start () {
+    void Start()
+    {
 		CalculateFrequency ();
 		timeSinceSpawn = Random.Range (0, currentFrequency);
 
@@ -107,19 +124,6 @@ public class Spawner : MonoBehaviour {
 			{
 				childs.Add(prefab);
 
-                #region Debugging
-                if (Debugging)
-                {
-					if (prefab.GetComponent<Jelly>())
-                        DBGjellyCount++;
-                    else if (prefab.GetComponent<Freeez>() != null)
-                        DBGfreeezCount++;
-                    else if (prefab.GetComponent<Elektro>() != null)
-                        DBGelektroCount++;
-                    else if (prefab.GetComponent<Explosion>() != null)
-                        DBGexplosionCount++;
-                }
-                #endregion
             }
 
 
@@ -174,6 +178,25 @@ public class Spawner : MonoBehaviour {
 		mole.transform.parent = gameObject.transform;
 		mole.GetComponent<Mole>().UpdateGridPosition(posX, posY);
 
+        if (mole.GetComponent<Explosion>())
+        {
+            foreach (Spawner s in Grid.GetSpawnerRadius(posX, posY, 1))
+            {
+                s.NearbyExplosions++;
+            }
+
+        }
+
+        if (mole.GetComponent<Elektro>())
+        {
+            List<Spawner> sList = Grid.GetSpawnerLine(posX, posY, true);
+            sList.Remove(this);
+            sList.AddRange(Grid.GetSpawnerLine(posX, posY, false));
+            
+            foreach (Spawner s in sList)
+                s.NearbyElektros++;
+        }
+
 		timeSinceSpawn = 0.0f;
 		CalculateFrequency ();
 		int currentNearbyActivate = Random.Range (minNearbyActivate, maxNearbyActivate);
@@ -193,10 +216,10 @@ public class Spawner : MonoBehaviour {
 			for (int y = posY-1; y <= posY+1; y++)
 		{
 			Spawner obj = Grid.GetSpawner(x, y);
-			if (!obj) continue;
-			if (obj.gameObject == gameObject) continue;
-			if (obj.mole) continue;
-			m.Add (obj);
+			if (obj != null)
+                if (obj != this)
+                    if (obj.mole == null)
+                        m.Add (obj);
 		}
 		if (m.Count == 0)
 			return null;
@@ -226,13 +249,32 @@ public class Spawner : MonoBehaviour {
 		for (int i = 1; i <= maxValue; i++)
 		{
 			Spawner obj = (expandY ? Grid.GetSpawner(posX, i) : Grid.GetSpawner(i, posY));
-			if (!obj) continue;
-			if (obj.gameObject == gameObject) continue;
-			if (obj.mole) continue;
-			m.Add (obj);
+			if (obj != null)
+			    if (obj != this)
+			        if (obj.mole == null)
+			            m.Add (obj);
+
 		}
 		return m;
 	}
+
+    private List<Spawner> GetListWithinExplosion()
+    {
+        List<Spawner> m = new List<Spawner>();
+
+        for (int i = posX - 1; i <= posX + 1; i++)
+        {
+            for (int j = posY - 1; j <= posY  + 1; j++)
+            {
+                Spawner s = Grid.GetSpawner(i, j);
+                
+                if (s != null)
+                    m.Add(s);
+            }
+        }
+
+        return m;
+    }
 
 	private float GetSpawnRateMultiplier()
 	{
@@ -279,6 +321,6 @@ public class Spawner : MonoBehaviour {
             hole = (GameObject)Instantiate(holePrefab, transform.position, transform.rotation);
             hole.transform.parent = transform;
         }
-    }
-
+    }  
+    
 }

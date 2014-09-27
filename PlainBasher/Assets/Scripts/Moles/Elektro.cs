@@ -26,7 +26,7 @@ public class Elektro : Mole
 
 		// once again to avoid infinte loops
 		isDead = false;
-
+        Grid.GetSpawner(posX, posY).NearbyElektros--;
 		base.OnDeath(give_bonus);
     }
 
@@ -53,6 +53,11 @@ public class Elektro : Mole
 		for (int i = 1; i <= maxValue; i++)
 		{
 			Mole obj = (expandY ? Grid.GetMole(posX, i) : Grid.GetMole(i, posY));
+
+            Spawner s = (expandY ? Grid.GetSpawner(posX, i) : Grid.GetSpawner(i, posY));
+            if (s)
+                s.NearbyElektros--;
+
 			if (!obj) continue;
 			if (obj.gameObject == gameObject) continue;
 			if (obj.IsDead()) continue;

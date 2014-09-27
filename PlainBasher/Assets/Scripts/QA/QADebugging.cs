@@ -41,7 +41,6 @@ public class QADebugging : MonoBehaviour {
     {
         if (spawnRef)
         {
-            spawnRef.Debug();
             //QA Buttons
             if (GUI.Button(new Rect(0, 0, 100, 25), "Reset"))
             {

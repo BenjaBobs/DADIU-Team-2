@@ -22,6 +22,17 @@ public class Explosion : Mole
 		}
 
         isDead = false;
+
+        for (int i = posX - 1; i <= posX + 1; i++)
+        {
+            for (int j = posY - 1; j <= posY + 1; j++)
+            {
+                Spawner s = Grid.GetSpawner(i, j);
+                if (s)
+                    s.NearbyExplosions--;
+            }
+        }
+
 		base.OnDeath(give_bonus);
     }
 

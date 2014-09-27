@@ -122,8 +122,6 @@ public class ManualSpawner : MonoBehaviour {
 
         manualBlobs.Clear();
 
-        Debug.Log(Grid.GetMaxX() + "   " + Grid.GetMaxY());
-
         //for (int x = 0; x < Grid.GetMaxX(); x++)
         //{
         //    for (int y = 0; y < Grid.GetMaxY(); y++)

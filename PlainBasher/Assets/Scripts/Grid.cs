@@ -10,24 +10,6 @@ public static class Grid {
 
     public static void Initialize(int sizeX, int sizeY)
     {
-        if (grid != null)
-        {
-            /*
-            foreach(KeyValuePair<int, Key)
-
-            for (int i = 1; i < gridSizeX; i++)
-            {
-                for (int j = 1; j < gridSizeY; j++)
-                {
-                    Debug.Log(i + " " + j);
-                    GameObject mole = grid[i][j].GetComponent<Spawner>().mole;
-                    if (mole != null)
-                        GameObject.DestroyImmediate(mole);
-                }
-            }
-            */
-        }
-
         grid = new Dictionary<int, Dictionary<int, GameObject>>();
         for (int gridPosX = 1; gridPosX <= sizeX; gridPosX++)
         {
@@ -73,6 +55,44 @@ public static class Grid {
 		return s;
 	}
 
+    public static List<Spawner> GetSpawnerLine(int x, int y, bool horizontal)
+    {
+        List<Spawner> sList = new List<Spawner>();
+
+        if (horizontal)
+        {
+            for (int i = 1; i <= GetMaxX(); i++)
+            {
+                sList.Add(GetSpawner(i, y));
+            }
+        }
+        else
+            for (int i = 1; i <= GetMaxY(); i++)
+            {
+                sList.Add(GetSpawner(x, i));
+            }
+
+        return sList;
+    }
+
+    public static List<Spawner> GetSpawnerRadius(int x, int y, int radius)
+    {
+        List<Spawner> sList = new List<Spawner>();
+
+        for (int i = x-radius; i <= x+radius; i++)
+        {
+            for (int j = y-radius; j <= y+radius; j++)
+            {
+                Spawner s = GetSpawner(i,j);
+                if (s != null && !sList.Contains(s))
+                    sList.Add(s);
+
+            }
+        }
+
+        return sList;
+    }
+
     public static GameObject LookupGrid(int x, int y)
     {
 		if (x > gridSizeX || x <= 0)
@@ -92,12 +112,16 @@ public static class Grid {
 		{
 			for (int y = 1; y <= gridSizeY; y++)
 			{
+                Spawner s = GetSpawner(x, y);
+                s.NearbyElektros = 0;
+                s.NearbyExplosions = 0;
+
 				Mole m = GetMole (x, y);
-				if (!m)
-					continue;
-				if (m.IsDead ())
-					continue;
-				m.OnDeath (false);
+				if (m)
+				    if (!m.IsDead ())
+				        m.OnDeath (false);
+
+                
 			}
 		}
 	}
