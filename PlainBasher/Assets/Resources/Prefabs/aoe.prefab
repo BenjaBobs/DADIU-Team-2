@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -17.803709, y: -1.67342126, z: -6.01730967}
-  m_LocalScale: {x: .584924042, y: .459644318, z: .569794059}
+  m_LocalScale: {x: .600000024, y: .459644318, z: .600000024}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -87,6 +87,8 @@ MonoBehaviour:
   elektroColor: {r: 1, g: 1, b: 0, a: 1}
   elektroInactiveColor: {r: 1, g: 1, b: 0, a: 0}
   fadeTime: 1
+  explosionIndicator: 0
+  elektroIndicator: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
